@@ -7,11 +7,11 @@ import ch.hevs.businessobject.Owner;
 
 public interface Platform {
 	
-	Car getCar(String brand );
+	Car getCar(String brand, String color);
 	
 	public List<Car> getCarListFromOwnerlastname(String lastname);
 	
-	//void sellCar(Car carSrc, )
+	void sellCar(Car carSrc, Owner newOwner, double amount) throws Exception;
 	
 	List<Owner> getOwners();
 	

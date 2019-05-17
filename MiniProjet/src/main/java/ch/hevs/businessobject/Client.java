@@ -22,6 +22,7 @@ public class Client {
 	private String lastname;
 	@Column(name="prenom")
 	private String firstname;
+	
 
 	// relations
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)//@JoinColumn(name = "FK_CLIENT")
