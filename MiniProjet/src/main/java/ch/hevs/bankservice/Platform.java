@@ -13,10 +13,14 @@ public interface Platform {
 	
 	void sellCar(Car carSrc, Owner newOwner) throws Exception;
 	
-	List<Owner> getOwners() throws Exception;
+	List<Owner> getOwners();
 	
 	Owner getOwner(long id) throws Exception;
 
 	void createOwner(Owner o) throws Exception;
+
+	void createCar(Car c) throws Exception;
+
+	Owner getOwnerFromLastname(String ownerName) throws Exception;
 
 }

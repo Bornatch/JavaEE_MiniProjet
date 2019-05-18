@@ -28,11 +28,12 @@ public class OwnerBean {
     	InitialContext ctx = new InitialContext();
     	platform = (Platform) ctx.lookup("java:global/TP12-WEB-EJB-PC-EPC-E-0.0.1-SNAPSHOT/PlatformBean!ch.hevs.bankservice.Platform");
     	
-    	// add Owner
-    	
+    	// initialize xhtml Owner
+    	this.firstname = "Prénom";
+    	this.lastname = "Nom";    	
     }	
     
-    public void createOwner(){
+    public String createOwner(){
     	
     	try{
     		Owner o = new Owner();
@@ -41,17 +42,67 @@ public class OwnerBean {
     		//compte client initialisé à 0
     		o.setAccount(0);
     		
-    		this.transactionResult ="Success!";
+    		this.transactionResult ="succès !";
+    		this.owner = o;
     		platform.createOwner(o);
     	}
     	catch (Exception e) {
     		e.printStackTrace();
 		}
+		return "showOwnerResult";
     	
     }
 	
     
-    public String getTransactionResult() {
+    public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public double getAccount() {
+		return account;
+	}
+
+	public void setAccount(double account) {
+		this.account = account;
+	}
+
+	public List<Owner> getOwners() {
+		return owners;
+	}
+
+	public void setOwners(List<Owner> owners) {
+		this.owners = owners;
+	}
+
+	public List<String> getOwnerNames() {
+		return ownerNames;
+	}
+
+	public void setOwnerNames(List<String> ownerNames) {
+		this.ownerNames = ownerNames;
+	}
+
+	public String getTransactionResult() {
 		return transactionResult;
 	}
 

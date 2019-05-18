@@ -11,11 +11,11 @@ public class Owner {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
-	@Column(name = "nom")
+	@Column(name = "lastname")
 	private String lastname;
-	@Column(name = "prenom")
+	@Column(name = "firstname")
 	private String firstname;
-	@Column(name = "compte")
+	@Column(name = "account")
 	private double account;
 	
 	// relation

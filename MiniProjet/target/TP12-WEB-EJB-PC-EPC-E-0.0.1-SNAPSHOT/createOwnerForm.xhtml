@@ -12,31 +12,15 @@
         	<h:outputLabel value="Devenir membre:"></h:outputLabel>
         	<br></br>
         	<h:panelGrid columns="5">
-        		<h:outputText value="Nom : "></h:outputText>
-        		<h:inputText value=" nom " maxlength="20" style="width: 100px;"></h:inputText>
+        		<h:outputText value="Pr&eacute;nom : "></h:outputText>
+        		<h:inputText value="#{ownerBean.firstname}" maxlength="20" style="width: 100px;"></h:inputText>
         		
-        		<h:outputText value="Prénom : "></h:outputText>
-        		<h:inputText value=" prénom " maxlength="20" style="width: 100px;"></h:inputText>
+        		<h:outputText value="Nom : "></h:outputText>
+        		<h:inputText value="#{ownerBean.lastname}" maxlength="20" style="width: 100px;"></h:inputText>
 	        	
-	        	<!--  
-	        	<h:outputText value="account: "></h:outputText>
-	        	<h:selectOneMenu value="#{transferBean.sourceAccountDescription}">
-	        		<f:selectItems value="#{transferBean.sourceAccountDescriptions}"/>
-	        	</h:selectOneMenu>
-	        	<h:outputText value="destination: "></h:outputText>
-        		<h:outputText value="client: "></h:outputText>
-	        	<h:selectOneMenu value="#{transferBean.destinationClientName}" valueChangeListener="#{transferBean.updateDestinationAccounts}" onchange="submit()">
-	        		<f:selectItems value="#{transferBean.clientNames}"/>
-	        	</h:selectOneMenu>
-	        	<h:outputText value="account: "></h:outputText>
-	        	<h:selectOneMenu value="#{transferBean.destinationAccountDescription}">
-	        		<f:selectItems value="#{transferBean.destinationAccountDescriptions}"/>
-	        	</h:selectOneMenu>
-	        	<h:outputText value="amount:"></h:outputText>
-                <h:inputText value="#{transferBean.transactionAmount}" maxlength="6" style="width: 40px;"></h:inputText>
-                -->
+	        	<h:commandButton value="Créer" action="#{ownerBean.createOwner}"></h:commandButton>
         	</h:panelGrid>
-     		<h:commandButton value="Créer" action="#{OwnerBean.createOwner}"></h:commandButton>
+     		
   
         </h:form>
     </ui:define>

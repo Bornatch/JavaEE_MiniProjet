@@ -48,8 +48,7 @@ public class PlatformBean {
 					
 					this.transactionResult="Error: Owner are identical!";
 				} /*
-				else {
-					
+				else {					
 										
 					Car carSrc = bank.getAccount(sourceAccountDescription, sourceClientName);
 					Account compteDest = bank.getAccount(destinationAccountDescription, destinationClientName);

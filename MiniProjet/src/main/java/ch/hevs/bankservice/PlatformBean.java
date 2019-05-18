@@ -23,10 +23,10 @@ public class PlatformBean implements Platform {
 		Query query1 = em.createQuery("FROM Owner a WHERE a.nom=:ownerLastname");
 		query1.setParameter("ownerLastname", ownerLastname);
 		Owner prop = (Owner) query1.getSingleResult();
-		
+
 		Query query = em.createQuery("FROM Car a WHERE a.brand=:brand AND a.owner=:owner");
 		query.setParameter("brand", brand);
-		query.setParameter("owner", prop );
+		query.setParameter("owner", prop);
 
 		return (Car) query.getSingleResult();
 	}
@@ -34,7 +34,7 @@ public class PlatformBean implements Platform {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Car> getCarListFromOwnerlastname(String lastname) throws Exception {
-		return (List<Car>) em.createQuery("SELECT o.cars " + "FROM Owner o " + "where o.nom=:lastname")
+		return (List<Car>) em.createQuery("SELECT o.cars " + "FROM Owner o " + "where o.lastname=:lastname")
 				.setParameter("lastname", lastname).getResultList();
 	}
 
@@ -42,7 +42,7 @@ public class PlatformBean implements Platform {
 	public void sellCar(Car carSrc, Owner newOwner) throws Exception {
 		em.persist(carSrc);
 		em.persist(newOwner);
-		//ajouter l'argent au vendeur
+		// ajouter l'argent au vendeur
 		carSrc.getOwner().setAccount(carSrc.getPrice());
 		// changer de propriétaire
 		carSrc.setOwner(newOwner);
@@ -52,20 +52,32 @@ public class PlatformBean implements Platform {
 	}
 
 	@Override
-	public List<Owner> getOwners() throws Exception {
+	public List<Owner> getOwners() {
 		return em.createQuery("FROM Owner").getResultList();
 	}
 
 	@Override
 	public Owner getOwner(long id) throws Exception {
-		return (Owner) em.createQuery("FROM Owner c where c.id=:id").
-				setParameter("id", id).getSingleResult();
+		return (Owner) em.createQuery("FROM Owner c where c.id=:id").setParameter("id", id).getSingleResult();
 	}
 
 	@Override
 	public void createOwner(Owner o) throws Exception {
 		em.persist(o);
-		
+
+	}
+
+	@Override
+	public void createCar(Car c) throws Exception {
+		em.persist(c);
+
+	}
+
+	@Override
+	public Owner getOwnerFromLastname(String lastname) throws Exception {
+		Query query = em.createQuery("FROM Owner o WHERE o.lastname=:lastname");
+		query.setParameter("lastname", lastname);
+		return (Owner) query.getSingleResult();
 	}
 
 }

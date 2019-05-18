@@ -9,12 +9,49 @@
 		<managed-bean-class>ch.hevs.managedbeans.OwnerBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>carBean</managed-bean-name>
+		<managed-bean-class>ch.hevs.managedbeans.CarBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>welcomeBank.xhtml</display-name>
 		<from-view-id>/welcomeBank.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>createOwnerForm</from-outcome>
 			<to-view-id>/createOwnerForm.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>createOwnerForm.xhtml</display-name>
+		<from-view-id>/createOwnerForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{ownerBean.createOwner}</from-outcome>
+			<to-view-id>/showOwnerResult.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>welcomeBank.xhtml</display-name>
+		<from-view-id>/welcomeBank.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>createCarForm</from-outcome>
+			<to-view-id>/createCarForm.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>createCarForm.xhtml</display-name>
+		<from-view-id>/createCarForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{carBean.createCar}</from-outcome>
+			<to-view-id>/showCarResult.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>showOwnerResult.xhtml</display-name>
+		<from-view-id>/showOwnerResult.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>createCarForm</from-outcome>
+			<to-view-id>/createCarForm.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
