@@ -7,14 +7,16 @@ import ch.hevs.businessobject.Owner;
 
 public interface Platform {
 	
-	Car getCar(String brand, String color);
+	Car getCar(String brand, String ownerLastname) throws Exception;
 	
-	public List<Car> getCarListFromOwnerlastname(String lastname);
+	public List<Car> getCarListFromOwnerlastname(String lastname) throws Exception;
 	
-	void sellCar(Car carSrc, Owner newOwner, double amount) throws Exception;
+	void sellCar(Car carSrc, Owner newOwner) throws Exception;
 	
-	List<Owner> getOwners();
+	List<Owner> getOwners() throws Exception;
 	
-	Owner getOwner(long id);
+	Owner getOwner(long id) throws Exception;
+
+	void createOwner(Owner o) throws Exception;
 
 }

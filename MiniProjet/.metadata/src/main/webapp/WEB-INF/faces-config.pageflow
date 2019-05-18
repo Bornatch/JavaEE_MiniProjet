@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14141592409490" configfile="/MiniProjet/src/main/webapp/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14141592409490" configfile="/MiniProjet/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="welcomeBank.xhtml" x="12" y="204" id="pf15581888921050" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15581888921052" path="/welcomeBank.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="createOwnerForm.xhtml" x="309" y="204" id="pf15581888921056" inlinks="pf15581888921052" path="/createOwnerForm.xhtml"/>
+  <links id="pf15581888921052" target="pf15581888921056" source="pf15581888921050" outcome="createOwnerForm"/>
+</pageflow:Pageflow>
