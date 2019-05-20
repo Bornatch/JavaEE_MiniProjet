@@ -3,6 +3,7 @@ package ch.hevs.managedbeans;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.event.ValueChangeEvent;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
@@ -52,6 +53,13 @@ public class OwnerBean {
 		return "showOwnerResult";
     	
     }
+    
+    public void updateOwner(ValueChangeEvent event) throws Exception {
+		this.lastname = (String) event.getNewValue();
+
+		this.owner = platform.getOwnerFromLastname(this.lastname);
+
+	}
 	
     
     public String getFirstname() {

@@ -25,8 +25,9 @@
         		<h:inputText value="#{carBean.price}" maxlength="20" style="width: 100px;"></h:inputText>
 	        	
 	        	<h:outputText value="Propri&eacute;taire : "></h:outputText>
-	        	<h:inputText value="#{ownerBean.owner}" maxlength="20" style="width: 100px;"></h:inputText>
-	        	
+        		<h:selectOneMenu value="carBean.ownerName" valueChangeListener="#{carBean.updateOwner}" onchange="submit()">
+	        		<f:selectItems value="#{carBean.ownerNames}"/>
+	        	</h:selectOneMenu>	        	
 	        	
         	</h:panelGrid>
      		<h:commandButton value="Créer" action="#{carBean.createCar}"></h:commandButton>

@@ -1,5 +1,6 @@
 package ch.hevs.managedbeans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -35,22 +36,21 @@ public class CarBean {
 		platform = (Platform) ctx
 				.lookup("java:global/TP12-WEB-EJB-PC-EPC-E-0.0.1-SNAPSHOT/PlatformBean!ch.hevs.bankservice.Platform");
 
-		/*
 		// get owners
 		List<Owner> ownerList = platform.getOwners();
-		if (ownerList.isEmpty()) {
+		this.ownerNames = new ArrayList<String>();
+		if (ownerList.isEmpty() == true) {
 			ownerNames.add("ca marche presque ...");
 		} else {
 			for (Owner o : ownerList) {
-				this.ownerNames.add(o.getFirstname());
-				System.out.println(o.getLastname());
+				this.ownerNames.add(o.getLastname());
 			}
 		}
-		*/
 
 		// initialize xhtml Owner
 		this.brand = "Marque";
 		this.color = "Couleur";
+		this.ownerName = "Sélectionner";
 
 	}
 
