@@ -17,5 +17,4 @@ public class BankException extends RuntimeException {
 	public BankException(Throwable arg0) {
 		super(arg0);
 	}
-
 }

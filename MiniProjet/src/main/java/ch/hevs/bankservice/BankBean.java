@@ -1,19 +1,18 @@
 package ch.hevs.bankservice;
-
 import java.util.List;
-
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
-
 import ch.hevs.businessobject.Account;
 import ch.hevs.businessobject.Client;
 
-@Stateless
+
+@Stateful
 public class BankBean implements Bank {
 	
-	@PersistenceContext(name = "BankPU")
+	@PersistenceContext(name = "BankPU", type = PersistenceContextType.EXTENDED)
 	private EntityManager em;
 
 	public Account getAccount(String accountDescription, String lastnameOwner) {
@@ -28,8 +27,7 @@ public class BankBean implements Bank {
 		return (List<Account>) em.createQuery("SELECT c.accounts FROM Client c where c.lastname=:lastname").setParameter("lastname", lastname).getResultList();
 	}
 
-	public void transfer(Account srcAccount, Account destAccount, int amount) {
-		
+	public void transfer(Account srcAccount, Account destAccount, int amount) {	
 		em.persist(srcAccount);
 		em.persist(destAccount);
 		srcAccount.debit(amount);

@@ -1,24 +1,16 @@
 package ch.hevs.managedbeans;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.event.ValueChangeEvent;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
 import ch.hevs.bankservice.Bank;
 import ch.hevs.businessobject.Account;
 import ch.hevs.businessobject.Client;
 
-/**
- * TransferBean.java
- * 
- */
 
-public class TransferBean
-{
+public class TransferBean {
     private List<Client> clients;
     private List<String> clientNames;
     private List<String> sourceAccountDescriptions;
