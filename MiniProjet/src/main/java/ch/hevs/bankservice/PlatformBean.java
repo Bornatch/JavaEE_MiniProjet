@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import ch.hevs.businessobject.Account;
+import ch.hevs.businessobject.Bike;
 import ch.hevs.businessobject.Car;
 import ch.hevs.businessobject.Client;
 import ch.hevs.businessobject.Owner;
@@ -78,6 +79,21 @@ public class PlatformBean implements Platform {
 		Query query = em.createQuery("FROM Owner o WHERE o.lastname=:lastname");
 		query.setParameter("lastname", lastname);
 		return (Owner) query.getSingleResult();
+	}
+
+	@Override
+	public void createBike(Bike c) throws Exception {
+		em.persist(c);
+	}
+
+	@Override
+	public List<Car> getCars() throws Exception {
+		return em.createQuery("FROM Car").getResultList();
+	}
+
+	@Override
+	public List<Bike> getBikes() throws Exception {
+		return em.createQuery("FROM Bike").getResultList();
 	}
 
 }

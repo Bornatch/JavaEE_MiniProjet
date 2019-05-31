@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -12,14 +14,20 @@ import ch.hevs.bankservice.Platform;
 import ch.hevs.businessobject.Car;
 import ch.hevs.businessobject.Owner;
 
+@ViewScoped
 public class CarBean {
 
 	private String brand;
 	private int km;
 	private String color;
 	private double price;
+	private String state;
 	private Owner owner;
 
+	//
+	private String[] states = {"Comme neuf", "Très bon état", "Bon état",
+			"Etat correct"};
+	
 	// private List<Owner> owners;
 	private List<String> ownerNames;
 	private String ownerName;
@@ -46,11 +54,19 @@ public class CarBean {
 				this.ownerNames.add(o.getLastname());
 			}
 		}
+		
+		// get cars
+		try {
+			cars = platform.getCars();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		// initialize xhtml Owner
+		// initialize xhtml 
 		this.brand = "Marque";
 		this.color = "Couleur";
 		this.ownerName = "Sélectionner";
+		
 
 	}
 
@@ -61,6 +77,7 @@ public class CarBean {
 			c.setKm(km);
 			c.setColor(color);
 			c.setPrice(price);
+			c.setState(state);
 			c.setOwner(owner);
 
 			this.transactionResult = "succès !";
@@ -69,6 +86,10 @@ public class CarBean {
 			e.printStackTrace();
 		}
 		return "showCarResult";
+	}
+	
+	public void updateState(ValueChangeEvent event) throws Exception {
+		this.state = (String) event.getNewValue();
 	}
 
 	public void updateOwner(ValueChangeEvent event) throws Exception {
@@ -108,6 +129,22 @@ public class CarBean {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String[] getStates() {
+		return states;
+	}
+
+	public void setStates(String[] states) {
+		this.states = states;
 	}
 
 	public Owner getOwner() {

@@ -11,71 +11,26 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Car")
-public class Car {
+public class Car extends Vehicule {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
-
-	@Column(name = "brand")
-	private String brand;
-
-	@Column(name = "km")
-	private int km;
-
-	@Column(name = "color")
-	private String color;
-
-	@Column(name = "price")
-	private double price;
+	@Column(name = "state")
+	private String state;
 
 	// relations
 	@ManyToOne
 	@JoinColumn(name = "FK_OWNER")
 	private Owner owner;
 
-	// id
-	public long getId() {
-		return id;
+	// state
+	public String getState() {
+		return state;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setState(String state) {
+		this.state = state;
 	}
 
-	// brand
-	public String getBrand() {
-		return brand;
-	}
-
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
-	public int getKm() {
-		return km;
-	}
-
-	public void setKm(int km) {
-		this.km = km;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
+	// owner
 	public Owner getOwner() {
 		return owner;
 	}
@@ -83,24 +38,14 @@ public class Car {
 	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
-	
-	
-	// methods
-	public void drive(int km){
-		this.km += km;
-	}
-	
-	
-	
-	//constructors 
-	public Car(){};
-	
-	public Car(String brand, int km, String color, double price, Owner owner) {
+
+	// constructors
+	public Car() {
 		super();
-		this.brand = brand;
-		this.km = km;
-		this.color = color;
-		this.price = price;
+	};
+
+	public Car(String brand, int km, String color, double price, String State, Owner owner) {
+		super();
 		this.owner = owner;
 	}
 }

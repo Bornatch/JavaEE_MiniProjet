@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+    <ui:define name="content">
+    	<h:form>
+        	<h:outputLabel value="Ajouter votre v&eacute;hicule:"></h:outputLabel>
+        	<br></br>
+        	<h:panelGrid columns="2" >
+        		<h:outputText value="Marque : "></h:outputText>
+        		<h:inputText value="#{bikeBean.brand}" maxlength="20" style="width: 100px;"></h:inputText>
+        		
+        		<h:outputText value="Km : "></h:outputText>
+        		<h:inputText value="#{bikeBean.km}" maxlength="20" style="width: 100px;"></h:inputText>
+	        	
+	        	<h:outputText value="Couleur : "></h:outputText>
+        		<h:inputText value="#{bikeBean.color}" maxlength="20" style="width: 100px;"></h:inputText>
+        		
+        		<h:outputText value="Prix : "></h:outputText>
+        		<h:inputText value="#{bikeBean.price}" maxlength="20" style="width: 100px;"></h:inputText>
+	        	
+	        	<h:outputText value="Cat&eacute;gorie : "></h:outputText>
+        		<h:selectOneMenu value="bikeBean.category" valueChangeListener="#{bikeBean.updateCategory}" onchange="submit()">
+	        		<f:selectItems value="#{bikeBean.categories}"/>
+	        	</h:selectOneMenu>
+	        	
+	        	<h:outputText value="Propri&eacute;taire : "></h:outputText>
+        		<h:selectOneMenu value="bikeBean.ownerName" valueChangeListener="#{bikeBean.updateOwner}" onchange="submit()">
+	        		<f:selectItems value="#{bikeBean.ownerNames}"/>
+	        	</h:selectOneMenu>	        	
+	        	
+        	</h:panelGrid>
+     		<h:commandButton value="Créer" action="#{bikeBean.createBike}"></h:commandButton>  
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

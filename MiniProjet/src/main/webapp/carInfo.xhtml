@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel value="Détail du v&eacute;hicule:"></h:outputLabel>
+			<br></br>
+			<h:panelGrid columns="2">
+				<h:outputText value="Marque : "></h:outputText>
+				<h:outputText value="#{platformBean.car.brand}"></h:outputText>
+
+				<h:outputText value="Km : "></h:outputText>
+				<h:outputText value="#{platformBean.car.km}"></h:outputText>
+				
+				<h:outputText value="Couleur : "></h:outputText>
+				<h:outputText value="#{platformBean.car.color}"></h:outputText>
+				
+				<h:outputText value="Prix : "></h:outputText>
+				<h:outputText value="#{platformBean.car.price}"></h:outputText>
+				
+
+				<h:outputText value="&Eacute;tat : "></h:outputText>
+				<h:outputText value="platformBean.car.state"></h:outputText>
+				
+
+				<h:outputText value="Propri&eacute;taire : "></h:outputText>
+				<h:outputText value="#{platformBean.car.owner.firstname} #{platformBean.car.owner.lastname}"></h:outputText>
+				
+
+			</h:panelGrid>
+			<h:commandButton value="Acheter" action="#{platformBean.sellCar}"></h:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
