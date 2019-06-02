@@ -10,8 +10,8 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="Motorcycle")
-public class Motorcycle extends Vehicle {
+@Table(name="Bike")
+public class Bike extends Vehicle {
 
 	@Column(name="cylinder")
 	private int cylinder;
@@ -29,11 +29,11 @@ public class Motorcycle extends Vehicle {
 	
 	
 	// constructors
-	public Motorcycle() {
+	public Bike() {
 		super();
 	}
 	
-	public Motorcycle(String brand, int km, String color, double price, User owner, 
+	public Bike(String brand, int km, String color, double price, User owner, 
 			int cylinder, String fuel) {
 		super(brand, km, color, price, owner);
 		this.cylinder = cylinder;

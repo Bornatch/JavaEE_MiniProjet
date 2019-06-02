@@ -50,16 +50,16 @@ public class Vehicle {
 	public void setBrand(String brand) { this.brand = brand; }
 	
 	// km
-	private int getKm() { return km; }
-	private void setKm(int km) { this.km = km; }
+	public int getKm() { return km; }
+	public void setKm(int km) { this.km = km; }
 	
 	// color
-	private String getColor() { return color; }
-	private void setColor(String color) { this.color = color; }
+	public String getColor() { return color; }
+	public void setColor(String color) { this.color = color; }
 	
 	// price
-	private double getPrice() { return price; }
-	private void setPrice(double price) { this.price = price; }
+	public double getPrice() { return price; }
+	public void setPrice(double price) { this.price = price; }
 	
 	// owner (from User)
 	public User getOwner() { return owner; }
