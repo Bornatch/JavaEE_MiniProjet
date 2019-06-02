@@ -13,20 +13,14 @@ import javax.persistence.Table;
 @Table(name="Bike")
 public class Bike extends Vehicle {
 
-	@Column(name="cylinder")
-	private int cylinder;
-	@Column(name="fuel")
-	private String fuel;
+	@Column(name="category")
+	private String category;
 	
 	
-	// cylinder
-	public int getCylinder() { return cylinder; }
-	public void setCylinder(int cylinder) { this.cylinder = cylinder; }
-	
-	// fuel
-	public String getFuel() { return fuel; }
-	public void setFuel(String fuel) { this.fuel = fuel; }
-	
+	// category
+	public String getCategory() { return category; }
+	public void setCategory(String category) { this.category = category; }
+		
 	
 	// constructors
 	public Bike() {
@@ -34,9 +28,8 @@ public class Bike extends Vehicle {
 	}
 	
 	public Bike(String brand, int km, String color, double price, User owner, 
-			int cylinder, String fuel) {
+			String category) {
 		super(brand, km, color, price, owner);
-		this.cylinder = cylinder;
-		this.fuel = fuel;
+		this.category = category;
 	}
 }

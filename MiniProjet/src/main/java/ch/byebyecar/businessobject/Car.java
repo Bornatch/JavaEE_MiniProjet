@@ -18,8 +18,8 @@ public class Car extends Vehicle {
 	
 
 	// doors
-	private int getDoors() { return doors; }
-	private void setDoors(int doors) { this.doors = doors; }
+	public int getDoors() { return doors; }
+	public void setDoors(int doors) { this.doors = doors; }
 
 
 	// constructors
