@@ -9,7 +9,7 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
 		<h:form>
-			<h:outputLabel value="Ajouter votre v&eacute;hicule:"></h:outputLabel>
+			<h:outputLabel value="Ajouter votre voiture:"></h:outputLabel>
 			<br></br>
 			<h:panelGrid columns="2">
 				<h:outputText value="Marque : "></h:outputText>
@@ -35,9 +35,9 @@
 				</h:selectOneMenu>
 
 				<h:outputText value="Propri&eacute;taire : "></h:outputText>
-				<h:selectOneMenu value="carBean.ownerName"
+				<h:selectOneMenu value="carBean.ownerUsername"
 					valueChangeListener="#{carBean.updateOwner}" onchange="submit()">
-					<f:selectItems value="#{carBean.ownerNames}" />
+					<f:selectItems value="#{carBean.ownerUsernames}" />
 				</h:selectOneMenu>
 
 			</h:panelGrid>

@@ -15,6 +15,10 @@ public class Owner {
 	private String lastname;
 	@Column(name = "firstname")
 	private String firstname;
+	@Column(name = "username")
+	private String username;
+	@Column(name = "password")
+	private String password;
 	@Column(name = "account")
 	private double account;
 	
@@ -66,11 +70,27 @@ public class Owner {
 		this.cars = cars;
 	}
 	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	// moethods for persistence test
 	
 
 	//constructors	
 	
+	public String getUsername() {
+		return username;
+	}
+
 	public Owner(){
 		
 	}

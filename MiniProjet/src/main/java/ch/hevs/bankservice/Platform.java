@@ -18,7 +18,9 @@ public interface Platform {
 
 	List<Owner> getOwners();
 	
-	Owner getOwnerFromLastname(String ownerName) throws Exception;
+//	Owner getOwnerFromLastname(String ownerName) throws Exception;
+	
+	Owner getOwnerFromUsername(String Username) throws Exception;
 
 	Owner getOwner(long id) throws Exception;
 
@@ -29,5 +31,11 @@ public interface Platform {
 	void createBike(Bike c) throws Exception;
 
 	List<Bike> getBikes() throws Exception;
+
+	void createCar(String brand, int km, String color, double price, String state, Owner owner);
+
+	void createOwner(String firstname, String lastname, String username, String password);
+
+	
 
 }

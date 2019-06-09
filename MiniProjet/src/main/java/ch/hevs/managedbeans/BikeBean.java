@@ -26,8 +26,8 @@ public class BikeBean {
 			"Trial", "Cross", "Routière"};
 	
 	// private List<Owner> owners;
-	private List<String> ownerNames;
-	private String ownerName;
+		private List<String> ownerUsernames;
+		private String ownerUsername;
 
 	private String transactionResult;
 	private Platform platform;
@@ -41,20 +41,20 @@ public class BikeBean {
 				.lookup("java:global/TP12-WEB-EJB-PC-EPC-E-0.0.1-SNAPSHOT/PlatformBean!ch.hevs.bankservice.Platform");
 
 		// get owners
-		List<Owner> ownerList = platform.getOwners();
-		this.ownerNames = new ArrayList<String>();
-		if (ownerList.isEmpty() == true) {
-			ownerNames.add("ca marche presque ...");
-		} else {
-			for (Owner o : ownerList) {
-				this.ownerNames.add(o.getLastname());
-			}
-		}
+				List<Owner> ownerList = platform.getOwners();
+				this.ownerUsernames = new ArrayList<String>();
+				if (ownerList.isEmpty() == true) {
+					ownerUsernames.add("ca marche presque ... ");
+				} else {
+					for (Owner o : ownerList) {
+						this.ownerUsernames.add(o.getUsername());
+					}
+				}
 
 		// initialize xhtml 
 		this.brand = "Marque";
 		this.color = "Couleur";
-		this.ownerName = "Sélectionner";	
+		this.ownerUsername = "Sélectionner";	
 
 	}
 
@@ -81,9 +81,9 @@ public class BikeBean {
 	}
 
 	public void updateOwner(ValueChangeEvent event) throws Exception {
-		this.ownerName = (String) event.getNewValue();
+		this.ownerUsername = (String) event.getNewValue();
 
-		this.owner = platform.getOwnerFromLastname(this.ownerName);
+		this.owner = platform.getOwnerFromUsername(this.ownerUsername);
 
 	}
 
@@ -160,19 +160,19 @@ public class BikeBean {
 	}
 
 	public List<String> getOwnerNames() {
-		return ownerNames;
+		return ownerUsernames;
 	}
 
-	public void setOwnerNames(List<String> ownerNames) {
-		this.ownerNames = ownerNames;
+	public void setOwnerNames(List<String> ownerUsername) {
+		this.ownerUsernames = ownerUsername;
 	}
 
-	public String getOwnerName() {
-		return ownerName;
+	public String getownerUsername() {
+		return ownerUsername;
 	}
 
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
+	public void setownerUsername(String ownerUsername) {
+		this.ownerUsername = ownerUsername;
 	}
 
 }

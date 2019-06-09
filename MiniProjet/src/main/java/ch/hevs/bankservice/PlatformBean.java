@@ -67,17 +67,47 @@ public class PlatformBean implements Platform {
 		em.persist(o);
 
 	}
+	
+	@Override
+	public void createOwner(String firstname, String lastname, String username, String password) {
+		
+		Owner o = new Owner();
+		o.setFirstname(firstname);
+		o.setLastname(lastname);
+		o.setUsername(username);
+		o.setPassword(password);
+		//compte client initialisé à 0
+		o.setAccount(0);
+		
+		em.persist(o);
+		
+	}
 
 	@Override
 	public void createCar(Car c) throws Exception {
 		em.persist(c);
 
 	}
+	
+	@Override
+	public void createCar(String brand, int km, String color, double price, String state, Owner owner) {
+		Car c = new Car();
+		c.setBrand(brand);
+		c.setKm(km);
+		c.setColor(color);
+		c.setPrice(price);
+		c.setState(state);
+		c.setOwner(owner);
+		
+		em.persist(c);
+		
+	}
+
 
 	@Override
-	public Owner getOwnerFromLastname(String lastname) throws Exception {
-		Query query = em.createQuery("FROM Owner o WHERE o.lastname=:lastname");
-		query.setParameter("lastname", lastname);
+	public Owner getOwnerFromUsername(String username) throws Exception {
+		Query query = em.createQuery("FROM Owner o WHERE o.username=:username");
+		query.setParameter("username", username);
 		return (Owner) query.getSingleResult();
 	}
 
@@ -95,5 +125,14 @@ public class PlatformBean implements Platform {
 	public List<Bike> getBikes() throws Exception {
 		return em.createQuery("FROM Bike").getResultList();
 	}
+
+//	@Override
+//	public Owner getOwnerFromLastname(String ownerName) throws Exception {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	
+
 
 }

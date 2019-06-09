@@ -7,22 +7,22 @@
 	<managed-bean>
 		<managed-bean-name>ownerBean</managed-bean-name>
 		<managed-bean-class>ch.hevs.managedbeans.OwnerBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>carBean</managed-bean-name>
 		<managed-bean-class>ch.hevs.managedbeans.CarBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>bikeBean</managed-bean-name>
 		<managed-bean-class>ch.hevs.managedbeans.BikeBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>platformBean</managed-bean-name>
 		<managed-bean-class>ch.hevs.managedbeans.PlatformBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
 		<display-name>welcomeBank.xhtml</display-name>
@@ -97,11 +97,59 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>welcomeBank.xhtml</display-name>
-		<from-view-id>/welcomeBank.xhtml</from-view-id>
+		<display-name>carList.xhtml</display-name>
+		<from-view-id>/carList.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>#{platformBean.getCarList}</from-outcome>
-			<to-view-id>/carList.xhtml</to-view-id>
+			<from-outcome>welcomeBank</from-outcome>
+			<to-view-id>/welcomeBank.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>carInfo.xhtml</display-name>
+		<from-view-id>/carInfo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcomeBank</from-outcome>
+			<to-view-id>/welcomeBank.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>showOwnerResult.xhtml</display-name>
+		<from-view-id>/showOwnerResult.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcomeBank</from-outcome>
+			<to-view-id>/welcomeBank.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>createCarForm.xhtml</display-name>
+		<from-view-id>/createCarForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcomeBank</from-outcome>
+			<to-view-id>/welcomeBank.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>createBikeForm.xhtml</display-name>
+		<from-view-id>/createBikeForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcomeBank</from-outcome>
+			<to-view-id>/welcomeBank.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>showVehiculeResult.xhtml</display-name>
+		<from-view-id>/showVehiculeResult.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcomeBank</from-outcome>
+			<to-view-id>/welcomeBank.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>createOwnerForm.xhtml</display-name>
+		<from-view-id>/createOwnerForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcomeBank</from-outcome>
+			<to-view-id>/welcomeBank.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

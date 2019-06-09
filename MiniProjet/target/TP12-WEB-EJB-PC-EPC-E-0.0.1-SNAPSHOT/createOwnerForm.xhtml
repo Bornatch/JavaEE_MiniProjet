@@ -11,12 +11,18 @@
     	<h:form>
         	<h:outputLabel value="Devenir membre:"></h:outputLabel>
         	<br></br>
-        	<h:panelGrid columns="5">
+        	<h:panelGrid columns="2">
         		<h:outputText value="Pr&eacute;nom : "></h:outputText>
         		<h:inputText value="#{ownerBean.firstname}" maxlength="20" style="width: 100px;"></h:inputText>
         		
         		<h:outputText value="Nom : "></h:outputText>
         		<h:inputText value="#{ownerBean.lastname}" maxlength="20" style="width: 100px;"></h:inputText>
+	        	
+	        	<h:outputText value="Nom utilisateur : "></h:outputText>
+        		<h:inputText value="#{ownerBean.username}" maxlength="20" style="width: 100px;"></h:inputText>
+	        	
+	        	<h:outputText value="Password : "></h:outputText>
+        		<h:inputSecret value="#{ownerBean.password}" maxlength="20" style="width: 100px;"></h:inputSecret>
 	        	
 	        	<h:commandButton value="Créer" action="#{ownerBean.createOwner}"></h:commandButton>
         	</h:panelGrid>

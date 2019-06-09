@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
@@ -14,7 +15,7 @@ import ch.hevs.bankservice.Platform;
 import ch.hevs.businessobject.Car;
 import ch.hevs.businessobject.Owner;
 
-@ViewScoped
+
 public class CarBean {
 
 	private String brand;
@@ -25,12 +26,11 @@ public class CarBean {
 	private Owner owner;
 
 	//
-	private String[] states = {"Comme neuf", "Très bon état", "Bon état",
-			"Etat correct"};
-	
+	private String[] states = { "Comme neuf", "Très bon état", "Bon état", "Etat correct" };
+
 	// private List<Owner> owners;
-	private List<String> ownerNames;
-	private String ownerName;
+	private List<String> ownerUsernames;
+	private String ownerUsername;
 	private List<Car> cars;
 
 	private String transactionResult;
@@ -46,15 +46,15 @@ public class CarBean {
 
 		// get owners
 		List<Owner> ownerList = platform.getOwners();
-		this.ownerNames = new ArrayList<String>();
+		this.ownerUsernames = new ArrayList<String>();
 		if (ownerList.isEmpty() == true) {
-			ownerNames.add("ca marche presque ...");
+			ownerUsernames.add("ca marche presque ... ");
 		} else {
 			for (Owner o : ownerList) {
-				this.ownerNames.add(o.getLastname());
+				this.ownerUsernames.add(o.getUsername());
 			}
 		}
-		
+
 		// get cars
 		try {
 			cars = platform.getCars();
@@ -62,40 +62,34 @@ public class CarBean {
 			e.printStackTrace();
 		}
 
-		// initialize xhtml 
+		// initialize xhtml
 		this.brand = "Marque";
 		this.color = "Couleur";
-		this.ownerName = "Sélectionner";
-		
+		this.ownerUsername = "Sélectionner";
 
 	}
 
 	public String createCar() {
 		try {
-			Car c = new Car();
-			c.setBrand(brand);
-			c.setKm(km);
-			c.setColor(color);
-			c.setPrice(price);
-			c.setState(state);
-			c.setOwner(owner);
+
+			platform.createCar(brand, km, color, price, state, owner);
 
 			this.transactionResult = "succès !";
-			platform.createCar(c);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "showCarResult";
 	}
-	
+
 	public void updateState(ValueChangeEvent event) throws Exception {
 		this.state = (String) event.getNewValue();
 	}
 
 	public void updateOwner(ValueChangeEvent event) throws Exception {
-		this.ownerName = (String) event.getNewValue();
+		this.ownerUsername = (String) event.getNewValue();
 
-		this.owner = platform.getOwnerFromLastname(this.ownerName);
+		this.owner = platform.getOwnerFromUsername(this.ownerUsername);
 
 	}
 
@@ -179,20 +173,20 @@ public class CarBean {
 		this.platform = platform;
 	}
 
-	public List<String> getOwnerNames() {
-		return ownerNames;
+	public List<String> getOwnerUsernames() {
+		return ownerUsernames;
 	}
 
-	public void setOwnerNames(List<String> ownerNames) {
-		this.ownerNames = ownerNames;
+	public void setOwnerUsernames(List<String> ownerUsername) {
+		this.ownerUsernames = ownerUsername;
 	}
 
-	public String getOwnerName() {
-		return ownerName;
+	public String getownerUsername() {
+		return ownerUsername;
 	}
 
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
+	public void setownerUsername(String ownerUsername) {
+		this.ownerUsername = ownerUsername;
 	}
 
 }
