@@ -13,13 +13,13 @@ import javax.persistence.Table;
 @Table(name="Car")
 public class Car extends Vehicle {
 
-	@Column(name="doors")
-	private int doors;
+	@Column(name="state")
+	private String state;
 	
 
-	// doors
-	public int getDoors() { return doors; }
-	public void setDoors(int doors) { this.doors = doors; }
+	// state
+	public String getState() { return state; }
+	public void setState(String state) { this.state = state; }
 
 
 	// constructors
@@ -27,8 +27,8 @@ public class Car extends Vehicle {
 		super();
 	}
 	
-	public Car(String brand, int km, String color, double price, User owner, int doors) {
+	public Car(String brand, int km, String color, double price, User owner, String state) {
 		super(brand, km, color, price, owner);
-		this.doors = doors;
+		this.state = state;
 	}
 }

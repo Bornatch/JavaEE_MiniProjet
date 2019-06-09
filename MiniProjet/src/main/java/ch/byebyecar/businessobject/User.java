@@ -24,6 +24,8 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
+	@Column(unique = true, name = "username")
+	private String username;
 	@Column(name = "firstname")
 	private String firstname;
 	@Column(name = "lastname")
@@ -33,16 +35,20 @@ public class User {
 	
 	
 	// relations
+	@Embedded
+	private Address address;
+
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<Vehicle> vehicles;
 	
-	@Embedded
-	private Address address;
-	
-	
+
 	// ID
 	public Long getId() { return id; }
 	public void setId(Long id) { this.id = id; }
+	
+	// username
+	public String getUsername() { return username; }
+	public void setUsername(String username) { this.username = username; }
 	
 	// firstname
 	public String getFirstname() { return firstname; }
@@ -56,9 +62,9 @@ public class User {
 	public double getAccount() { return account; }
 	public void setAccount(double account) { this.account = account; }
 	
-	// cars (from User - owner)
-	public List<Vehicle> getCars() { return vehicles; }
-	public void setCars(List<Vehicle> vehicles) { this.vehicles = vehicles; }
+	// vehicles (from User - owner)
+	public List<Vehicle> getVehicles() { return vehicles; }
+	public void setVehicles(List<Vehicle> vehicles) { this.vehicles = vehicles; }
 	
 	// address (from Address)
 	public Address getAddress() { return address; }

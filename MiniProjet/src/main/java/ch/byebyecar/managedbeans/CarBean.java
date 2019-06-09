@@ -5,7 +5,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.event.ValueChangeEvent;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import ch.byebyecar.businessobject.Bike;
+import ch.byebyecar.businessobject.Car;
 import ch.byebyecar.businessobject.User;
 import ch.byebyecar.service.Platform;
 
@@ -15,22 +15,22 @@ import ch.byebyecar.service.Platform;
  */
 
 
-public class BikeBean {
+public class CarBean {
 	
 	private String brand;
 	private int km;
 	private String color;
 	private double price;
+	private String state;
 	private User owner;
-	private String category;
-		
-	// define the categories
-	private String[] categories = {"Sportive", "Custom", "Enduro",
-			"Trial", "Cross", "Routière"};
 	
-	// sale
+	// list of states
+	private String[] states = {"Comme neuf", "Très bon état", "Bon état",
+			"Etat correct"};
+	
 	private List<String> usernames;
 	private String username;
+	private List<Car> cars;
 	private String result;
 	private Platform platform;
 	
@@ -43,13 +43,12 @@ public class BikeBean {
 		platform = (Platform) ctx.lookup("java:global/TP12-WEB-EJB-PC-EPC-E-0.0.1-SNAPSHOT/PlatformBean!ch.hevs.bankservice.Platform");
 		//platform = (Platform) ctx.lookup("");
 		
-		// get users
-		List<User> userList = platform.getUsers();
-		this.usernames = new ArrayList<String>();		
-		for (User user: userList) {
-			this.usernames.add(user.getUsername());
+		// get owners
+		List<User> ownerList = platform.getUsers();
+		this.usernames = new ArrayList<String>();
+		for (User u: ownerList) {
+			this.usernames.add(u.getUsername());
 		}
-		
 //		if (ownerList.isEmpty() == true) {
 //			ownerUsernames.add("ca marche presque ... ");
 //		} else {
@@ -58,36 +57,43 @@ public class BikeBean {
 //			}
 //		}
 		
+		// get cars
+		try {
+			cars = platform.getCars();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		// initialize variables
 		this.brand = "marque";
 		this.color = "couleur";
-		this.username = "sélectionner";
+		this.username = "sélectionner";		
 	}
 	
 	
-	// create a bike
-	public String createBike() {
+	// create a car
+	public String createCar() {
 		try {
-			platform.createBike(brand, km, color, price, owner, category);
+			platform.createCar(brand, km, color, price, owner, state);
 			this.result = "Succès !";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "showBikeResult";
+		return "showCarResult";
 	}
-
 	
-	// methods to update
-	public void updateCategory(ValueChangeEvent event) throws Exception {
-		this.category = (String) event.getNewValue();
+	
+	// update methods
+	public void updateState(ValueChangeEvent event) throws Exception {
+		this.state = (String) event.getNewValue();
 	}
 	
 	public void updateOwner(ValueChangeEvent event) throws Exception {
 		this.username = (String) event.getNewValue();
 		this.owner = platform.getUserByUsername(this.username);
 	}
-
+	
 	
 	// getters and setters
 	public String getBrand() { return brand; }
@@ -95,31 +101,34 @@ public class BikeBean {
 	
 	public int getKm() { return km; }
 	public void setKm(int km) { this.km = km; }
-	
+
 	public String getColor() { return color; }
 	public void setColor(String color) { this.color = color; }
-
+	
 	public double getPrice() { return price; }
 	public void setPrice(double price) { this.price = price; }
+	
+	public String getState() { return state; }
+	public void setState(String state) { this.state = state; }
 	
 	public User getOwner() { return owner; }
 	public void setOwner(User owner) { this.owner = owner; }
 	
-	public String getCategory() { return category; }
-	public void setCategory(String category) { this.category = category; }
-	
-	public String[] getCategories() { return categories; }
-	public void setCategories(String[] categories) { this.categories = categories; }
-	
+	public String[] getStates() { return states; }
+	public void setStates(String[] states) { this.states = states; }
+
 	public List<String> getUsernames() { return usernames; }
 	public void setUsernames(List<String> usernames) { this.usernames = usernames; }
-	
+
 	public String getUsername() { return username; }
 	public void setUsername(String username) { this.username = username; }
 
-	public String getResult() { return result; }
-	public void setResult(String result) { this.result = result; }
+	public List<Car> getCars() { return cars; }
+	public void setCars(List<Car> cars) { this.cars = cars; }
 
-	public Platform getPlatform() { return platform; }
+	public String getResult() {	return result; }
+	public void setResult(String result) { this.result = result; }
+	
+	public Platform getPlatform() {	return platform; }
 	public void setPlatform(Platform platform) { this.platform = platform; }
 }

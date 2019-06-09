@@ -15,25 +15,36 @@ import ch.byebyecar.businessobject.Vehicle;
 @Local
 public interface Platform {
 	
-	// related to the vehicles (in general)
-	Vehicle getVehicle(String brand, String ownerLastname) /*throws Exception*/;
-	public List<Vehicle> getVehicleListByOwnerLastname(String lastname) /*throws Exception*/;
-		
-	
-	// related to the cars
-	public List<Car> getCars() /*throws Exception*/;
-	void sellCar(Car car, User newOwner) throws Exception;
-	void createCar(Car c) /*throws Exception*/;
-		
-	
-	// related to the bikes
-	void createBike(Bike b) /*throws Exception*/;
-	List<Bike> getBikes() /*throws Exception*/;
-	
+	//TODO: check if all methods are used!
 	
 	// related to the users
-	User getUser(long id) /*throws Exception*/;
-	User getUserByLastname(String lastname) /*throws Exception*/;
+	void createUser(User u);
+	void createUser(String username, String firstname, String lastname);
+	void deleteUser(long userId);
 	List<User> getUsers();
-	void createUser(User u) /*throws Exception*/;
+	User getUser(long id);
+	User getUserByUsername(String username);
+	
+	
+	// related to the cars
+	void createCar(Car c);
+	void createCar(String brand, int km, String color, double price, User owner, String state);
+	void deleteCar(long carId);
+	List<Car> getCars();
+	Car getCar(String brand, String username);
+	void sellCar(Car car, User newOwner) throws Exception;
+	
+	
+	// related to the bikes
+	void createBike(Bike b);
+	void createBike(String brand, int km, String color, double price, User owner, String category);
+	void deleteBike(long bikeId);
+	List<Bike> getBikes();
+	Bike getBike(String brand, String username);
+	void sellBike(Bike bike, User newOwner) throws Exception;
+	
+	
+	// related to the vehicles (in general)
+	Vehicle getVehicle(String brand, String username);
+	List<Vehicle> getVehicleListByOwnerUsername(String username);
 }
