@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<h:dataTable value="#{PlatformBean.vehicles}" var="vehicle">>
+				<h:column style="width:50px;text-align:center;">
+					<f:facet name="header">Marque</f:facet>
+					#{vehicle.brand}
+				</h:column>
+				<h:column style="width:50px;text-align:center;">
+					<f:facet name="header">Kilométrage</f:facet>
+					#{vehicle.km}
+				</h:column>
+				<h:column style="width:20px;text-align:center;">
+					<f:facet name="header">Couleur</f:facet>
+					#{vehicle.color}
+				</h:column>
+				<h:column style="width:50px;text-align:center;">
+					<f:facet name="header">Etat</f:facet>
+					#{vehicle.state}
+				</h:column>
+				<h:column style="width:50px;text-align:center;">
+					<f:facet name="header">Catégorie</f:facet>
+					#{vehicle.category}
+				</h:column>
+				<h:column style="width:50px;text-align:center;">
+					<f:facet name="header">Propriétaire</f:facet>
+					#{vehicle.owner.firstname} #{vehicle.owner.lastname}
+				</h:column>
+				<h:column style="width:50px;text-align:center;">
+					<f:facet name="header">Prix</f:facet>
+					#{vehicle.price}
+				</h:column>
+				<!-- <h:column>
+					<f:facet name="header">Action</f:facet>
+					<h:commandButton value="Détails"
+						action="#{platformBean.getCarFromList}">
+					</h:commandButton>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Action</f:facet>
+					<h:commandLink action="carInfo">
+						<h:outputText value="D&eacute;tails" />
+					</h:commandLink>
+				</h:column>-->
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

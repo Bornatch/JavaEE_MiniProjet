@@ -166,6 +166,10 @@ public class PlatformBean implements Platform {
 		return (Vehicle) query.getSingleResult();		
 	}
 	
+	public List<Vehicle> getVehicles() {
+		return em.createQuery("FROM Vehicle").getResultList();
+	}
+	
 	public List<Vehicle> getVehicleListByOwnerUsername(String username) {
 		return (List<Vehicle>) em.createQuery("SELECT u.vehicles FROM User u where u.username=:username")
 				.setParameter("username", username).getResultList();

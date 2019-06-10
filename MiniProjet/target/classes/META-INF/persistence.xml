@@ -5,8 +5,15 @@
                 http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
 
-	<persistence-unit name="carPU">
+	<persistence-unit name="PlatformPU">
 		<jta-data-source>java:/labsDS</jta-data-source>
+		
+		<class>ch.byebyecar.businessobject.User</class>
+		<class>ch.byebyecar.businessobject.Car</class>
+		<class>ch.byebyecar.businessobject.Bike</class>
+		<class>ch.byebyecar.businessobject.Vehicle</class>
+		<class>ch.byebyecar.businessobject.Address</class>
+		
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" /> 

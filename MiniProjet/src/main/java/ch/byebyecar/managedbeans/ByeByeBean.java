@@ -8,6 +8,7 @@ import javax.naming.InitialContext;
 import ch.byebyecar.businessobject.Bike;
 import ch.byebyecar.businessobject.Car;
 import ch.byebyecar.businessobject.User;
+import ch.byebyecar.businessobject.Vehicle;
 import ch.byebyecar.service.Platform;
 
 /* Students : Valentin Bornatici & Montaine Burger
@@ -30,6 +31,7 @@ public class ByeByeBean {
 	private Car car;
 	private List<Bike> bikes;
 	private Bike bike;
+	private List<Vehicle> vehicles;
 	
 	// data from database
 	private HtmlDataTable datatable;
@@ -41,8 +43,7 @@ public class ByeByeBean {
 		// use JNDI to inject reference to bank EJB
 		InitialContext ctx = new InitialContext();
 		platform = (Platform) ctx
-				.lookup("java:global/TP12-WEB-EJB-PC-EPC-E-0.0.1-SNAPSHOT/PlatformBean!ch.hevs.bankservice.Platform");
-		// platform = (Platform) ctx.lookup("");
+				.lookup("java:global/BYEBYE-0.0.1-SNAPSHOT/PlatformBean!ch.byebyecar.service.Platform");
 		
 		// get users
 		List<User> userList = platform.getUsers();
@@ -61,6 +62,13 @@ public class ByeByeBean {
 		// get bikes
 		try {
 			bikes = platform.getBikes();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// get vehicles
+		try {
+			vehicles = platform.getVehicles();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

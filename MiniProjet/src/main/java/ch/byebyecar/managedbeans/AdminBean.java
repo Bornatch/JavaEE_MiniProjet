@@ -29,9 +29,8 @@ public class AdminBean {
 		
 		// use JNDI to inject reference to platform EJB
 		InitialContext ctx = new InitialContext();
-		//platform = (Platform) ctx.lookup("");
 		platform = (Platform) ctx
-				.lookup("java:global/TP12-WEB-EJB-PC-EPC-E-0.0.1-SNAPSHOT/PlatformBean!ch.hevs.bankservice.Platform");
+				.lookup("java:global/BYEBYE-0.0.1-SNAPSHOT/PlatformBean!ch.byebyecar.service.Platform");
 		
 		// initialize variables
 		this.username = "pseudo vide";

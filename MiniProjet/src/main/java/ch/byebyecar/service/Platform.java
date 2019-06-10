@@ -46,5 +46,6 @@ public interface Platform {
 	
 	// related to the vehicles (in general)
 	Vehicle getVehicle(String brand, String username);
+	List<Vehicle> getVehicles();
 	List<Vehicle> getVehicleListByOwnerUsername(String username);
 }

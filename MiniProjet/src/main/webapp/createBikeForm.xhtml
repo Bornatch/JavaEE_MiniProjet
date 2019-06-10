@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel value="Ajouter votre moto :"></h:outputLabel>
+			<br></br>
+			<h:panelGrid columns="2">
+				<h:outputText value="Marque : "></h:outputText>
+				<h:inputText value="#{BikeBean.brand}" maxlength="20"
+					style="width: 100px;"></h:inputText>
+
+				<h:outputText value="Km : "></h:outputText>
+				<h:inputText value="#{BikeBean.km}" maxlength="20"
+					style="width: 100px;"></h:inputText>
+
+				<h:outputText value="Couleur : "></h:outputText>
+				<h:inputText value="#{BikeBean.color}" maxlength="20"
+					style="width: 100px;"></h:inputText>
+
+				<h:outputText value="Prix : "></h:outputText>
+				<h:inputText value="#{BikeBean.price}" maxlength="20"
+					style="width: 100px;"></h:inputText>
+
+				<h:outputText value="Catégorie : "></h:outputText>
+				<h:selectOneMenu value="BikeBean.category"
+					valueChangeListener="#{BikeBean.updateCategory}"
+					onchange="submit()">
+					<f:selectItems value="#{BikeBean.categories}" />
+				</h:selectOneMenu>
+
+				<h:outputText value="Propriétaire : "></h:outputText>
+				<h:selectOneMenu value="BikeBean.username"
+					valueChangeListener="#{BikeBean.updateOwner}" onchange="submit()">
+					<f:selectItems value="#{BikeBean.usernames}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+			<h:commandButton value="Créer" action="#{BikeBean.createBike}"></h:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

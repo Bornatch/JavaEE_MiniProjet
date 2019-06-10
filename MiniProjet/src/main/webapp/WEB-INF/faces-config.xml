@@ -5,25 +5,108 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
 	<managed-bean>
-		<managed-bean-name>transferBean</managed-bean-name>
-		<managed-bean-class>ch.hevs.managedbeans.TransferBean</managed-bean-class>
+		<managed-bean-name>ByeByeBean</managed-bean-name>
+		<managed-bean-class>ch.byebyecar.managedbeans.ByeByeBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>AdminBean</managed-bean-name>
+		<managed-bean-class>ch.byebyecar.managedbeans.AdminBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>BikeBean</managed-bean-name>
+		<managed-bean-class>ch.byebyecar.managedbeans.BikeBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>	
+	<managed-bean>
+		<managed-bean-name>CarBean</managed-bean-name>
+		<managed-bean-class>ch.byebyecar.managedbeans.CarBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>UserBean</managed-bean-name>
+		<managed-bean-class>ch.byebyecar.managedbeans.UserBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	
+	<!-- FROM Welcome page -->
 	<navigation-rule>
-		<display-name>welcomeBank.xhtml</display-name>
-		<from-view-id>/welcomeBank.xhtml</from-view-id>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>transferForm</from-outcome>
-			<to-view-id>/transferForm.xhtml</to-view-id>
+			<from-outcome>createUserForm</from-outcome>
+			<to-view-id>/createUserForm.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+		<navigation-rule>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>createCarForm</from-outcome>
+			<to-view-id>/createCarForm.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>createBikeForm</from-outcome>
+			<to-view-id>/createBikeForm.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+		<navigation-rule>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>vehicleList</from-outcome>
+			<to-view-id>/vehicleList.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+		
+	<!--  ABOUT User -->
+	<navigation-rule>
+		<display-name>createUserForm.xhtml</display-name>
+		<from-view-id>/createUserForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+		
+	<!--  CREATE Vehicles -->
+	<navigation-rule>
+		<display-name>createCarForm.xhtml</display-name>
+		<from-view-id>/createCarForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcomeBank</from-outcome>
+			<to-view-id>/welcomeBank.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>transferForm.xhtml</display-name>
-		<from-view-id>/transferForm.xhtml</from-view-id>
+		<display-name>createBikeForm.xhtml</display-name>
+		<from-view-id>/createBikeForm.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>#{transferBean.performTransfer}</from-outcome>
-			<to-view-id>/showTransferResult.xhtml</to-view-id>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
 		</navigation-case>
-	</navigation-rule>
-
+	</navigation-rule>	
+	
+	<!--  Vehicle LIST -->
+	<navigation-rule>
+		<display-name>vehicleList.xhtml</display-name>
+		<from-view-id>/vehicleList.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+		<display-name>vehicleInfo.xhtml</display-name>
+		<from-view-id>/vehicleInfo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>vehicleList</from-outcome>
+			<to-view-id>/vehicleList.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>	
 </faces-config>
