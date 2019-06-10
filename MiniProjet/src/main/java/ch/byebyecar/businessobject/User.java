@@ -76,7 +76,8 @@ public class User {
 		vehicles = new ArrayList<Vehicle>();
 	}
 	
-	public User(String firstname, String lastname, double account) {
+	public User(String username, String firstname, String lastname, double account) {
+		this.username = username;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.account = account;
