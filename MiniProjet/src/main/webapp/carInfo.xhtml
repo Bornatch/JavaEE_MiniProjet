@@ -33,13 +33,13 @@
 				<h:outputText value="#{platformBean.car.owner.firstname} #{platformBean.car.owner.lastname}"></h:outputText>
 				
 				<h:outputText value="Acheteur : "></h:outputText>
-				<h:selectOneMenu value="carBean.destnationOwnerName"
-					valueChangeListener="#{carBean.updateOwner}" onchange="submit()">
-					<f:selectItems value="#{carBean.ownerUsernames}" />
+				<h:selectOneMenu value="platformBean.destnationOwnerName"
+					valueChangeListener="#{platformBean.updateListOwner}" onchange="submit()">
+					<f:selectItems value="#{platformBean.ownerUsernames}" />
 				</h:selectOneMenu>
-
 			</h:panelGrid>
-ca		</h:form>
+			<h:commandButton value="Acheter" action="#{platformBean.sellCar}"></h:commandButton>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

@@ -16,7 +16,7 @@ public interface Platform {
 	
 	public List<Car> getCars() throws Exception;
 
-	void sellCar(String sourceOwnerName, String destinationOwnerName, long carId) throws Exception;
+	String sellCar(String sourceOwnerName, String destinationOwnerName, long carId) throws Exception;
 
 	List<Owner> getOwners();
 	

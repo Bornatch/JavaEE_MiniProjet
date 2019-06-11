@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ValueChangeEvent;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
@@ -19,11 +20,11 @@ import ch.hevs.businessobject.Car;
 import ch.hevs.businessobject.Owner;
 import ch.hevs.businessobject.Vehicule;
 
-@RequestScoped
+//@RequestScoped
 public class PlatformBean {
 
-	private List<Owner> owner;
-	private List<String> ownerNames;
+	private Owner owner;
+	private List<String> ownerUsernames;
 	private String transactionResult;
 	private String sourceOwnerName;
 	private String destinationOwnerName;
@@ -49,9 +50,9 @@ public class PlatformBean {
 
 		// get clients
 		List<Owner> ownerList = platform.getOwners();
-		this.ownerNames = new ArrayList<String>();
-		for (Owner owner : ownerList) {
-			this.ownerNames.add(owner.getLastname());
+		this.ownerUsernames = new ArrayList<String>();
+		for (Owner o : ownerList) {
+			this.ownerUsernames.add(o.getUsername());
 		}
 
 		// get cars
@@ -82,8 +83,8 @@ public class PlatformBean {
 
 		//		Vehicule car = platform.getCar(car.getId());
 		//		Account compteDest = bank.getAccount(destinationAccountDescription, destinationClientName);
-
-				platform.sellCar(sourceOwnerName, destinationOwnerName, car.getId());
+				String controlOnDb;
+				controlOnDb = platform.sellCar(sourceOwnerName, destinationOwnerName, car.getId());
 				this.transactionResult = "Success!";
 			}
 
@@ -99,8 +100,12 @@ public class PlatformBean {
 
 	public String getCarFromList() {
 		setCar((Car) datatableCars.getRowData());
-
 		return "carInfo";
+	}
+	
+	public void updateListOwner(ValueChangeEvent event) throws Exception {
+		this.destinationOwnerName = (String) event.getNewValue();
+		this.owner = platform.getOwnerFromUsername(this.destinationOwnerName);
 	}
 
 	// initialisation des boutons
@@ -108,20 +113,20 @@ public class PlatformBean {
 		return "carList";
 	}
 
-	public List<Owner> getOwner() {
+	public Owner getOwner() {
 		return owner;
 	}
 
-	public void setOwner(List<Owner> owner) {
+	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
 
-	public List<String> getOwnerNames() {
-		return ownerNames;
+	public List<String> getOwnerUsernames() {
+		return ownerUsernames;
 	}
 
-	public void setOwnerNames(List<String> ownerNames) {
-		this.ownerNames = ownerNames;
+	public void setOwnerUsernames(List<String> ownerNames) {
+		this.ownerUsernames = ownerNames;
 	}
 
 	public String getTransactionResult() {

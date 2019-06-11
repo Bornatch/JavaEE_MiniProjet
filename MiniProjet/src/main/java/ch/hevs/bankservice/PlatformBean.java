@@ -129,24 +129,28 @@ public class PlatformBean implements Platform {
 	
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRED)
 	@Override
-	public void sellCar(String sourceOwnerName, String destinationOwnerName, long carId) throws Exception {
+	public String sellCar(String sourceOwnerName, String destinationOwnerName, long carId) throws Exception {
 		
 		Car car = getCarById(carId);
 		
 		Owner src = getOwnerFromUsername(sourceOwnerName);
 		Owner dst = getOwnerFromUsername(destinationOwnerName);
 		
-		em.persist(src);
-		em.persist(dst);
-		
-		em.persist(car);
-		
-		src.setAccount(src.getAccount()+car.getPrice());
-		dst.setAccount(dst.getAccount()-car.getPrice());
-		
-		car.setOwner(dst);
-		
-		
+		if(car.getOwner().getId() == src.getId()){
+			em.persist(src);
+			em.persist(dst);
+			
+			em.persist(car);
+			
+			src.setAccount(src.getAccount()+car.getPrice());
+			dst.setAccount(dst.getAccount()-car.getPrice());
+			
+			car.setOwner(dst);
+			
+			return "showSellResult";
+		}
+		else
+			return "error";		
 	}
 
 
