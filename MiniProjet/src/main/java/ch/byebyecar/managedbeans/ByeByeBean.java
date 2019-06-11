@@ -27,14 +27,18 @@ public class ByeByeBean {
 	private String destinationOwnerName;
 	private double price;
 	private Platform platform;
+	
 	private List<Car> cars;
 	private Car car;
 	private List<Bike> bikes;
 	private Bike bike;
 	private List<Vehicle> vehicles;
+	private Vehicle vehicle;
 	
 	// data from database
-	private HtmlDataTable datatable;
+	private HtmlDataTable datatableCars;	
+	private HtmlDataTable datatableBikes;
+	private HtmlDataTable datatableVehicles;
 	
 	
 	@PostConstruct
@@ -75,37 +79,58 @@ public class ByeByeBean {
 	}
 	
 	
-	public String performSelling() {
+	public String sellCar() {
 		try {
+			sourceOwnerName = car.getOwner().getUsername();
+
 			if (sourceOwnerName.equals(destinationOwnerName)) {
-				this.result = "Erreur : les propriétaires sont identiques !";
-			} /*
-			 * else {
-			 * 
-			 * Car carSrc = bank.getAccount(sourceAccountDescription,
-			 * sourceClientName); Account compteDest =
-			 * bank.getAccount(destinationAccountDescription,
-			 * destinationClientName);
-			 * 
-			 * // Transfer platform.sellCar(carSrc, newOwner);
-			 * this.transactionResult="Success!"; }
-			 */
+				this.result = "Error: Owners are identical!";
+			} else {
+
+		//		Vehicule car = platform.getCar(car.getId());
+		//		Account compteDest = bank.getAccount(destinationAccountDescription, destinationClientName);
+
+				platform.sellCar(sourceOwnerName, destinationOwnerName, car.getId());
+				this.result = " succès !";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return "showTransferResult";
+
+		return "showSellResult"; // the String value returned represents the
+										// outcome used by the navigation
+										// handler to determine what page to
+										// display next.
 	}
 	
 	
-	// initialization
 	public String getCarFromList() {
-		setCar((Car) datatable.getRowData());
+		setCar((Car) datatableCars.getRowData());
 		return "carInfo";
 	}
 	
+	public String getBikeFromList() {
+		setBike((Bike) datatableBikes.getRowData());		
+		return "bikeInfo";
+	}
+	
+	public String getVehicleFromList() {
+		setVehicle((Vehicle) datatableVehicles.getRowData());
+		return "vehicleInfo";
+	}
+	
+	
+	// initialization	
 	public String getCarList() {
 		return "carList";
+	}
+	
+	public String getBikeList() {
+		return "bikeList";
+	}
+	
+	public String getVehicleList() {
+		return "vehicleList";
 	}
 	
 	
@@ -143,6 +168,18 @@ public class ByeByeBean {
 	public Bike getBike() { return bike; }
 	public void setBike(Bike bike) { this.bike = bike; }
 
-	public HtmlDataTable getDatatable() { return datatable; }
-	public void setDatatable(HtmlDataTable datatable) { this.datatable = datatable; }
+	public List<Vehicle> getVehicles() { return vehicles; }
+	public void setVehicles(List<Vehicle> vehicles) { this.vehicles = vehicles; }
+	
+	public Vehicle getVehicle() { return car; }
+	public void setVehicle(Vehicle vehicle) { this.vehicle = vehicle; }
+	
+	public HtmlDataTable getDatatableCars() { return datatableCars; }
+	public void setDatatableCars(HtmlDataTable datatableCars) { this.datatableCars = datatableCars; }
+
+	public HtmlDataTable getDatatableBikes() { return datatableBikes; }
+	public void setDatatableBikes(HtmlDataTable datatableBikes) { this.datatableBikes = datatableBikes; }
+
+	public HtmlDataTable getDatatableVehicles() { return datatableVehicles; }
+	public void setDatatableVehicles(HtmlDataTable datatableVehicles) { this.datatableVehicles = datatableVehicles; }
 }

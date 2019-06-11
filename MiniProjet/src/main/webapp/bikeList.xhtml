@@ -9,47 +9,44 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
 		<h:form>
-			<h:dataTable value="#{ByeByeBean.vehicles}" var="vehicle">>
+			<h:dataTable value="#{byeByeBean.bikes}" var="bike"
+				binding="#{byeByeBean.datatableBikes}">>
 				<h:column style="width:50px;text-align:center;">
 					<f:facet name="header">Marque</f:facet>
-					#{vehicle.brand}
+					#{bike.brand}
 				</h:column>
 				<h:column style="width:50px;text-align:center;">
-					<f:facet name="header">Kilométrage</f:facet>
-					#{vehicle.km}
+					<f:facet name="header">Kilom&eacute;trage</f:facet>
+					#{bike.km}
 				</h:column>
 				<h:column style="width:20px;text-align:center;">
 					<f:facet name="header">Couleur</f:facet>
-					#{vehicle.color}
-				</h:column>
-				<!-- <h:column style="width:50px;text-align:center;">
-					<f:facet name="header">Etat</f:facet>
-					#{vehicle.state}
+					#{bike.color}
 				</h:column>
 				<h:column style="width:50px;text-align:center;">
-					<f:facet name="header">Catégorie</f:facet>
-					#{vehicle.category}
-				</h:column>-->
+					<f:facet name="header">Cat&eacute;gorie</f:facet>
+					#{bike.category}
+				</h:column>
 				<h:column style="width:50px;text-align:center;">
-					<f:facet name="header">Propriétaire</f:facet>
-					#{vehicle.owner.firstname} #{vehicle.owner.lastname}
+					<f:facet name="header">Propri&eacute;taire</f:facet>
+					#{bike.owner.firstname} #{bike.owner.lastname}
 				</h:column>
 				<h:column style="width:50px;text-align:center;">
 					<f:facet name="header">Prix</f:facet>
-					#{vehicle.price}
+					#{bike.price}
 				</h:column>
-				<!-- <h:column>
+				<h:column>
 					<f:facet name="header">Action</f:facet>
-					<h:commandButton value="Détails"
-						action="#{platformBean.getCarFromList}">
+					<h:commandButton value="D&eacute;tails"
+						action="#{byeByeBean.getBikeFromList}">
 					</h:commandButton>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Action</f:facet>
-					<h:commandLink action="carInfo">
-						<h:outputText value="D&eacute;tails" />
-					</h:commandLink>
-				</h:column>-->
+					<h:commandLink action="bikeInfo">
+				<h:outputText value="D&eacute;tails" />
+			</h:commandLink>
+				</h:column>
 			</h:dataTable>
 		</h:form>
 	</ui:define>

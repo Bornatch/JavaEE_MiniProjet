@@ -26,6 +26,8 @@ public class User {
 	private Long id;
 	@Column(unique = true, name = "username")
 	private String username;
+	@Column(name = "password")
+	private String password;
 	@Column(name = "firstname")
 	private String firstname;
 	@Column(name = "lastname")
@@ -49,6 +51,10 @@ public class User {
 	// username
 	public String getUsername() { return username; }
 	public void setUsername(String username) { this.username = username; }
+	
+	// password
+	public String getPassword() { return password; }
+	public void setPassword(String password) { this.password = password; }
 	
 	// firstname
 	public String getFirstname() { return firstname; }
@@ -76,8 +82,10 @@ public class User {
 		vehicles = new ArrayList<Vehicle>();
 	}
 	
-	public User(String username, String firstname, String lastname, double account, Address address) {
+	public User(String username, String password, 
+			String firstname, String lastname, double account, Address address) {
 		this.username = username;
+		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.account = account;

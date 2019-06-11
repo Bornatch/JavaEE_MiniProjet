@@ -13,36 +13,36 @@
 			<br></br>
 			<h:panelGrid columns="2">
 				<h:outputText value="Marque : "></h:outputText>
-				<h:inputText value="#{BikeBean.brand}" maxlength="20"
+				<h:inputText value="#{bikeBean.brand}" maxlength="20"
 					style="width: 100px;"></h:inputText>
 
 				<h:outputText value="Km : "></h:outputText>
-				<h:inputText value="#{BikeBean.km}" maxlength="20"
+				<h:inputText value="#{bikeBean.km}" maxlength="20"
 					style="width: 100px;"></h:inputText>
 
 				<h:outputText value="Couleur : "></h:outputText>
-				<h:inputText value="#{BikeBean.color}" maxlength="20"
+				<h:inputText value="#{bikeBean.color}" maxlength="20"
 					style="width: 100px;"></h:inputText>
 
 				<h:outputText value="Prix : "></h:outputText>
-				<h:inputText value="#{BikeBean.price}" maxlength="20"
+				<h:inputText value="#{bikeBean.price}" maxlength="20"
 					style="width: 100px;"></h:inputText>
 
 				<h:outputText value="Catégorie : "></h:outputText>
-				<h:selectOneMenu value="BikeBean.category"
-					valueChangeListener="#{BikeBean.updateCategory}"
+				<h:selectOneMenu value="bikeBean.category"
+					valueChangeListener="#{bikeBean.updateCategory}"
 					onchange="submit()">
-					<f:selectItems value="#{BikeBean.categories}" />
+					<f:selectItems value="#{bikeBean.categories}" />
 				</h:selectOneMenu>
 
 				<h:outputText value="Propriétaire : "></h:outputText>
-				<h:selectOneMenu value="BikeBean.username"
-					valueChangeListener="#{BikeBean.updateOwner}" onchange="submit()">
-					<f:selectItems value="#{BikeBean.usernames}" />
+				<h:selectOneMenu value="bikeBean.username"
+					valueChangeListener="#{bikeBean.updateOwner}" onchange="submit()">
+					<f:selectItems value="#{bikeBean.usernames}" />
 				</h:selectOneMenu>
 			</h:panelGrid>
 			
-			<h:commandButton value="Créer" action="#{BikeBean.createBike}"></h:commandButton>
+			<h:commandButton value="Créer" action="#{bikeBean.createBike}"></h:commandButton>
 		</h:form>
 	</ui:define>
 </ui:composition>

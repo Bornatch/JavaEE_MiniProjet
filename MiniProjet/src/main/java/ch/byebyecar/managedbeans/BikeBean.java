@@ -28,7 +28,7 @@ public class BikeBean {
 	private String[] categories = {"Sportive", "Custom", "Enduro",
 			"Trial", "Cross", "Routière"};
 	
-	// sale
+	private List<Bike> bikes;
 	private List<String> usernames;
 	private String username;
 	private String result;
@@ -45,11 +45,22 @@ public class BikeBean {
 		
 		// get users
 		List<User> userList = platform.getUsers();
-		this.usernames = new ArrayList<String>();		
-		for (User user: userList) {
-			this.usernames.add(user.getUsername());
+		this.usernames = new ArrayList<String>();	
+		if (userList.isEmpty() == true)
+			this.usernames.add("Aucun utilisateur existant...");
+		else {
+			for (User user: userList) {
+				this.usernames.add(user.getUsername());
+			}
 		}
-				
+		
+		// get bikes
+		try {
+			bikes = platform.getBikes();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+						
 		// initialize variables
 		this.username = "Sélectionner";
 	}
@@ -100,6 +111,9 @@ public class BikeBean {
 	
 	public String[] getCategories() { return categories; }
 	public void setCategories(String[] categories) { this.categories = categories; }
+	
+	public List<Bike> getBikes() { return bikes; }
+	public void setBikes(List<Bike> bikes) { this.bikes = bikes; }
 	
 	public List<String> getUsernames() { return usernames; }
 	public void setUsernames(List<String> usernames) { this.usernames = usernames; }

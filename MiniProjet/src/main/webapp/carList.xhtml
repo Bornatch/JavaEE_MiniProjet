@@ -9,39 +9,36 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
 		<h:form>
-			<h:dataTable value="#{ByeByeBean.vehicles}" var="vehicle">>
+			<h:dataTable value="#{byeByeCar.cars}" var="car"
+				binding="#{byeByeCar.datatableCars}">>
 				<h:column style="width:50px;text-align:center;">
 					<f:facet name="header">Marque</f:facet>
-					#{vehicle.brand}
+					#{car.brand}
 				</h:column>
 				<h:column style="width:50px;text-align:center;">
-					<f:facet name="header">Kilométrage</f:facet>
-					#{vehicle.km}
+					<f:facet name="header">Kilom&eacute;trage</f:facet>
+					#{car.km}
 				</h:column>
 				<h:column style="width:20px;text-align:center;">
 					<f:facet name="header">Couleur</f:facet>
-					#{vehicle.color}
-				</h:column>
-				<!-- <h:column style="width:50px;text-align:center;">
-					<f:facet name="header">Etat</f:facet>
-					#{vehicle.state}
+					#{car.color}
 				</h:column>
 				<h:column style="width:50px;text-align:center;">
-					<f:facet name="header">Catégorie</f:facet>
-					#{vehicle.category}
-				</h:column>-->
+					<f:facet name="header">&Eacute;tat</f:facet>
+					#{car.state}
+				</h:column>
 				<h:column style="width:50px;text-align:center;">
-					<f:facet name="header">Propriétaire</f:facet>
-					#{vehicle.owner.firstname} #{vehicle.owner.lastname}
+					<f:facet name="header">Propri&eacute;taire</f:facet>
+					#{car.owner.firstname} #{car.owner.lastname}
 				</h:column>
 				<h:column style="width:50px;text-align:center;">
 					<f:facet name="header">Prix</f:facet>
-					#{vehicle.price}
+					#{car.price}
 				</h:column>
-				<!-- <h:column>
+				<h:column>
 					<f:facet name="header">Action</f:facet>
-					<h:commandButton value="Détails"
-						action="#{platformBean.getCarFromList}">
+					<h:commandButton value="D&eacute;tails"
+						action="#{byeByeCar.getCarFromList}">
 					</h:commandButton>
 				</h:column>
 				<h:column>
@@ -49,7 +46,7 @@
 					<h:commandLink action="carInfo">
 						<h:outputText value="D&eacute;tails" />
 					</h:commandLink>
-				</h:column>-->
+				</h:column>
 			</h:dataTable>
 		</h:form>
 	</ui:define>

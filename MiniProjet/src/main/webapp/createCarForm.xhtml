@@ -13,35 +13,35 @@
 			<br></br>
 			<h:panelGrid columns="2">
 				<h:outputText value="Marque : "></h:outputText>
-				<h:inputText value="#{CarBean.brand}" maxlength="20"
+				<h:inputText value="#{carBean.brand}" maxlength="20"
 					style="width: 100px;"></h:inputText>
 
 				<h:outputText value="Km : "></h:outputText>
-				<h:inputText value="#{CarBean.km}" maxlength="20"
+				<h:inputText value="#{carBean.km}" maxlength="20"
 					style="width: 100px;"></h:inputText>
 
 				<h:outputText value="Couleur : "></h:outputText>
-				<h:inputText value="#{CarBean.color}" maxlength="20"
+				<h:inputText value="#{carBean.color}" maxlength="20"
 					style="width: 100px;"></h:inputText>
 
 				<h:outputText value="Prix : "></h:outputText>
-				<h:inputText value="#{CarBean.price}" maxlength="20"
+				<h:inputText value="#{carBean.price}" maxlength="20"
 					style="width: 100px;"></h:inputText>
 
 				<h:outputText value="Etat : "></h:outputText>
-				<h:selectOneMenu value="CarBean.state"
-					valueChangeListener="#{CarBean.updateState}" onchange="submit()">
-					<f:selectItems value="#{CarBean.states}" />
+				<h:selectOneMenu value="carBean.state"
+					valueChangeListener="#{carBean.updateState}" onchange="submit()">
+					<f:selectItems value="#{carBean.states}" />
 				</h:selectOneMenu>
 
 				<h:outputText value="Propriétaire : "></h:outputText>
-				<h:selectOneMenu value="CarBean.username"
-					valueChangeListener="#{CarBean.updateOwner}" onchange="submit()">
-					<f:selectItems value="#{CarBean.usernames}" />
+				<h:selectOneMenu value="carBean.username"
+					valueChangeListener="#{carBean.updateOwner}" onchange="submit()">
+					<f:selectItems value="#{carBean.usernames}" />
 				</h:selectOneMenu>
 			</h:panelGrid>
 			
-			<h:commandButton value="Créer" action="#{CarBean.createCar}"></h:commandButton>
+			<h:commandButton value="Créer" action="#{carBean.createCar}"></h:commandButton>
 		</h:form>
 	</ui:define>
 </ui:composition>

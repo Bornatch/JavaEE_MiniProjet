@@ -46,8 +46,12 @@ public class CarBean {
 		// get owners
 		List<User> ownerList = platform.getUsers();
 		this.usernames = new ArrayList<String>();
-		for (User u: ownerList) {
-			this.usernames.add(u.getUsername());
+		if (ownerList.isEmpty() == true)
+			usernames.add("Aucun utilisateur existant...");
+		else {
+			for (User u: ownerList) {
+				this.usernames.add(u.getUsername());
+			}
 		}
 		
 		// get cars
@@ -84,7 +88,7 @@ public class CarBean {
 		this.username = (String) event.getNewValue();
 		this.owner = platform.getUserByUsername(this.username);
 	}
-	
+
 	
 	// getters and setters
 	public String getBrand() { return brand; }

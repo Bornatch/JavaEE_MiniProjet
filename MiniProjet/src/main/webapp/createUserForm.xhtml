@@ -14,24 +14,24 @@
         	
         	<h:panelGrid columns="2">
         		<h:outputText value="Pseudo : "></h:outputText>
-        		<h:inputText value="#{UserBean.username}" maxlength="20" style="width: 100px;"></h:inputText>
+        		<h:inputText value="#{userBean.username}" maxlength="20" style="width: 100px;"></h:inputText>
         		
         		<h:outputText value="Prénom : "></h:outputText>
-        		<h:inputText value="#{UserBean.firstname}" maxlength="20" style="width: 100px;"></h:inputText>
+        		<h:inputText value="#{userBean.firstname}" maxlength="20" style="width: 100px;"></h:inputText>
         		
         		<h:outputText value="Nom : "></h:outputText>
-        		<h:inputText value="#{UserBean.lastname}" maxlength="20" style="width: 100px;"></h:inputText>
+        		<h:inputText value="#{userBean.lastname}" maxlength="20" style="width: 100px;"></h:inputText>
 
         		<h:outputText value="Rue : "></h:outputText>
-        		<h:inputText value="#{UserBean.street}" maxlength="50" style="width: 100px;"></h:inputText>
+        		<h:inputText value="#{userBean.street}" maxlength="50" style="width: 100px;"></h:inputText>
         		
         		<h:outputText value="Code postal : "></h:outputText>
-        		<h:inputText value="#{UserBean.code}" maxlength="10" style="width: 100px;"></h:inputText>
+        		<h:inputText value="#{userBean.code}" maxlength="10" style="width: 100px;"></h:inputText>
         		
         		<h:outputText value="Ville : "></h:outputText>
-        		<h:inputText value="#{UserBean.city}" maxlength="40" style="width: 100px;"></h:inputText>
+        		<h:inputText value="#{userBean.city}" maxlength="40" style="width: 100px;"></h:inputText>
         		
-	        	<h:commandButton value="Créer" action="#{UserBean.createUser}"></h:commandButton>
+	        	<h:commandButton value="Créer" action="#{userBean.createUser}"></h:commandButton>
         	</h:panelGrid>  
         </h:form>
     </ui:define>

@@ -19,34 +19,39 @@ public interface Platform {
 	
 	// related to the users
 	void createUser(User u);
-	void createUser(String username, String firstname, String lastname,
+	void createUser(String username, String password, String firstname, String lastname,
 			String street, String code, String city);
-	void deleteUser(long userId);
+	void deleteUser(Long userId);
 	List<User> getUsers();
-	User getUser(long id);
+	User getUser(Long id);
 	User getUserByUsername(String username);
+	void updateOwner(User owner, String password, double account);
 	
 	
 	// related to the cars
 	void createCar(Car c);
 	void createCar(String brand, int km, String color, double price, User owner, String state);
-	void deleteCar(long carId);
+	void deleteCar(Long carId);
 	List<Car> getCars();
 	Car getCar(String brand, String username);
-	void sellCar(Car car, User newOwner) throws Exception;
+	Car getCarById(Long id);
+	List<Car> getCarListByUsername(String username);
+	void sellCar(String srcUsername, String destUsername, Long carId) throws Exception;
 	
 	
 	// related to the bikes
 	void createBike(Bike b);
 	void createBike(String brand, int km, String color, double price, User owner, String category);
-	void deleteBike(long bikeId);
+	void deleteBike(Long bikeId);
 	List<Bike> getBikes();
 	Bike getBike(String brand, String username);
-	void sellBike(Bike bike, User newOwner) throws Exception;
+	Bike getBikeById(Long id);
+	List<Bike> getBikeListByUsername(String username);
+	void sellBike(String srcUsername, String destUsername, Long bikeId) throws Exception;
 	
 	
 	// related to the vehicles (in general)
 	Vehicle getVehicle(String brand, String username);
 	List<Vehicle> getVehicles();
-	List<Vehicle> getVehicleListByOwnerUsername(String username);
+	List<Vehicle> getVehicleListByUsername(String username);
 }

@@ -5,29 +5,24 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
 	<managed-bean>
-		<managed-bean-name>ByeByeBean</managed-bean-name>
+		<managed-bean-name>byeByeBean</managed-bean-name>
 		<managed-bean-class>ch.byebyecar.managedbeans.ByeByeBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>AdminBean</managed-bean-name>
-		<managed-bean-class>ch.byebyecar.managedbeans.AdminBean</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>BikeBean</managed-bean-name>
+		<managed-bean-name>bikeBean</managed-bean-name>
 		<managed-bean-class>ch.byebyecar.managedbeans.BikeBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>	
 	<managed-bean>
-		<managed-bean-name>CarBean</managed-bean-name>
+		<managed-bean-name>carBean</managed-bean-name>
 		<managed-bean-class>ch.byebyecar.managedbeans.CarBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>UserBean</managed-bean-name>
+		<managed-bean-name>userBean</managed-bean-name>
 		<managed-bean-class>ch.byebyecar.managedbeans.UserBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	
 	<!-- FROM Welcome page -->
@@ -39,7 +34,8 @@
 			<to-view-id>/createUserForm.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-		<navigation-rule>
+	
+	<navigation-rule>
 		<display-name>welcome.xhtml</display-name>
 		<from-view-id>/welcome.xhtml</from-view-id>
 		<navigation-case>
@@ -47,6 +43,7 @@
 			<to-view-id>/createCarForm.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>	
+	
 	<navigation-rule>
 		<display-name>welcome.xhtml</display-name>
 		<from-view-id>/welcome.xhtml</from-view-id>
@@ -55,7 +52,35 @@
 			<to-view-id>/createBikeForm.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-		<navigation-rule>
+	
+	<navigation-rule>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>userDetails</from-outcome>
+			<to-view-id>/userDetails.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>carList</from-outcome>
+			<to-view-id>/carList.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>bikeList</from-outcome>
+			<to-view-id>/bikeList.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+		
+	<navigation-rule>
 		<display-name>welcome.xhtml</display-name>
 		<from-view-id>/welcome.xhtml</from-view-id>
 		<navigation-case>
@@ -63,18 +88,17 @@
 			<to-view-id>/vehicleList.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-		
-	<!--  CREATE User -->
+	
+	<!-- FROM CreateCar -->
 	<navigation-rule>
-		<display-name>createUserForm.xhtml</display-name>
-		<from-view-id>/createUserForm.xhtml</from-view-id>
+		<display-name>createCarForm.xhtml</display-name>
+		<from-view-id>/createCarForm.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>welcome</from-outcome>
-			<to-view-id>/welcome.xhtml</to-view-id>
+			<from-outcome>#{carBean.createCar}</from-outcome>
+			<to-view-id>/showCarResult.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-		
-	<!--  CREATE Vehicles -->
+	
 	<navigation-rule>
 		<display-name>createCarForm.xhtml</display-name>
 		<from-view-id>/createCarForm.xhtml</from-view-id>
@@ -83,6 +107,17 @@
 			<to-view-id>/welcome.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+		
+	<!-- FROM CreateBike -->
+	<navigation-rule>
+		<display-name>createBikeForm.xhtml</display-name>
+		<from-view-id>/createBikeForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{bikeBean.createBike}</from-outcome>
+			<to-view-id>/showBikeResult.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 	<navigation-rule>
 		<display-name>createBikeForm.xhtml</display-name>
 		<from-view-id>/createBikeForm.xhtml</from-view-id>
@@ -90,9 +125,67 @@
 			<from-outcome>welcome</from-outcome>
 			<to-view-id>/welcome.xhtml</to-view-id>
 		</navigation-case>
-	</navigation-rule>	
+	</navigation-rule>
+
+	<!-- FROM CarList -->
+	<navigation-rule>
+		<display-name>carList.xhtml</display-name>
+		<from-view-id>/carList.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	
-	<!-- After CREATE -->
+	<navigation-rule>
+		<display-name>carList.xhtml</display-name>
+		<from-view-id>/carList.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{byebyeBean.getCarFromList}</from-outcome>
+			<to-view-id>/carInfo.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- FROM CarInfo -->
+	<navigation-rule>
+		<display-name>carInfo.xhtml</display-name>
+		<from-view-id>/carInfo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- FROM BikeList -->
+	<navigation-rule>
+		<display-name>bikeList.xhtml</display-name>
+		<from-view-id>/bikeList.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>bikeList.xhtml</display-name>
+		<from-view-id>/bikeList.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{byebyeBean.getBikeFromList}</from-outcome>
+			<to-view-id>/bikeInfo.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- FROM BikeInfo -->
+	<navigation-rule>
+		<display-name>bikeInfo.xhtml</display-name>
+		<from-view-id>/bikeInfo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- FROM CreateUser -->
 	<navigation-rule>
 		<display-name>createUserForm.xhtml</display-name>
 		<from-view-id>/createUserForm.xhtml</from-view-id>
@@ -100,39 +193,100 @@
 			<from-outcome>#{UserBean.createUser}</from-outcome>
 			<to-view-id>/showUserResult.xhtml</to-view-id>
 		</navigation-case>
-	</navigation-rule>
-		<navigation-rule>
-		<display-name>createBikeForm.xhtml</display-name>
-		<from-view-id>/createBikeForm.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>#{BikeBean.createBike}</from-outcome>
-			<to-view-id>/showBikeResult.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>createCarForm.xhtml</display-name>
-		<from-view-id>/createCarForm.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>#{CarBean.createCar}</from-outcome>
-			<to-view-id>/showCarResult.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+	</navigation-rule>	
 	
-	<!--  Vehicle LIST -->
 	<navigation-rule>
-		<display-name>vehicleList.xhtml</display-name>
-		<from-view-id>/vehicleList.xhtml</from-view-id>
+		<display-name>createUserForm.xhtml</display-name>
+		<from-view-id>/createUserForm.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>welcome</from-outcome>
 			<to-view-id>/welcome.xhtml</to-view-id>
 		</navigation-case>
-	</navigation-rule>	
+	</navigation-rule>
+	
 	<navigation-rule>
-		<display-name>vehicleInfo.xhtml</display-name>
-		<from-view-id>/vehicleInfo.xhtml</from-view-id>
+		<display-name>createUserForm.xhtml</display-name>
+		<from-view-id>/createUserForm.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>vehicleList</from-outcome>
-			<to-view-id>/vehicleList.xhtml</to-view-id>
+			<from-outcome>userError</from-outcome>
+			<to-view-id>/userError.xhtml</to-view-id>
 		</navigation-case>
-	</navigation-rule>	
+	</navigation-rule>
+	
+	<!-- FROM UserDetails -->
+	<navigation-rule>
+		<display-name>userDetails.xhtml</display-name>
+		<from-view-id>/userDetails.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- FROM UserError -->
+	<navigation-rule>
+		<display-name>userError.xhtml</display-name>
+		<from-view-id>/userError.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>userError.xhtml</display-name>
+		<from-view-id>/userError.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{userBean.createUser}</from-outcome>
+			<to-view-id>/createUserForm.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- FROM UserResult -->
+	<navigation-rule>
+		<display-name>showUserResult.xhtml</display-name>
+		<from-view-id>/showUserResult.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>createCarForm</from-outcome>
+			<to-view-id>/createCarForm.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>showUserResult.xhtml</display-name>
+		<from-view-id>/showUserResult.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>createBikeForm</from-outcome>
+			<to-view-id>/createBikeForm.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>showUserResult.xhtml</display-name>
+		<from-view-id>/showUserResult.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- FROM CarResult -->
+	<navigation-rule>
+		<display-name>showCarResult.xhtml</display-name>
+		<from-view-id>/showCarResult.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- FROM BikeResult -->
+	<navigation-rule>
+		<display-name>showBikeResult.xhtml</display-name>
+		<from-view-id>/showBikeResult.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>
