@@ -4,6 +4,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import ch.byebyecar.businessobject.Address;
 import ch.byebyecar.businessobject.Bike;
 import ch.byebyecar.businessobject.Car;
 import ch.byebyecar.businessobject.User;
@@ -27,12 +29,19 @@ public class PlatformBean implements Platform {
 		em.persist(u);
 	}
 	
-	public void createUser(String username, String firstname, String lastname) {
+	public void createUser(String username, String firstname, String lastname,
+			String street, String code, String city) {
 		User u = new User();
+		Address a  = new Address();
+		
+		a.setStreet(street);
+		a.setCode(code);
+		a.setCity(city);
 		
 		u.setUsername(username);
 		u.setFirstname(firstname);
 		u.setLastname(lastname);
+		u.setAddress(a);
 		
 		// account set at 0
 		u.setAccount(0);

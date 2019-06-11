@@ -30,8 +30,8 @@
 
 				<h:outputText value="Etat : "></h:outputText>
 				<h:selectOneMenu value="CarBean.state"
-					valueChangeListener="#{carBean.updateState}" onchange="submit()">
-					<f:selectItems value="#{carBean.states}" />
+					valueChangeListener="#{CarBean.updateState}" onchange="submit()">
+					<f:selectItems value="#{CarBean.states}" />
 				</h:selectOneMenu>
 
 				<h:outputText value="Propriétaire : "></h:outputText>
@@ -40,6 +40,7 @@
 					<f:selectItems value="#{CarBean.usernames}" />
 				</h:selectOneMenu>
 			</h:panelGrid>
+			
 			<h:commandButton value="Créer" action="#{CarBean.createCar}"></h:commandButton>
 		</h:form>
 	</ui:define>

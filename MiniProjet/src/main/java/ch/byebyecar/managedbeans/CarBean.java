@@ -49,13 +49,6 @@ public class CarBean {
 		for (User u: ownerList) {
 			this.usernames.add(u.getUsername());
 		}
-//		if (ownerList.isEmpty() == true) {
-//			ownerUsernames.add("ca marche presque ... ");
-//		} else {
-//			for (Owner o : ownerList) {
-//				this.ownerUsernames.add(o.getUsername());
-//			}
-//		}
 		
 		// get cars
 		try {
@@ -65,9 +58,7 @@ public class CarBean {
 		}
 		
 		// initialize variables
-		this.brand = "marque";
-		this.color = "couleur";
-		this.username = "sélectionner";		
+		this.username = "Sélectionner";		
 	}
 	
 	
@@ -75,7 +66,7 @@ public class CarBean {
 	public String createCar() {
 		try {
 			platform.createCar(brand, km, color, price, owner, state);
-			this.result = "Succès !";
+			this.result = "succès !";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

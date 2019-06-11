@@ -20,6 +20,9 @@ public class UserBean {
 	private String username;
 	private String lastname;
 	private String firstname;
+	private String street;
+	private String code;
+	private String city;
 	private double account;
 	private List<User> owners;
 	private List<String> usernames;
@@ -34,19 +37,14 @@ public class UserBean {
 		InitialContext ctx = new InitialContext();
 		platform = (Platform) ctx
 				.lookup("java:global/BYEBYE-0.0.1-SNAPSHOT/PlatformBean!ch.byebyecar.service.Platform");
-		
-		// initialize the variables
-		this.username = "pseudo";
-		this.firstname = "prénom";
-		this.lastname = "nom";
 	}
 	
 	
 	// create a user
 	public String createUser() {
 		try {
-			platform.createUser(username, firstname, lastname);			
-			this.result = "Succès !";
+			platform.createUser(username, firstname, lastname, street, code, city);			
+			this.result = "succès !";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -74,6 +72,15 @@ public class UserBean {
 	
     public String getFirstname() { return firstname; }
 	public void setFirstname(String firstname) { this.firstname = firstname; }
+	
+    public String getStreet() { return street; }
+	public void setStreet(String street) { this.street = street; }
+	
+    public String getCode() { return code; }
+	public void setCode(String code) { this.code = code; }
+	
+    public String getCity() { return city; }
+	public void setCity(String city) { this.city = city; }
 	
 	public double getAccount() { return account; }
 	public void setAccount(double account) { this.account = account; }

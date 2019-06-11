@@ -49,19 +49,9 @@ public class BikeBean {
 		for (User user: userList) {
 			this.usernames.add(user.getUsername());
 		}
-		
-//		if (ownerList.isEmpty() == true) {
-//			ownerUsernames.add("ca marche presque ... ");
-//		} else {
-//			for (Owner o : ownerList) {
-//				this.ownerUsernames.add(o.getUsername());
-//			}
-//		}
-		
+				
 		// initialize variables
-		this.brand = "marque";
-		this.color = "couleur";
-		this.username = "sélectionner";
+		this.username = "Sélectionner";
 	}
 	
 	
@@ -69,7 +59,7 @@ public class BikeBean {
 	public String createBike() {
 		try {
 			platform.createBike(brand, km, color, price, owner, category);
-			this.result = "Succès !";
+			this.result = "succès !";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

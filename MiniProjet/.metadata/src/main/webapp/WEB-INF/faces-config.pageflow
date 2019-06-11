@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14141592409490" configfile="/MiniProjet/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" id="pf15601914349365" referenceLink="/0/@navigationRule.4/@navigationCase.0/@toViewId|" outlinks="pf15601914349366 pf156019171588110 pf156019171588111 pf156019215856814" inlinks="pf156019215856815 pf156019215856816 pf156019215856817" path="/welcome.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="createUserForm.xhtml" id="pf15601914349367" referenceLink="/0/@navigationRule.4/@fromViewId|" outlinks="pf156019215856817" inlinks="pf15601914349366" path="/createUserForm.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="createCarForm.xhtml" id="pf156019171588212" referenceLink="/0/@navigationRule.6/@fromViewId|" outlinks="pf156019215856818" inlinks="pf156019171588110" path="/createCarForm.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="createBikeForm.xhtml" id="pf156019171588213" referenceLink="/0/@navigationRule.7/@fromViewId|" outlinks="pf156019215856815" inlinks="pf156019171588111" path="/createBikeForm.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="vehicleList.xhtml" id="pf156019215856919" referenceLink="/0/@navigationRule.8/@navigationCase.0/@toViewId|" outlinks="pf156019215856816" inlinks="pf156019215856814 pf156019222671021" path="/vehicleList.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="welcomeBank.xhtml" id="pf156019215856920" referenceLink="/0/@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf156019215856818" path="/welcomeBank.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="vehicleInfo.xhtml" id="pf156019222671022" referenceLink="/0/@navigationRule.8/@fromViewId|" outlinks="pf156019222671021" path="/vehicleInfo.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="554" y="946" id="pf15601914349365" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" outlinks="pf15601914349366 pf156019171588110 pf156019171588111 pf156019215856814" inlinks="pf156019215856815 pf156019215856816 pf156019215856817 pf15602755269646" path="/welcome.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="createUserForm.xhtml" x="338" y="178" id="pf15601914349367" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf156019215856817 pf15602723928760" inlinks="pf15601914349366" path="/createUserForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="createCarForm.xhtml" x="338" y="562" id="pf156019171588212" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf15602723928761 pf15602755269646" inlinks="pf156019171588110" path="/createCarForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="createBikeForm.xhtml" x="338" y="1330" id="pf156019171588213" referenceLink="//@navigationRule.8/@fromViewId|" outlinks="pf156019215856815 pf15602723928762" inlinks="pf156019171588111" path="/createBikeForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="vehicleList.xhtml" x="338" y="946" id="pf156019215856919" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" outlinks="pf156019215856816" inlinks="pf156019215856814 pf156019222671021" path="/vehicleList.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="welcomeBank.xhtml" x="122" y="370" id="pf156019215856920" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" path="/welcome.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="vehicleInfo.xhtml" x="122" y="946" id="pf156019222671022" referenceLink="//@navigationRule.11/@fromViewId|" outlinks="pf156019222671021" path="/vehicleInfo.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="showUserResult.xhtml" x="554" y="178" id="pf15602723928763" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf15602723928760" path="/showUserResult.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="showBikeResult.xhtml" x="554" y="1330" id="pf15602723928764" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf15602723928762" path="/showBikeResult.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="showCarResult.xhtml" x="554" y="562" id="pf15602723928765" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" inlinks="pf15602723928761" path="/showCarResult.xhtml"/>
   <links id="pf15601914349366" target="pf15601914349367" source="pf15601914349365" outcome="createUserForm"/>
   <links id="pf156019171588110" target="pf156019171588212" source="pf15601914349365" outcome="createCarForm"/>
   <links id="pf156019171588111" target="pf156019171588213" source="pf15601914349365" outcome="createBikeForm"/>
   <links id="pf156019215856814" target="pf156019215856919" source="pf15601914349365" outcome="vehicleList"/>
-  <links id="pf156019215856818" target="pf156019215856920" source="pf156019171588212" outcome="welcomeBank"/>
   <links id="pf156019215856815" target="pf15601914349365" source="pf156019171588213" outcome="welcome"/>
   <links id="pf156019215856816" target="pf15601914349365" source="pf156019215856919" outcome="welcome"/>
   <links id="pf156019215856817" target="pf15601914349365" source="pf15601914349367" outcome="welcome"/>
   <links id="pf156019222671021" target="pf156019215856919" source="pf156019222671022" outcome="vehicleList"/>
+  <links id="pf15602723928760" target="pf15602723928763" source="pf15601914349367" outcome="#{UserBean.createUser}"/>
+  <links id="pf15602723928762" target="pf15602723928764" source="pf156019171588213" outcome="#{BikeBean.createBike}"/>
+  <links id="pf15602723928761" target="pf15602723928765" source="pf156019171588212" outcome="#{CarBean.createCar}"/>
+  <links id="pf15602755269646" target="pf15601914349365" source="pf156019171588212" outcome="welcome"/>
 </pageflow:Pageflow>

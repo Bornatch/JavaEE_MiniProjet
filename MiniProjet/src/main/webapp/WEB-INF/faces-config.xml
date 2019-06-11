@@ -64,7 +64,7 @@
 		</navigation-case>
 	</navigation-rule>
 		
-	<!--  ABOUT User -->
+	<!--  CREATE User -->
 	<navigation-rule>
 		<display-name>createUserForm.xhtml</display-name>
 		<from-view-id>/createUserForm.xhtml</from-view-id>
@@ -79,8 +79,8 @@
 		<display-name>createCarForm.xhtml</display-name>
 		<from-view-id>/createCarForm.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>welcomeBank</from-outcome>
-			<to-view-id>/welcomeBank.xhtml</to-view-id>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -91,6 +91,32 @@
 			<to-view-id>/welcome.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>	
+	
+	<!-- After CREATE -->
+	<navigation-rule>
+		<display-name>createUserForm.xhtml</display-name>
+		<from-view-id>/createUserForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{UserBean.createUser}</from-outcome>
+			<to-view-id>/showUserResult.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+		<navigation-rule>
+		<display-name>createBikeForm.xhtml</display-name>
+		<from-view-id>/createBikeForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{BikeBean.createBike}</from-outcome>
+			<to-view-id>/showBikeResult.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>createCarForm.xhtml</display-name>
+		<from-view-id>/createCarForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{CarBean.createCar}</from-outcome>
+			<to-view-id>/showCarResult.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	
 	<!--  Vehicle LIST -->
 	<navigation-rule>

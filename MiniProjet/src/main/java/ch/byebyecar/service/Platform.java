@@ -19,7 +19,8 @@ public interface Platform {
 	
 	// related to the users
 	void createUser(User u);
-	void createUser(String username, String firstname, String lastname);
+	void createUser(String username, String firstname, String lastname,
+			String street, String code, String city);
 	void deleteUser(long userId);
 	List<User> getUsers();
 	User getUser(long id);

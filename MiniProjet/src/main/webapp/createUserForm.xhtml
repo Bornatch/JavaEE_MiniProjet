@@ -9,7 +9,7 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
     <ui:define name="content">
     	<h:form>
-        	<h:outputLabel value="Devenir membre :"></h:outputLabel>
+        	<h:outputLabel value="Créer un compte :"></h:outputLabel>
         	<br></br>
         	
         	<h:panelGrid columns="2">
@@ -22,6 +22,15 @@
         		<h:outputText value="Nom : "></h:outputText>
         		<h:inputText value="#{UserBean.lastname}" maxlength="20" style="width: 100px;"></h:inputText>
 
+        		<h:outputText value="Rue : "></h:outputText>
+        		<h:inputText value="#{UserBean.street}" maxlength="50" style="width: 100px;"></h:inputText>
+        		
+        		<h:outputText value="Code postal : "></h:outputText>
+        		<h:inputText value="#{UserBean.code}" maxlength="10" style="width: 100px;"></h:inputText>
+        		
+        		<h:outputText value="Ville : "></h:outputText>
+        		<h:inputText value="#{UserBean.city}" maxlength="40" style="width: 100px;"></h:inputText>
+        		
 	        	<h:commandButton value="Créer" action="#{UserBean.createUser}"></h:commandButton>
         	</h:panelGrid>  
         </h:form>
