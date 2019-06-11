@@ -32,10 +32,14 @@
 				<h:outputText value="Propri&eacute;taire : "></h:outputText>
 				<h:outputText value="#{platformBean.car.owner.firstname} #{platformBean.car.owner.lastname}"></h:outputText>
 				
+				<h:outputText value="Acheteur : "></h:outputText>
+				<h:selectOneMenu value="carBean.destnationOwnerName"
+					valueChangeListener="#{carBean.updateOwner}" onchange="submit()">
+					<f:selectItems value="#{carBean.ownerUsernames}" />
+				</h:selectOneMenu>
 
 			</h:panelGrid>
-			<h:commandButton value="Acheter" action="#{platformBean.sellCar}"></h:commandButton>
-		</h:form>
+ca		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

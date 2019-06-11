@@ -7,7 +7,7 @@
 	<managed-bean>
 		<managed-bean-name>ownerBean</managed-bean-name>
 		<managed-bean-class>ch.hevs.managedbeans.OwnerBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>carBean</managed-bean-name>
@@ -150,6 +150,46 @@
 		<navigation-case>
 			<from-outcome>welcomeBank</from-outcome>
 			<to-view-id>/welcomeBank.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>welcomeBank.xhtml</display-name>
+		<from-view-id>/welcomeBank.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>userDetails</from-outcome>
+			<to-view-id>/userDetails.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>userDetails.xhtml</display-name>
+		<from-view-id>/userDetails.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcomeBank</from-outcome>
+			<to-view-id>/welcomeBank.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>userError.xhtml</display-name>
+		<from-view-id>/userError.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcomeBank</from-outcome>
+			<to-view-id>/welcomeBank.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>createOwnerForm.xhtml</display-name>
+		<from-view-id>/createOwnerForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>userError</from-outcome>
+			<to-view-id>/userError.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>userError.xhtml</display-name>
+		<from-view-id>/userError.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{ownerBean.createOwner}</from-outcome>
+			<to-view-id>/createOwnerForm.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

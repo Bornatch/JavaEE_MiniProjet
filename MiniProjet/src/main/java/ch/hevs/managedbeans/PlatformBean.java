@@ -17,6 +17,7 @@ import ch.hevs.businessobject.Account;
 import ch.hevs.businessobject.Bike;
 import ch.hevs.businessobject.Car;
 import ch.hevs.businessobject.Owner;
+import ch.hevs.businessobject.Vehicule;
 
 @RequestScoped
 public class PlatformBean {
@@ -69,29 +70,28 @@ public class PlatformBean {
 
 	}
 
-	public String performSelling() {
+	public String sellCar() {
 
 		try {
+			sourceOwnerName = car.getOwner().getUsername();
 
 			if (sourceOwnerName.equals(destinationOwnerName)) {
 
 				this.transactionResult = "Error: Owner are identical!";
-			} /*
-				 * else {
-				 * 
-				 * Car carSrc = bank.getAccount(sourceAccountDescription,
-				 * sourceClientName); Account compteDest =
-				 * bank.getAccount(destinationAccountDescription,
-				 * destinationClientName);
-				 * 
-				 * // Transfer platform.sellCar(carSrc, newOwner);
-				 * this.transactionResult="Success!"; }
-				 */
+			} else {
+
+		//		Vehicule car = platform.getCar(car.getId());
+		//		Account compteDest = bank.getAccount(destinationAccountDescription, destinationClientName);
+
+				platform.sellCar(sourceOwnerName, destinationOwnerName, car.getId());
+				this.transactionResult = "Success!";
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "showTransferResult"; // the String value returned represents the
+		return "showSellResult"; // the String value returned represents the
 										// outcome used by the navigation
 										// handler to determine what page to
 										// display next.

@@ -3,6 +3,8 @@ package ch.hevs.bankservice;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -31,25 +33,18 @@ public class PlatformBean implements Platform {
 
 		return (Car) query.getSingleResult();
 	}
+	
+	@Override
+	public Car getCarById(long id) throws Exception {
+		return (Car) em.createQuery("FROM Car c where c.id=:id").setParameter("id", id).getSingleResult();
+	}
+
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Car> getCarListFromOwnerlastname(String lastname) throws Exception {
 		return (List<Car>) em.createQuery("SELECT o.cars " + "FROM Owner o " + "where o.lastname=:lastname")
 				.setParameter("lastname", lastname).getResultList();
-	}
-
-	@Override
-	public void sellCar(Car carSrc, Owner newOwner) throws Exception {
-		em.persist(carSrc);
-		em.persist(newOwner);
-		// ajouter l'argent au vendeur
-		carSrc.getOwner().setAccount(carSrc.getPrice());
-		// changer de propriétaire
-		carSrc.setOwner(newOwner);
-		// retirer le montant au propriétaire
-		newOwner.setAccount(newOwner.getAccount() - carSrc.getPrice());
-
 	}
 
 	@Override
@@ -67,20 +62,27 @@ public class PlatformBean implements Platform {
 		em.persist(o);
 
 	}
-	
+
 	@Override
 	public void createOwner(String firstname, String lastname, String username, String password) {
-		
+
 		Owner o = new Owner();
 		o.setFirstname(firstname);
 		o.setLastname(lastname);
 		o.setUsername(username);
 		o.setPassword(password);
-		//compte client initialisé à 0
+		// compte client initialisé à 0
 		o.setAccount(0);
-		
+
 		em.persist(o);
-		
+
+	}
+
+	@Override
+	public void updateOwner(Owner o, String password, double account) {
+		Query query = em.createQuery("UPDATE Owner o SET  o.password= :password, o.account = account WHERE o.id = :id ")
+				.setParameter("password", password).setParameter("account", account).setParameter("id", o.getId());
+
 	}
 
 	@Override
@@ -88,7 +90,7 @@ public class PlatformBean implements Platform {
 		em.persist(c);
 
 	}
-	
+
 	@Override
 	public void createCar(String brand, int km, String color, double price, String state, Owner owner) {
 		Car c = new Car();
@@ -98,11 +100,10 @@ public class PlatformBean implements Platform {
 		c.setPrice(price);
 		c.setState(state);
 		c.setOwner(owner);
-		
-		em.persist(c);
-		
-	}
 
+		em.persist(c);
+
+	}
 
 	@Override
 	public Owner getOwnerFromUsername(String username) throws Exception {
@@ -125,14 +126,36 @@ public class PlatformBean implements Platform {
 	public List<Bike> getBikes() throws Exception {
 		return em.createQuery("FROM Bike").getResultList();
 	}
+	
+	@TransactionAttribute(value = TransactionAttributeType.REQUIRED)
+	@Override
+	public void sellCar(String sourceOwnerName, String destinationOwnerName, long carId) throws Exception {
+		
+		Car car = getCarById(carId);
+		
+		Owner src = getOwnerFromUsername(sourceOwnerName);
+		Owner dst = getOwnerFromUsername(destinationOwnerName);
+		
+		em.persist(src);
+		em.persist(dst);
+		
+		em.persist(car);
+		
+		src.setAccount(src.getAccount()+car.getPrice());
+		dst.setAccount(dst.getAccount()-car.getPrice());
+		
+		car.setOwner(dst);
+		
+		
+	}
 
-//	@Override
-//	public Owner getOwnerFromLastname(String ownerName) throws Exception {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
 
 	
-
+	// @Override
+	// public Owner getOwnerFromLastname(String ownerName) throws Exception {
+	// // TODO Auto-generated method stub
+	// return null;
+	// }
 
 }

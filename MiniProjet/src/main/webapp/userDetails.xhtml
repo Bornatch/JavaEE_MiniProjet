@@ -2,41 +2,59 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-    <ui:define name="content">
-    	<h:form>
-        	<h:outputLabel value="Voir les membre:"></h:outputLabel>
-        	<br></br>
-        	<h:outputText value="S&eacute;lectionner un membre : "></h:outputText>
-				<h:selectOneMenu value="ownerBean.ownerUsername"
-					valueChangeListener="#{ownerBean.updateOwner}" onchange="submit()">
-					<f:selectItems value="#{ownerBean.ownerUsernames}" />
-				</h:selectOneMenu>
-        	<h:panelGrid columns="3">
-        		<h:outputText value="Pr&eacute;nom : "></h:outputText>
-        		<h:inputText value="#{ownerBean.firstname}" maxlength="20" style="width: 100px;"></h:inputText>
-        		<h:commandButton value="Modifier" action="#{ownerBean.createOwner}"></h:commandButton>
-        		
-        		<h:outputText value="Nom : "></h:outputText>
-        		<h:inputText value="#{ownerBean.lastname}" maxlength="20" style="width: 100px;"></h:inputText>
-	        	<h:commandButton value="Modifier" action="#{ownerBean.createOwner}"></h:commandButton>
-	        	
-	        	<h:outputText value="Nom utilisateur : "></h:outputText>
-        		<h:inputText value="#{ownerBean.username}" maxlength="20" style="width: 100px;"></h:inputText>
-	        	<h:commandButton value="Modifier" action="#{ownerBean.createOwner}"></h:commandButton>
-	        	
-	        	<h:outputText value="Password : "></h:outputText>
-        		<h:inputSecret value="#{ownerBean.password}" maxlength="20" style="width: 100px;"></h:inputSecret>
-	        	<h:commandButton value="Modifier" action="#{ownerBean.createOwner}"></h:commandButton>
-	        	
-        	</h:panelGrid>
-     		
-  
-        </h:form>
-    </ui:define>
+	<ui:define name="content">
+		<f:view>
+			<h:form>
+				<h:outputLabel value="Voir les membre:"></h:outputLabel>
+				<br></br>
+				
+				<h:panelGrid columns="3">
+				
+					<h:outputText value="S&eacute;lectionner un membre : "></h:outputText>
+					<h:selectOneMenu value="ownerBean.ownerUsername"
+						valueChangeListener="#{ownerBean.updateListOwner}"
+						onchange="submit()">
+						<f:selectItems value="#{ownerBean.ownerUsernames}" />
+					</h:selectOneMenu>
+					<br></br>
+
+
+					<h:outputText value="Pr&eacute;nom : "></h:outputText>
+					<h:inputText value="#{ownerBean.firstname}" maxlength="20"
+						style="width: 100px;"></h:inputText>
+					<br> </br>
+
+					<h:outputText value="Nom : "></h:outputText>
+					<h:inputText value="#{ownerBean.lastname}" maxlength="20"
+						style="width: 100px;"></h:inputText>
+					<br> </br>
+
+					<h:outputText value="Nom utilisateur : "></h:outputText>
+					<h:inputText value="#{ownerBean.username}" maxlength="20"
+						style="width: 100px;"></h:inputText>
+					<br> </br>
+
+					<h:outputText value="Password : "></h:outputText>
+					<h:inputSecret value="#{ownerBean.password}" maxlength="20"
+						style="width: 100px;"></h:inputSecret>
+					<h:commandButton value="Sauvegarder"
+						action="#{ownerBean.updateOwner}"></h:commandButton>
+
+					<h:outputText value="Solde : "></h:outputText>
+					<h:inputText value="#{ownerBean.account}" maxlength="20"
+						style="width: 100px;" converterId="javax.faces.Double"></h:inputText>
+					<h:commandButton value="Sauvegarder"
+						action="#{ownerBean.updateOwner}"></h:commandButton>
+
+				</h:panelGrid>
+
+			</h:form>
+		</f:view>
+	</ui:define>
 </ui:composition>
 </html>

@@ -88,7 +88,6 @@ public class CarBean {
 
 	public void updateOwner(ValueChangeEvent event) throws Exception {
 		this.ownerUsername = (String) event.getNewValue();
-
 		this.owner = platform.getOwnerFromUsername(this.ownerUsername);
 
 	}
