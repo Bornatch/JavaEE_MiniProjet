@@ -23,9 +23,9 @@
   <links id="pf15602905200041" target="pf15602905200144" source="pf15601914349365" outcome="carList"/>
   <links id="pf15602905200042" target="pf15602905200145" source="pf15601914349365" outcome="bikeList"/>
   <links id="pf15602905755026" target="pf15601914349365" source="pf15602905200144" outcome="welcome"/>
-  <links id="pf15602913719627" target="pf15602913719628" source="pf15602905200144" outcome="#{byebyeBean.getCarFromList}"/>
+  <links id="pf15602913719627" target="pf15602913719628" source="pf15602905200144" outcome="#{byeByeBean.getCarFromList}"/>
   <links id="pf15602914163869" target="pf15601914349365" source="pf15602905200145" outcome="welcome"/>
-  <links id="pf156029141638610" target="pf156029141638611" source="pf15602905200145" outcome="#{byebyeBean.getBikeFromList}"/>
+  <links id="pf156029141638610" target="pf156029141638611" source="pf15602905200145" outcome="#{byeByeBean.getBikeFromList}"/>
   <links id="pf156029144608912" target="pf15601914349365" source="pf15602913719628" outcome="welcome"/>
   <links id="pf156029146449513" target="pf15601914349365" source="pf156029141638611" outcome="welcome"/>
   <links id="pf156029177061015" target="pf156029177061020" source="pf15601914349367" outcome="#{UserBean.createUser}"/>

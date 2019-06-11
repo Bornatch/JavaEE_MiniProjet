@@ -141,7 +141,7 @@
 		<display-name>carList.xhtml</display-name>
 		<from-view-id>/carList.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>#{byebyeBean.getCarFromList}</from-outcome>
+			<from-outcome>#{byeByeBean.getCarFromList}</from-outcome>
 			<to-view-id>/carInfo.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
@@ -170,7 +170,7 @@
 		<display-name>bikeList.xhtml</display-name>
 		<from-view-id>/bikeList.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>#{byebyeBean.getBikeFromList}</from-outcome>
+			<from-outcome>#{byeByeBean.getBikeFromList}</from-outcome>
 			<to-view-id>/bikeInfo.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
