@@ -4,6 +4,7 @@ Créer userList idem carList
 Tester les deux ajouts
 placer la sécurité ADMIN pour le delete de user et vérifier les supressions liées 
 Améliorer le renvoi d'erreur vers la page error (voir carInfo => sellCar)
+voir si les tableModel peuvent gérer directement l'ordre (by price, by brand,...)
 Boire un café
 pleurer en pensant aux autres projets
 se ressaisir 
