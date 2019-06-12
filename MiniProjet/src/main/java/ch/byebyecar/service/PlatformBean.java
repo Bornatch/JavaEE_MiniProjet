@@ -58,10 +58,18 @@ public class PlatformBean implements Platform {
 		em.persist(u);
 	}
 
-	public void deleteUser(Long userId) {
+	public String deleteUser(Long userId) {
 		int result = em.createQuery("DELETE FROM User u WHERE u.id = :id").setParameter("id", userId).executeUpdate();
+		String suppression = "Cet utilisateur a bien été supprimé !";
+		
+		if (!ctx.isCallerInRole("admin")) {
+			suppression = "Vous n'avez pas les droits requis pour effectuer cette action.";
+			ctx.setRollbackOnly();
+		}
+		
+		return suppression;
 	}
-
+	
 	public List<User> getUsers() {
 		return em.createQuery("FROM User").getResultList();
 	}

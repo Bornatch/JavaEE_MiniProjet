@@ -22,9 +22,11 @@ public class ByeByeBean {
 	private List<User> users;
 	private List<String> usernames;
 	private User owner;
+	private User user;
 	private String result;
 	private String sourceOwnerName;
 	private String destinationOwnerName;
+	private String suppression;
 	private double price;
 	private Platform platform;
 
@@ -64,10 +66,17 @@ public class ByeByeBean {
 	// update users list
 	public void updateUsers() {
 		List<User> userList = platform.getUsers();
+		users = userList;
 		this.usernames = new ArrayList<String>();
 		for (User user : userList) {
 			this.usernames.add(user.getUsername());
 		}
+	}
+	
+	// delete user
+	public String deleteUser(Long id) {
+		suppression = platform.deleteUser(id);
+		return "showSuppressionResult";
 	}
 	
 	
@@ -118,6 +127,11 @@ public class ByeByeBean {
 		return "bikeInfo";
 	}
 	
+	public String getUserFromList(Long id) {
+		setUser((User) platform.getUser(id));
+		return "userDetails";
+	}
+	
 	public String carList() {
 		updateUsers();
 		
@@ -140,6 +154,11 @@ public class ByeByeBean {
 		}
 		
 		return "bikeList";
+	}
+	
+	public String userList() {
+		updateUsers();		
+		return "userList";
 	}
 	
 	public void updateListOwner(ValueChangeEvent event) throws Exception {
@@ -168,6 +187,9 @@ public class ByeByeBean {
 	public User getOwner() { return owner; }
 	public void setOwner(User owner) { this.owner = owner; } 
 	
+	public User getUser() { return user; }
+	public void setUser(User user) { this.user = user; } 
+	
 	public String getResult() { return result; }
 	public void setResult(String result) { this.result = result; }
 
@@ -175,8 +197,11 @@ public class ByeByeBean {
 	public void setSourceOwnerName(String sourceOwnerName) { this.sourceOwnerName = sourceOwnerName; }
 
 	public String getDestinationOwnerName() { return destinationOwnerName; }
-	public void getDestinationOwnerName(String destinationOwnerName) { this.destinationOwnerName = destinationOwnerName; }
+	public void setDestinationOwnerName(String destinationOwnerName) { this.destinationOwnerName = destinationOwnerName; }
 
+	public String getSuppression() { return suppression; }
+	public void setSuppression(String suppression) { this.suppression = suppression; }
+	
 	public double getPrice() { return price; }
 	public void setPrice(double price) { this.price = price; }
 
