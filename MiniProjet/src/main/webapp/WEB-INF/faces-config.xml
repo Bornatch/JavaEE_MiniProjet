@@ -66,7 +66,7 @@
 		<display-name>welcome.xhtml</display-name>
 		<from-view-id>/welcome.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>carList</from-outcome>
+			<from-outcome>#{carList}</from-outcome>
 			<to-view-id>/carList.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
@@ -75,7 +75,7 @@
 		<display-name>welcome.xhtml</display-name>
 		<from-view-id>/welcome.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>bikeList</from-outcome>
+			<from-outcome>#{bikeList}</from-outcome>
 			<to-view-id>/bikeList.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>

@@ -1,5 +1,4 @@
 package ch.byebyecar.managedbeans;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -14,6 +13,7 @@ import ch.byebyecar.service.Platform;
  * Class : 606_3
  * Project : June 2019
  */
+
 
 public class UserBean {
 
@@ -33,6 +33,7 @@ public class UserBean {
 	private String result;
 	private Platform platform;
 
+	
 	@PostConstruct
 	public void initialize() throws NamingException {
 
@@ -53,6 +54,7 @@ public class UserBean {
 		}
 	}
 
+	
 	// create a user
 	public String createUser() {
 		for (String str : usernames) {
@@ -86,21 +88,10 @@ public class UserBean {
 		return "showUserResult";
 	}
 
+	
 	// update user
 	public String updateUser() {
 		try {
-			// User u = new User();
-			// Address a = new Address();
-			// u.setUsername(username);
-			// u.setPassword(password);
-			// u.setFirstname(firstname);
-			// u.setLastname(lastname);
-			// a.setStreet(street);
-			// a.setCode(code);
-			// a.setCity(city);
-			// u.setAddress(a);
-			// u.setAccount(0);
-
 			this.setPassword(password);
 			double soldeNew = this.account + amount;
 
@@ -115,6 +106,7 @@ public class UserBean {
 		return "showOwnerResult";
 	}
 
+	
 	// update method
 	public void updateUser(ValueChangeEvent event) throws Exception {
 		this.username = (String) event.getNewValue();
@@ -129,116 +121,47 @@ public class UserBean {
 		this.city = user.getAddress().getCity();
 	}
 
+	
 	// getters and setters
-	public User getUser() {
-		return user;
-	}
+	public User getUser() { return user; }
+	public void setUser(User user) {this.user = user;}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+	public String getUsername() { return username; }
+	public void setUsername(String username) { this.username = username; }
 
-	public String getUsername() {
-		return username;
-	}
+	public String getPassword() { return password; }
+	public void setPassword(String password) { this.password = password; }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	public String getFirstname() { return firstname; }
+	public void setFirstname(String firstname) { this.firstname = firstname; }
+	
+	public String getLastname() { return lastname; }
+	public void setLastname(String lastname) { this.lastname = lastname; }
 
-	public String getPassword() {
-		return password;
-	}
+	public String getStreet() { return street; }
+	public void setStreet(String street) { this.street = street; }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	public String getCode() { return code; }
+	public void setCode(String code) { this.code = code; }
 
-	public String getLastname() {
-		return lastname;
-	}
+	public String getCity() { return city; }
+	public void setCity(String city) { this.city = city; }
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
+	public double getAmount() { return amount; }
+	public void setAmount(double amount) { this.amount = amount; }
+	
+	public double getAccount() { return account; }
+	public void setAccount(double account) { this.account = account; }
+	
+	public List<User> getUsers() { return owners; }
+	public void setUsers(List<User> owners) { this.owners = owners; }
 
-	public String getFirstname() {
-		return firstname;
-	}
+	public List<String> getUsernames() { return usernames; }
+	public void setUsernames(List<String> usernames) { this.usernames = usernames; }
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
+	public String getResult() { return result; }
+	public void setResult(String result) { this.result = result; }
 
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public double getAccount() {
-		return account;
-	}
-
-	public void setAccount(double account) {
-		this.account = account;
-	}
-
-	public double getAmount() {
-		return amount;
-	}
-
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-
-	public List<User> getUsers() {
-		return owners;
-	}
-
-	public void setUsers(List<User> owners) {
-		this.owners = owners;
-	}
-
-	public List<String> getUsernames() {
-		return usernames;
-	}
-
-	public void setUsernames(List<String> usernames) {
-		this.usernames = usernames;
-	}
-
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
-	}
-
-	public Platform getPlatform() {
-		return platform;
-	}
-
-	public void setPlatform(Platform platform) {
-		this.platform = platform;
-	}
+	public Platform getPlatform() { return platform; }
+	public void setPlatform(Platform platform) { this.platform = platform; }
 }

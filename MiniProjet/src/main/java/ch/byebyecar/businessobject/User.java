@@ -1,5 +1,4 @@
 package ch.byebyecar.businessobject;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -16,6 +15,7 @@ import javax.persistence.Table;
  * Class : 606_3
  * Project : June 2019
  */
+
 
 @Entity
 @Table(name = "User")
@@ -45,87 +45,44 @@ public class User {
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<Bike> bikes;
 
+	
 	// ID
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public Long getId() { return id; }
+	public void setId(Long id) { this.id = id; }
 
 	// username
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	public String getUsername() { return username; }
+	public void setUsername(String username) { this.username = username; }
 
 	// password
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	public String getPassword() { return password; }
+	public void setPassword(String password) { this.password = password; }
 
 	// firstname
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
+	public String getFirstname() { return firstname; }
+	public void setFirstname(String firstname) { this.firstname = firstname; }
 
 	// lastname
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
+	public String getLastname() { return lastname; }
+	public void setLastname(String lastname) { this.lastname = lastname; }
 
 	// account
-	public double getAccount() {
-		return account;
-	}
-
-	public void setAccount(double account) {
-		this.account = account;
-	}
-
-	// list cars
-	public List<Car> getCars() {
-		return cars;
-	}
-
-	public void setCars(List<Car> cars) {
-		this.cars = cars;
-	}
-
-	// list bike
-	public List<Bike> getBikes() {
-		return bikes;
-	}
-
-	public void setBikes(List<Bike> bikes) {
-		this.bikes = bikes;
-	}
+	public double getAccount() { return account; }
+	public void setAccount(double account) { this.account = account; }
 
 	// address (from Address)
-	public Address getAddress() {
-		return address;
-	}
+	public Address getAddress() { return address; } 
+	public void setAddress(Address address) { this.address = address; }
+	
+	// cars (from Car)
+	public List<Car> getCars() { return cars; }
+	public void setCars(List<Car> cars) { this.cars = cars; }
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+	// bikes (from Bike)
+	public List<Bike> getBikes() { return bikes; }
+	public void setBikes(List<Bike> bikes) { this.bikes = bikes; }
 
+	
 	// constructors
 	public User() {
 		cars = new ArrayList<Car>();
@@ -144,13 +101,13 @@ public class User {
 		bikes = new ArrayList<Bike>();
 	}
 
-	// helper method
-	public void addCar(Car v) {
-		cars.add(v);
+	
+	// helper methods
+	public void addCar(Car c) {
+		cars.add(c);
 	}
 
-	// helper method
-	public void addBike(Bike v) {
-		bikes.add(v);	
+	public void addBike(Bike b) {
+		bikes.add(b);	
 	}
 }

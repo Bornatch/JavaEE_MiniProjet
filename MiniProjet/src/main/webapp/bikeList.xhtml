@@ -9,8 +9,7 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="content">
 		<h:form>
-			<h:dataTable value="#{byeByeBean.bikes}" var="bike"
-				binding="#{byeByeBean.datatableBikes}">>
+			<h:dataTable value="#{byeByeBean.bikes}" var="bike">>
 				<h:column style="width:50px;text-align:center;">
 					<f:facet name="header">Marque</f:facet>
 					#{bike.brand}
@@ -38,14 +37,8 @@
 				<h:column>
 					<f:facet name="header">Action</f:facet>
 					<h:commandButton value="D&eacute;tails"
-						action="#{byeByeBean.getBikeFromList}">
+						action="#{byeByeBean.getBikeFromList(bike.id)}">
 					</h:commandButton>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Action</f:facet>
-					<h:commandLink action="bikeInfo">
-				<h:outputText value="D&eacute;tails" />
-			</h:commandLink>
 				</h:column>
 			</h:dataTable>
 		</h:form>

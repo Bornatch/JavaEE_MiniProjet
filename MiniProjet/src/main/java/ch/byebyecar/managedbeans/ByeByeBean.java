@@ -1,22 +1,20 @@
 package ch.byebyecar.managedbeans;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.component.html.HtmlDataTable;
 import javax.faces.event.ValueChangeEvent;
 import javax.naming.InitialContext;
 import ch.byebyecar.businessobject.Bike;
 import ch.byebyecar.businessobject.Car;
 import ch.byebyecar.businessobject.User;
-import ch.byebyecar.businessobject.Vehicle;
 import ch.byebyecar.service.Platform;
 
 /* Students : Valentin Bornatici & Montaine Burger
  * Class : 606_3
  * Project : June 2019
  */
+
 
 @RequestScoped
 public class ByeByeBean {
@@ -34,14 +32,8 @@ public class ByeByeBean {
 	private Car car;
 	private List<Bike> bikes;
 	private Bike bike;
-	private List<Vehicle> vehicles;
-	private Vehicle vehicle;
 
-	// data from database
-	private HtmlDataTable datatableCars;
-	private HtmlDataTable datatableBikes;
-	private HtmlDataTable datatableVehicles;
-
+	
 	@PostConstruct
 	public void initialize() throws Exception {
 
@@ -51,11 +43,7 @@ public class ByeByeBean {
 				.lookup("java:global/BYEBYE-0.0.1-SNAPSHOT/PlatformBean!ch.byebyecar.service.Platform");
 
 		// get users
-		List<User> userList = platform.getUsers();
-		this.usernames = new ArrayList<String>();
-		for (User user : userList) {
-			this.usernames.add(user.getUsername());
-		}
+		updateUsers();
 
 		// get cars
 		try {
@@ -70,28 +58,27 @@ public class ByeByeBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		// get vehicles
-		try {
-			vehicles = platform.getVehicles();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
+	
+	// update users list
+	public void updateUsers() {
+		List<User> userList = platform.getUsers();
+		this.usernames = new ArrayList<String>();
+		for (User user : userList) {
+			this.usernames.add(user.getUsername());
+		}
+	}
+	
+	
+	// selling methods
 	public String sellCar() {
 		try {
 			sourceOwnerName = car.getOwner().getUsername();
 
 			if (sourceOwnerName.equals(destinationOwnerName)) {
-				this.result = "Error: Owners are identical!";
+				this.result = "Erreur : les utilisateurs sont identiques !";
 			} else {
-
-				// Vehicule car = platform.getCar(car.getId());
-				// Account compteDest =
-				// bank.getAccount(destinationAccountDescription,
-				// destinationClientName);
-
 				platform.sellCar(sourceOwnerName, destinationOwnerName, car.getId());
 				this.result = " succès !";
 			}
@@ -99,67 +86,67 @@ public class ByeByeBean {
 			e.printStackTrace();
 		}
 
-		return "showSellResult"; // the String value returned represents the
-									// outcome used by the navigation
-									// handler to determine what page to
-									// display next.
+		return "showSellResult";
 	}
-	
+		
 	public String sellBike() {
 		try {
 			sourceOwnerName = bike.getOwner().getUsername();
 
 			if (sourceOwnerName.equals(destinationOwnerName)) {
-				this.result = "Error: Owners are identical!";
+				this.result = "Erreur : les utilisateurs sont identiques !";
 			} else {
-
-				// Vehicule car = platform.getCar(car.getId());
-				// Account compteDest =
-				// bank.getAccount(destinationAccountDescription,
-				// destinationClientName);
-
-				platform.sellCar(sourceOwnerName, destinationOwnerName, bike.getId());
+				platform.sellBike(sourceOwnerName, destinationOwnerName, bike.getId());
 				this.result = " succès !";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "showSellResult"; // the String value returned represents the
-									// outcome used by the navigation
-									// handler to determine what page to
-									// display next.
+		return "showSellResult";
 	}
 
-	public void updateListOwner(ValueChangeEvent event) throws Exception {
-		this.destinationOwnerName = (String) event.getNewValue();
-		this.setOwner(platform.getUserByUsername(this.destinationOwnerName));
-	}
-
-	public String getCarFromList() {
-		setCar((Car) datatableCars.getRowData());		
+	
+	// get data
+	public String getCarFromList(Long id) {
+		setCar((Car) platform.getCarById(id));		
 		return "carInfo";
 	}
 	
-	public String carList(){
-		datatableCars = null;
+	public String getBikeFromList(Long id) {
+		setBike((Bike) platform.getBikeById(id));		
+		return "bikeInfo";
+	}
+	
+	public String carList() {
+		updateUsers();
+		
 		try {
 			cars = platform.getCars();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return "carList";		
 	}
-
-	public String getBikeFromList() {
-		setBike((Bike) datatableBikes.getRowData());
-		return "bikeInfo";
+	
+	public String bikeList() {
+		updateUsers();
+		
+		try {
+			bikes = platform.getBikes();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "bikeList";
+	}
+	
+	public void updateListOwner(ValueChangeEvent event) throws Exception {
+		this.destinationOwnerName = (String) event.getNewValue();
+		this.setOwner(platform.getUserByUsername(this.destinationOwnerName));
 	}
 
-	public String getVehicleFromList() {
-		setVehicle((Vehicle) datatableVehicles.getRowData());
-		return "vehicleInfo";
-	}
 
 	// initialization
 	public String getCarList() {
@@ -170,144 +157,41 @@ public class ByeByeBean {
 		return "bikeList";
 	}
 
-	public String getVehicleList() {
-		return "vehicleList";
-	}
+	
+	// getters and setters	
+	public List<User> getUsers() { return users; }
+	public void setUsers(List<User> users) { this.users = users; }
 
-	public User getOwner() {
-		return owner;
-	}
+	public List<String> getUsernames() { return usernames; }
+	public void setUsernames(List<String> usernames) { this.usernames = usernames; }
+	
+	public User getOwner() { return owner; }
+	public void setOwner(User owner) { this.owner = owner; } 
+	
+	public String getResult() { return result; }
+	public void setResult(String result) { this.result = result; }
 
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
+	public String getSourceOwnerName() { return sourceOwnerName; } 
+	public void setSourceOwnerName(String sourceOwnerName) { this.sourceOwnerName = sourceOwnerName; }
 
-	// getters and setters
-	public List<User> getUsers() {
-		return users;
-	}
+	public String getDestinationOwnerName() { return destinationOwnerName; }
+	public void getDestinationOwnerName(String destinationOwnerName) { this.destinationOwnerName = destinationOwnerName; }
 
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
+	public double getPrice() { return price; }
+	public void setPrice(double price) { this.price = price; }
 
-	public List<String> getUsernames() {
-		return usernames;
-	}
+	public Platform getPlatform() { return platform; }
+	public void setPlatform(Platform platform) { this.platform = platform; }
 
-	public void setUsernames(List<String> usernames) {
-		this.usernames = usernames;
-	}
+	public List<Car> getCars() { return cars; }
+	public void setCars(List<Car> cars) { this.cars = cars; }
 
-	public String getResult() {
-		return result;
-	}
+	public Car getCar() { return car; }
+	public void setCar(Car car) { this.car = car; }
 
-	public void setResult(String result) {
-		this.result = result;
-	}
+	public List<Bike> getBikes() { return bikes; }
+	public void setBikes(List<Bike> bikes) { this.bikes = bikes; }
 
-	public String getSourceOwnerName() {
-		return sourceOwnerName;
-	}
-
-	public void setSourceOwnerName(String sourceOwnerName) {
-		this.sourceOwnerName = sourceOwnerName;
-	}
-
-	public String getDestinationOwnerName() {
-		return destinationOwnerName;
-	}
-
-	public void getDestinationOwnerName(String destinationOwnerName) {
-		this.destinationOwnerName = destinationOwnerName;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public Platform getPlatform() {
-		return platform;
-	}
-
-	public void setPlatform(Platform platform) {
-		this.platform = platform;
-	}
-
-	public List<Car> getCars() {
-		return cars;
-	}
-
-	public void setCars(List<Car> cars) {
-		this.cars = cars;
-	}
-
-	public Car getCar() {
-		return car;
-	}
-
-	public void setCar(Car car) {
-		this.car = car;
-	}
-
-	public List<Bike> getBikes() {
-		return bikes;
-	}
-
-	public void setBikes(List<Bike> bikes) {
-		this.bikes = bikes;
-	}
-
-	public Bike getBike() {
-		return bike;
-	}
-
-	public void setBike(Bike bike) {
-		this.bike = bike;
-	}
-
-	public List<Vehicle> getVehicles() {
-		return vehicles;
-	}
-
-	public void setVehicles(List<Vehicle> vehicles) {
-		this.vehicles = vehicles;
-	}
-
-	public Vehicle getVehicle() {
-		return car;
-	}
-
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
-	}
-
-	public HtmlDataTable getDatatableCars() {
-		return datatableCars;
-	}
-
-	public void setDatatableCars(HtmlDataTable datatableCars) {
-		this.datatableCars = datatableCars;
-	}
-
-	public HtmlDataTable getDatatableBikes() {
-		return datatableBikes;
-	}
-
-	public void setDatatableBikes(HtmlDataTable datatableBikes) {
-		this.datatableBikes = datatableBikes;
-	}
-
-	public HtmlDataTable getDatatableVehicles() {
-		return datatableVehicles;
-	}
-
-	public void setDatatableVehicles(HtmlDataTable datatableVehicles) {
-		this.datatableVehicles = datatableVehicles;
-	}
+	public Bike getBike() { return bike; }
+	public void setBike(Bike bike) { this.bike = bike; }
 }

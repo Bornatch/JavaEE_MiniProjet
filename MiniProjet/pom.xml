@@ -6,6 +6,22 @@
   
 <packaging>war</packaging>
   <dependencies>
+  
+    <dependency>
+        <!-- Annotations for role management -->
+        <groupId>javax.annotation</groupId>
+        <artifactId>jsr250-api</artifactId>
+        <version>1.0</version>
+    </dependency>
+    
+    <dependency>
+    	<!-- Send method with parameter -->
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>javax.servlet-api</artifactId>
+    	<version>3.1.0</version>
+    	<scope>provided</scope>
+    </dependency>
+    
   	<dependency>
 		<groupId>javax.faces</groupId>
 		<artifactId>javax.faces-api</artifactId>

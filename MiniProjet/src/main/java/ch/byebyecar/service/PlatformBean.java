@@ -1,14 +1,11 @@
 package ch.byebyecar.service;
-
 import javax.annotation.Resource;
-import java.util.List;
 import javax.annotation.security.RolesAllowed;
+import java.util.List;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
-import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.faces.view.facelets.FaceletsResourceResolver;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -17,12 +14,12 @@ import ch.byebyecar.businessobject.Address;
 import ch.byebyecar.businessobject.Bike;
 import ch.byebyecar.businessobject.Car;
 import ch.byebyecar.businessobject.User;
-import ch.byebyecar.businessobject.Vehicle;
 
 /* Students : Valentin Bornatici & Montaine Burger
  * Class : 606_3
  * Project : June 2019
  */
+
 
 @Stateful
 @RolesAllowed(value = { "user", "admin" })
@@ -34,6 +31,7 @@ public class PlatformBean implements Platform {
 	@Resource
 	private SessionContext ctx;
 
+	
 	// related to the users
 	public void createUser(User u) {
 		em.persist(u);		
@@ -90,6 +88,7 @@ public class PlatformBean implements Platform {
 		}
 	}
 
+	
 	// related to the cars
 	public void createCar(Car c) {
 		em.persist(c);
@@ -151,6 +150,7 @@ public class PlatformBean implements Platform {
 		car.setOwner(dst);
 	}
 
+	
 	// related to the bikes
 	public void createBike(Bike b) {
 		em.persist(b);
@@ -210,23 +210,5 @@ public class PlatformBean implements Platform {
 		dst.setAccount(dst.getAccount() - bike.getPrice());
 		// change owner
 		bike.setOwner(dst);
-	}
-
-	// related to the vehicles (in general)
-	public Vehicle getVehicle(String brand, String username) {
-		Query query = em.createQuery("FROM Vehicle v WHERE v.brand=:brand AND v.owner.username=:username");
-		query.setParameter("brand", brand);
-		query.setParameter("username", username);
-
-		return (Vehicle) query.getSingleResult();
-	}
-
-	public List<Vehicle> getVehicles() {
-		return em.createQuery("FROM Vehicle").getResultList();
-	}
-
-	public List<Vehicle> getVehicleListByUsername(String username) {
-		return (List<Vehicle>) em.createQuery("SELECT u.vehicles FROM User u where u.username=:username")
-				.setParameter("username", username).getResultList();
 	}
 }

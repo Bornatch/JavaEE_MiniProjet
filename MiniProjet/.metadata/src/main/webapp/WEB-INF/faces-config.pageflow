@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14141592409490" configfile="/MiniProjetOpti/src/main/webapp/WEB-INF/faces-config.xml">
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14141592409490" configfile="/MiniProjet/src/main/webapp/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="360" y="612" id="pf15601914349365" referenceLink="//@navigationRule.33/@navigationCase.0/@toViewId|" outlinks="pf15601914349366 pf156019171588110 pf156019171588111 pf156019215856814 pf15602905200040 pf15602905200041 pf15602905200042" inlinks="pf15602905755026 pf15602914163869 pf156029144608912 pf156029146449513 pf156029177061014 pf156029181332221 pf156029182942522 pf156029189195623 pf156029191553524 pf156029197188725 pf156029200101726 pf156029208557829 pf15603383811220 pf15603383811221" path="/welcome.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="createUserForm.xhtml" x="576" y="360" id="pf15601914349367" referenceLink="//@navigationRule.22/@navigationCase.0/@toViewId|" outlinks="pf156029177061015 pf156029197188725 pf156029203164827" inlinks="pf15601914349366 pf156029208557830" path="/createUserForm.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="createCarForm.xhtml" x="626" y="768" id="pf156019171588212" referenceLink="//@navigationRule.23/@navigationCase.0/@toViewId|" outlinks="pf156029177061016 pf156029181332221" inlinks="pf156019171588110 pf156029177061017" path="/createCarForm.xhtml"/>
@@ -21,8 +21,8 @@
   <links id="pf156019171588111" target="pf156019171588213" source="pf15601914349365" outcome="createBikeForm"/>
   <links id="pf156019215856814" target="pf156019215856919" source="pf15601914349365" outcome="vehicleList"/>
   <links id="pf15602905200040" target="pf15602905200143" source="pf15601914349365" outcome="userDetails"/>
-  <links id="pf15602905200041" target="pf15602905200144" source="pf15601914349365" outcome="carList"/>
-  <links id="pf15602905200042" target="pf15602905200145" source="pf15601914349365" outcome="bikeList"/>
+  <links id="pf15602905200041" target="pf15602905200144" source="pf15601914349365" outcome="#{carList}"/>
+  <links id="pf15602905200042" target="pf15602905200145" source="pf15601914349365" outcome="#{bikeList}"/>
   <links id="pf15602905755026" target="pf15601914349365" source="pf15602905200144" outcome="welcome"/>
   <links id="pf15602913719627" target="pf15602913719628" source="pf15602905200144" outcome="#{byeByeBean.getCarFromList}"/>
   <links id="pf15602914163869" target="pf15601914349365" source="pf15602905200145" outcome="welcome"/>

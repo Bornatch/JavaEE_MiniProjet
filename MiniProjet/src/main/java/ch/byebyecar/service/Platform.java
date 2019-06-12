@@ -4,7 +4,6 @@ import javax.ejb.Local;
 import ch.byebyecar.businessobject.Bike;
 import ch.byebyecar.businessobject.Car;
 import ch.byebyecar.businessobject.User;
-import ch.byebyecar.businessobject.Vehicle;
 
 /* Students : Valentin Bornatici & Montaine Burger
  * Class : 606_3
@@ -48,10 +47,4 @@ public interface Platform {
 	Bike getBikeById(Long id);
 	List<Bike> getBikeListByUsername(String username);
 	void sellBike(String srcUsername, String destUsername, Long bikeId) throws Exception;
-	
-	
-	// related to the vehicles (in general)
-	Vehicle getVehicle(String brand, String username);
-	List<Vehicle> getVehicles();
-	List<Vehicle> getVehicleListByUsername(String username);
 }
