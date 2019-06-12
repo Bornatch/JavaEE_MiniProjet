@@ -66,7 +66,7 @@
 		<display-name>welcome.xhtml</display-name>
 		<from-view-id>/welcome.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>#{carList}</from-outcome>
+			<from-outcome>#{byeByeBean.carList}</from-outcome>
 			<to-view-id>/carList.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
