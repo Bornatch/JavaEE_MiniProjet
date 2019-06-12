@@ -1,4 +1,5 @@
 a faire 
+VERIFIER LE SOLDE DU COMPTE (pas en négatif)
 Modifier bikeList idem carList (faces-config, ByebyeBean(Datatabel, methode bikeList()) tester
 Créer userList idem carList 
 Tester les deux ajouts
