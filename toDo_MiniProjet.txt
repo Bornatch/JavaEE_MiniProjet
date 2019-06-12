@@ -1,0 +1,11 @@
+a faire 
+Modifier bikeList idem carList (faces-config, ByebyeBean(Datatabel, methode bikeList()) tester
+Créer userList idem carList 
+Tester les deux ajouts
+placer la sécurité ADMIN pour le delete de user et vérifier les supressions liées 
+Améliorer le renvoi d'erreur vers la page error (voir carInfo => sellCar)
+Boire un café
+pleurer en pensant aux autres projets
+se ressaisir 
+finir présentation
+voir si on veut faire plus joli

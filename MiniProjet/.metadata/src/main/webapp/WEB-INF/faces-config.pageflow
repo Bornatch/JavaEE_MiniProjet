@@ -15,7 +15,7 @@
   <nodes xsi:type="pageflow:PFPage" name="showUserResult.xhtml" x="720" y="482" id="pf156029177061020" referenceLink="//@navigationRule.25/@fromViewId|" outlinks="pf156029177061017 pf156029177061019 pf156029177061014" inlinks="pf156029177061015" path="/showUserResult.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="userError.xhtml" x="336" y="461" id="pf156029203164828" referenceLink="//@navigationRule.22/@fromViewId|" outlinks="pf156029208557829 pf156029208557830" inlinks="pf156029203164827" path="/userError.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="error.xhtml" x="57" y="893" id="pf15603383811226" referenceLink="//@navigationRule.32/@fromViewId|" outlinks="pf15603383811220" inlinks="pf15603383811225 pf15603383811223" path="/error.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="showSellResult.xhtml" x="152" y="852" id="pf15603383811227" referenceLink="//@navigationRule.33/@fromViewId|" outlinks="pf15603383811221" inlinks="pf15603383811222 pf15603383811224" path="/showSellResult.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="showSellResult.xhtml" x="144" y="833" id="pf15603383811227" referenceLink="//@navigationRule.33/@fromViewId|" outlinks="pf15603383811221" inlinks="pf15603383811222 pf15603383811224" path="/showSellResult.xhtml"/>
   <links id="pf15601914349366" target="pf15601914349367" source="pf15601914349365" outcome="createUserForm"/>
   <links id="pf156019171588110" target="pf156019171588212" source="pf15601914349365" outcome="createCarForm"/>
   <links id="pf156019171588111" target="pf156019171588213" source="pf15601914349365" outcome="createBikeForm"/>

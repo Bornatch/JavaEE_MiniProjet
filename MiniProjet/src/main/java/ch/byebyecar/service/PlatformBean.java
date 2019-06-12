@@ -36,7 +36,7 @@ public class PlatformBean implements Platform {
 
 	// related to the users
 	public void createUser(User u) {
-		em.persist(u);
+		em.persist(u);		
 	}
 
 	public void createUser(String username, String password, String firstname, String lastname, String street,

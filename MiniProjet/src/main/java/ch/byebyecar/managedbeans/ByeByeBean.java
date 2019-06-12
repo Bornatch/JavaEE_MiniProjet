@@ -137,8 +137,18 @@ public class ByeByeBean {
 	}
 
 	public String getCarFromList() {
-		setCar((Car) datatableCars.getRowData());
+		setCar((Car) datatableCars.getRowData());		
 		return "carInfo";
+	}
+	
+	public String carList(){
+		datatableCars = null;
+//		try {
+//			cars = platform.getCars();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		return "carList";		
 	}
 
 	public String getBikeFromList() {
