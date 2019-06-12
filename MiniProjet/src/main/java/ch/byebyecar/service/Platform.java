@@ -20,7 +20,7 @@ public interface Platform {
 	void createUser(User u);
 	void createUser(String username, String password, String firstname, String lastname,
 			String street, String code, String city);
-	void deleteUser(Long userId);
+	String deleteUser(Long userId);
 	List<User> getUsers();
 	User getUser(Long id);
 	User getUserByUsername(String username);

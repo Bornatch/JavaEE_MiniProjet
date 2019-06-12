@@ -75,7 +75,16 @@
 		<display-name>welcome.xhtml</display-name>
 		<from-view-id>/welcome.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>#{byeByeBean.bikeList}</from-outcome>
+			<from-outcome>#{byeByeBean.userList}</from-outcome>
+			<to-view-id>/userList.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{bikeList}</from-outcome>
 			<to-view-id>/bikeList.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
@@ -145,6 +154,34 @@
 			<to-view-id>/carInfo.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<!-- FROM UserList -->
+	<navigation-rule>
+		<display-name>userList.xhtml</display-name>
+		<from-view-id>/userList.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>userList.xhtml</display-name>
+		<from-view-id>/userList.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{byeByeBean.getUserFromList}</from-outcome>
+			<to-view-id>/userDetails.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>userList.xhtml</display-name>
+		<from-view-id>/userList.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{byeByeBean.deleteUser}</from-outcome>
+			<to-view-id>/showSuppressionResult.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>	
 	
 	<!-- FROM CarInfo -->
 	<navigation-rule>
@@ -274,6 +311,16 @@
 	<navigation-rule>
 		<display-name>showCarResult.xhtml</display-name>
 		<from-view-id>/showCarResult.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- FROM SuppressionResult -->
+	<navigation-rule>
+		<display-name>showSuppressionResult.xhtml</display-name>
+		<from-view-id>/showSuppressionResult.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>welcome</from-outcome>
 			<to-view-id>/welcome.xhtml</to-view-id>
