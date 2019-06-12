@@ -35,7 +35,7 @@
 				<h:outputText value="Acheteur : "></h:outputText>
 				<h:selectOneMenu value="byeByeBean.destnationOwnerName"
 					valueChangeListener="#{byeByeBean.updateListOwner}" onchange="submit()">
-					<f:selectItems value="#{byeByeBean.ownerUsernames}" />
+					<f:selectItems value="#{byeByeBean.usernames}" />
 				</h:selectOneMenu>
 			</h:panelGrid>
 			<h:commandButton value="Acheter" action="#{byeByeBean.sellCar}"></h:commandButton>

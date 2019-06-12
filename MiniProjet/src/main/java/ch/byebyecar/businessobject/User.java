@@ -1,4 +1,5 @@
 package ch.byebyecar.businessobject;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -16,11 +17,10 @@ import javax.persistence.Table;
  * Project : June 2019
  */
 
-
 @Entity
 @Table(name = "User")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
@@ -34,69 +34,123 @@ public class User {
 	private String lastname;
 	@Column(name = "account")
 	private double account;
-	
-	
+
 	// relations
 	@Embedded
 	private Address address;
 
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-	private List<Vehicle> vehicles;
-	
+	private List<Car> cars;
+
+	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+	private List<Bike> bikes;
 
 	// ID
-	public Long getId() { return id; }
-	public void setId(Long id) { this.id = id; }
-	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	// username
-	public String getUsername() { return username; }
-	public void setUsername(String username) { this.username = username; }
-	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	// password
-	public String getPassword() { return password; }
-	public void setPassword(String password) { this.password = password; }
-	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	// firstname
-	public String getFirstname() { return firstname; }
-	public void setFirstname(String firstname) { this.firstname = firstname; }
-	
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
 	// lastname
-	public String getLastname() { return lastname; }
-	public void setLastname(String lastname) { this.lastname = lastname; }
-	
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
 	// account
-	public double getAccount() { return account; }
-	public void setAccount(double account) { this.account = account; }
-	
-	// vehicles (from User - owner)
-	public List<Vehicle> getVehicles() { return vehicles; }
-	public void setVehicles(List<Vehicle> vehicles) { this.vehicles = vehicles; }
-	
+	public double getAccount() {
+		return account;
+	}
+
+	public void setAccount(double account) {
+		this.account = account;
+	}
+
+	// list cars
+	public List<Car> getCars() {
+		return cars;
+	}
+
+	public void setCars(List<Car> cars) {
+		this.cars = cars;
+	}
+
+	// list bike
+	public List<Bike> getBikes() {
+		return bikes;
+	}
+
+	public void setBikes(List<Bike> bikes) {
+		this.bikes = bikes;
+	}
+
 	// address (from Address)
-	public Address getAddress() { return address; }
-	public void setAddress(Address address) { this.address = address; }
-	
-	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	// constructors
 	public User() {
-		vehicles = new ArrayList<Vehicle>();
+		cars = new ArrayList<Car>();
+		bikes = new ArrayList<Bike>();
 	}
-	
-	public User(String username, String password, 
-			String firstname, String lastname, double account, Address address) {
+
+	public User(String username, String password, String firstname, String lastname, double account, Address address) {
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.account = account;
 		this.address = address;
-		
-		vehicles = new ArrayList<Vehicle>();
+
+		cars = new ArrayList<Car>();
+		bikes = new ArrayList<Bike>();
 	}
-	
-	
+
 	// helper method
-	public void addVehicle(Vehicle v) {
-		vehicles.add(v);
+	public void addCar(Car v) {
+		cars.add(v);
+	}
+
+	// helper method
+	public void addBike(Bike v) {
+		bikes.add(v);	
 	}
 }

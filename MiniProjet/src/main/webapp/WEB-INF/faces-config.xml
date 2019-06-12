@@ -17,7 +17,7 @@
 	<managed-bean>
 		<managed-bean-name>carBean</managed-bean-name>
 		<managed-bean-class>ch.byebyecar.managedbeans.CarBean</managed-bean-class>
-		<managed-bean-scope>view</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>userBean</managed-bean-name>

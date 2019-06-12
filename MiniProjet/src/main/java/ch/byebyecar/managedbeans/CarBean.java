@@ -70,9 +70,10 @@ public class CarBean {
 	public String createCar() {
 		try {
 			platform.createCar(brand, km, color, price, owner, state);
-			this.result = "succès !";
+			this.result = "Ajout avec succès !";
 		} catch (Exception e) {
 			e.printStackTrace();
+			this.result = "&Eacute;chec de l'ajout ...";
 		}
 		
 		return "showCarResult";

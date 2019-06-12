@@ -72,10 +72,15 @@ public class PlatformBean implements Platform {
 	}
 
 	public void updateOwner(User owner, String password, double account) {
-		Query query = em.createQuery("UPDATE User u SET u.password=:password, u.account=:account WHERE u.id=:id");
-		query.setParameter("password", password);
-		query.setParameter("account", account);
-		query.setParameter("id", owner.getId());
+		try {
+			User ow = getUser(new Long(9));
+			em.persist(ow);
+			ow.setPassword(password);
+			ow.setAccount(account);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
@@ -93,7 +98,7 @@ public class PlatformBean implements Platform {
 		c.setPrice(price);
 		c.setOwner(owner);
 		c.setState(state);
-		
+				
 		em.persist(c);
 	}
 
