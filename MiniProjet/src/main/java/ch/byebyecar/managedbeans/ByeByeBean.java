@@ -1,4 +1,5 @@
 package ch.byebyecar.managedbeans;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -14,7 +15,6 @@ import ch.byebyecar.service.Platform;
  * Class : 606_3
  * Project : June 2019
  */
-
 
 @RequestScoped
 public class ByeByeBean {
@@ -33,7 +33,6 @@ public class ByeByeBean {
 	private List<Bike> bikes;
 	private Bike bike;
 
-	
 	@PostConstruct
 	public void initialize() throws Exception {
 
@@ -60,7 +59,6 @@ public class ByeByeBean {
 		}
 	}
 
-	
 	// update users list
 	public void updateUsers() {
 		List<User> userList = platform.getUsers();
@@ -69,18 +67,16 @@ public class ByeByeBean {
 			this.usernames.add(user.getUsername());
 		}
 	}
-	
-	
+
 	// selling methods
 	public String sellCar() {
 		try {
 			sourceOwnerName = car.getOwner().getUsername();
 
 			if (sourceOwnerName.equals(destinationOwnerName)) {
-				this.result = "Erreur : les utilisateurs sont identiques !";
+				this.result = "Hé " + sourceOwnerName + ", tu comptais pas t'acheter ta propre voiture j'espère !";
 			} else {
-				platform.sellCar(sourceOwnerName, destinationOwnerName, car.getId());
-				this.result = " succès !";
+				this.result = platform.sellCar(sourceOwnerName, destinationOwnerName, car.getId());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,16 +84,15 @@ public class ByeByeBean {
 
 		return "showSellResult";
 	}
-		
+
 	public String sellBike() {
 		try {
 			sourceOwnerName = bike.getOwner().getUsername();
 
 			if (sourceOwnerName.equals(destinationOwnerName)) {
-				this.result = "Erreur : les utilisateurs sont identiques !";
+				this.result = "Hé " + sourceOwnerName + ", tu comptais pas t'acheter ta propre moto j'espère !";
 			} else {
-				platform.sellBike(sourceOwnerName, destinationOwnerName, bike.getId());
-				this.result = " succès !";
+				this.result = platform.sellBike(sourceOwnerName, destinationOwnerName, bike.getId());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -106,47 +101,45 @@ public class ByeByeBean {
 		return "showSellResult";
 	}
 
-	
 	// get data
 	public String getCarFromList(Long id) {
-		setCar((Car) platform.getCarById(id));		
+		setCar((Car) platform.getCarById(id));
 		return "carInfo";
 	}
-	
+
 	public String getBikeFromList(Long id) {
-		setBike((Bike) platform.getBikeById(id));		
+		setBike((Bike) platform.getBikeById(id));
 		return "bikeInfo";
 	}
-	
+
 	public String carList() {
 		updateUsers();
-		
+
 		try {
 			cars = platform.getCars();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return "carList";		
+
+		return "carList";
 	}
-	
+
 	public String bikeList() {
 		updateUsers();
-		
+
 		try {
 			bikes = platform.getBikes();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return "bikeList";
 	}
-	
+
 	public void updateListOwner(ValueChangeEvent event) throws Exception {
 		this.destinationOwnerName = (String) event.getNewValue();
 		this.setOwner(platform.getUserByUsername(this.destinationOwnerName));
 	}
-
 
 	// initialization
 	public String getCarList() {
@@ -157,41 +150,100 @@ public class ByeByeBean {
 		return "bikeList";
 	}
 
-	
-	// getters and setters	
-	public List<User> getUsers() { return users; }
-	public void setUsers(List<User> users) { this.users = users; }
+	// getters and setters
+	public List<User> getUsers() {
+		return users;
+	}
 
-	public List<String> getUsernames() { return usernames; }
-	public void setUsernames(List<String> usernames) { this.usernames = usernames; }
-	
-	public User getOwner() { return owner; }
-	public void setOwner(User owner) { this.owner = owner; } 
-	
-	public String getResult() { return result; }
-	public void setResult(String result) { this.result = result; }
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 
-	public String getSourceOwnerName() { return sourceOwnerName; } 
-	public void setSourceOwnerName(String sourceOwnerName) { this.sourceOwnerName = sourceOwnerName; }
+	public List<String> getUsernames() {
+		return usernames;
+	}
 
-	public String getDestinationOwnerName() { return destinationOwnerName; }
-	public void getDestinationOwnerName(String destinationOwnerName) { this.destinationOwnerName = destinationOwnerName; }
+	public void setUsernames(List<String> usernames) {
+		this.usernames = usernames;
+	}
 
-	public double getPrice() { return price; }
-	public void setPrice(double price) { this.price = price; }
+	public User getOwner() {
+		return owner;
+	}
 
-	public Platform getPlatform() { return platform; }
-	public void setPlatform(Platform platform) { this.platform = platform; }
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
 
-	public List<Car> getCars() { return cars; }
-	public void setCars(List<Car> cars) { this.cars = cars; }
+	public String getResult() {
+		return result;
+	}
 
-	public Car getCar() { return car; }
-	public void setCar(Car car) { this.car = car; }
+	public void setResult(String result) {
+		this.result = result;
+	}
 
-	public List<Bike> getBikes() { return bikes; }
-	public void setBikes(List<Bike> bikes) { this.bikes = bikes; }
+	public String getSourceOwnerName() {
+		return sourceOwnerName;
+	}
 
-	public Bike getBike() { return bike; }
-	public void setBike(Bike bike) { this.bike = bike; }
+	public void setSourceOwnerName(String sourceOwnerName) {
+		this.sourceOwnerName = sourceOwnerName;
+	}
+
+	public String getDestinationOwnerName() {
+		return destinationOwnerName;
+	}
+
+	public void getDestinationOwnerName(String destinationOwnerName) {
+		this.destinationOwnerName = destinationOwnerName;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public Platform getPlatform() {
+		return platform;
+	}
+
+	public void setPlatform(Platform platform) {
+		this.platform = platform;
+	}
+
+	public List<Car> getCars() {
+		return cars;
+	}
+
+	public void setCars(List<Car> cars) {
+		this.cars = cars;
+	}
+
+	public Car getCar() {
+		return car;
+	}
+
+	public void setCar(Car car) {
+		this.car = car;
+	}
+
+	public List<Bike> getBikes() {
+		return bikes;
+	}
+
+	public void setBikes(List<Bike> bikes) {
+		this.bikes = bikes;
+	}
+
+	public Bike getBike() {
+		return bike;
+	}
+
+	public void setBike(Bike bike) {
+		this.bike = bike;
+	}
 }

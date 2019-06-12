@@ -2,45 +2,45 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-    <ui:define name="content">
-        <h:outputLabel value="Bienvenue sur ByeByeCar !"></h:outputLabel>
-        <br></br>
-        <h:form>
+	<ui:define name="content">
+		<h:outputLabel value="Bienvenue sur ByeByeCar !"></h:outputLabel>
+		<br></br>
+		<h:form>
 			<h:commandLink action="createUserForm">
 				<h:outputText value="Créer un compte" />
 			</h:commandLink>
 			<br></br>
-			
+
 			<h:commandLink action="userDetails">
-			<h:outputText value="Voir les membres" />
+				<h:outputText value="Voir les membres" />
 			</h:commandLink>
 			<br></br>
-			
+
 			<h:commandLink action="createCarForm">
 				<h:outputText value="Ajouter une voiture" />
 			</h:commandLink>
 			<br></br>
-			
+
 			<h:commandLink action="createBikeForm">
 				<h:outputText value="Ajouter une moto" />
 			</h:commandLink>
 			<br></br>
-			
+
 			<h:commandLink action="#{byeByeBean.carList}">
-			<h:outputText value="Voir les voitures" />
+				<h:outputText value="Voir les voitures" />
 			</h:commandLink>
 			<br></br>
-			
+
 			<h:commandLink action="#{byeByeBean.bikeList}">
-			<h:outputText value="Voir les motos" />
+				<h:outputText value="Voir les motos" />
 			</h:commandLink>
 			<br></br>
-        </h:form>
-    </ui:define>
+		</h:form>
+	</ui:define>
 </ui:composition>
 </html>

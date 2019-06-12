@@ -35,7 +35,7 @@ public interface Platform {
 	Car getCar(String brand, String username);
 	Car getCarById(Long id);
 	List<Car> getCarListByUsername(String username);
-	void sellCar(String srcUsername, String destUsername, Long carId) throws Exception;
+	String sellCar(String srcUsername, String destUsername, Long carId) throws Exception;
 	
 	
 	// related to the bikes
@@ -46,5 +46,5 @@ public interface Platform {
 	Bike getBike(String brand, String username);
 	Bike getBikeById(Long id);
 	List<Bike> getBikeListByUsername(String username);
-	void sellBike(String srcUsername, String destUsername, Long bikeId) throws Exception;
+	String sellBike(String srcUsername, String destUsername, Long bikeId) throws Exception;
 }

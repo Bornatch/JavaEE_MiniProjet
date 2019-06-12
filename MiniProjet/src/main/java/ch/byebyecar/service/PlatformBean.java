@@ -1,4 +1,5 @@
 package ch.byebyecar.service;
+
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
@@ -20,7 +21,6 @@ import ch.byebyecar.businessobject.User;
  * Project : June 2019
  */
 
-
 @Stateful
 @RolesAllowed(value = { "user", "admin" })
 public class PlatformBean implements Platform {
@@ -31,10 +31,9 @@ public class PlatformBean implements Platform {
 	@Resource
 	private SessionContext ctx;
 
-	
 	// related to the users
 	public void createUser(User u) {
-		em.persist(u);		
+		em.persist(u);
 	}
 
 	public void createUser(String username, String password, String firstname, String lastname, String street,
@@ -88,7 +87,6 @@ public class PlatformBean implements Platform {
 		}
 	}
 
-	
 	// related to the cars
 	public void createCar(Car c) {
 		em.persist(c);
@@ -133,24 +131,32 @@ public class PlatformBean implements Platform {
 	}
 
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRED)
-	public void sellCar(String srcUsername, String destUsername, Long carId) throws Exception {
+	public String sellCar(String srcUsername, String destUsername, Long carId) throws Exception {
 		Car car = getCarById(carId);
 		User src = getUserByUsername(srcUsername);
 		User dst = getUserByUsername(destUsername);
 
-		em.persist(car);
-		em.persist(src);
-		em.persist(dst);
+		if (dst.getAccount() - car.getPrice() < 0) {
+			return "Trop cher pour toi... Désolé!";
+		} else {
+			// add money to the vendor
+			src.setAccount(src.getAccount() + car.getPrice());
+			// take money from the buyer
 
-		// add money to the vendor
-		src.setAccount(src.getAccount() + car.getPrice());
-		// take money from the buyer
-		dst.setAccount(dst.getAccount() - car.getPrice());
-		// change owner
-		car.setOwner(dst);
+			// take money from the buyer
+			dst.setAccount(dst.getAccount() - car.getPrice());
+			// change owner
+			car.setOwner(dst);
+
+			em.persist(car);
+			em.persist(src);
+			em.persist(dst);
+
+			return "L'achat de la voiture " + car.getBrand() + " a été réalisé avec succès! Bonne route!";
+		}
+
 	}
 
-	
 	// related to the bikes
 	public void createBike(Bike b) {
 		em.persist(b);
@@ -195,20 +201,30 @@ public class PlatformBean implements Platform {
 	}
 
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRED)
-	public void sellBike(String srcUsername, String destUsername, Long bikeId) throws Exception {
+	public String sellBike(String srcUsername, String destUsername, Long bikeId) throws Exception {
 		Bike bike = getBikeById(bikeId);
 		User src = getUserByUsername(srcUsername);
 		User dst = getUserByUsername(destUsername);
 
-		em.persist(bike);
-		em.persist(src);
-		em.persist(dst);
+		if (dst.getAccount() - bike.getPrice() < 0) {
+			return "Si t'as pas les sous, t'as pas le deux roues!";
+		} else {
+			// add money to the vendor
+			src.setAccount(src.getAccount() + bike.getPrice());
 
-		// add money to the vendor
-		src.setAccount(src.getAccount() + bike.getPrice());
-		// take money from the buyer
-		dst.setAccount(dst.getAccount() - bike.getPrice());
-		// change owner
-		bike.setOwner(dst);
+			// take money from the buyer
+
+			dst.setAccount(dst.getAccount() - bike.getPrice());
+
+			// change owner
+			bike.setOwner(dst);
+
+			em.persist(bike);
+			em.persist(src);
+			em.persist(dst);
+
+			return "L'achat de la moto " + bike.getBrand() + " a été réalisé avec succès! Bonne route!";
+		}
+
 	}
 }
