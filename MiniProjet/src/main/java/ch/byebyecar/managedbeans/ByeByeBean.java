@@ -104,6 +104,32 @@ public class ByeByeBean {
 									// handler to determine what page to
 									// display next.
 	}
+	
+	public String sellBike() {
+		try {
+			sourceOwnerName = bike.getOwner().getUsername();
+
+			if (sourceOwnerName.equals(destinationOwnerName)) {
+				this.result = "Error: Owners are identical!";
+			} else {
+
+				// Vehicule car = platform.getCar(car.getId());
+				// Account compteDest =
+				// bank.getAccount(destinationAccountDescription,
+				// destinationClientName);
+
+				platform.sellCar(sourceOwnerName, destinationOwnerName, bike.getId());
+				this.result = " succès !";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "showSellResult"; // the String value returned represents the
+									// outcome used by the navigation
+									// handler to determine what page to
+									// display next.
+	}
 
 	public void updateListOwner(ValueChangeEvent event) throws Exception {
 		this.destinationOwnerName = (String) event.getNewValue();

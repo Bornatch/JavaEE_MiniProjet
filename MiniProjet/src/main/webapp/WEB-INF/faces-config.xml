@@ -7,7 +7,7 @@
 	<managed-bean>
 		<managed-bean-name>byeByeBean</managed-bean-name>
 		<managed-bean-class>ch.byebyecar.managedbeans.ByeByeBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>bikeBean</managed-bean-name>
@@ -17,7 +17,7 @@
 	<managed-bean>
 		<managed-bean-name>carBean</managed-bean-name>
 		<managed-bean-class>ch.byebyecar.managedbeans.CarBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>userBean</managed-bean-name>
@@ -284,6 +284,54 @@
 	<navigation-rule>
 		<display-name>showBikeResult.xhtml</display-name>
 		<from-view-id>/showBikeResult.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>carInfo.xhtml</display-name>
+		<from-view-id>/carInfo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{byeByeBean.sellCar}</from-outcome>
+			<to-view-id>/showSellResult.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>bikeInfo.xhtml</display-name>
+		<from-view-id>/bikeInfo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{byeByeBean.sellBike}</from-outcome>
+			<to-view-id>/showSellResult.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>bikeInfo.xhtml</display-name>
+		<from-view-id>/bikeInfo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{byeByeBean.sellBike}</from-outcome>
+			<to-view-id>/error.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>carInfo.xhtml</display-name>
+		<from-view-id>/carInfo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{byeByeBean.sellCar}</from-outcome>
+			<to-view-id>/error.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>error.xhtml</display-name>
+		<from-view-id>/error.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>welcome</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>showSellResult.xhtml</display-name>
+		<from-view-id>/showSellResult.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>welcome</from-outcome>
 			<to-view-id>/welcome.xhtml</to-view-id>

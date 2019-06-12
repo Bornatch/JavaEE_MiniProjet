@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel value="D&eacute;tail du v&eacute;hicule :"></h:outputLabel>
+			<br></br>
+			<h:panelGrid columns="2">
+				<h:outputText value="Marque : "></h:outputText>
+				<h:outputText value="#{byeByeBean.bike.brand}"></h:outputText>
+
+				<h:outputText value="Km : "></h:outputText>
+				<h:outputText value="#{byeByeBean.bike.km}"></h:outputText>
+				
+				<h:outputText value="Couleur : "></h:outputText>
+				<h:outputText value="#{byeByeBean.bike.color}"></h:outputText>
+				
+				<h:outputText value="Prix : "></h:outputText>
+				<h:outputText value="#{byeByeBean.bike.price}"></h:outputText>
+				
+
+				<h:outputText value="Cat&eacute;gorie : "></h:outputText>
+				<h:outputText value="#{byeByeBean.bike.category}"></h:outputText>
+				
+
+				<h:outputText value="Propri&eacute;taire : "></h:outputText>
+				<h:outputText value="#{byeByeBean.bike.owner.firstname} #{byeByeBean.bike.owner.lastname}"></h:outputText>
+				
+				<h:outputText value="Acheteur : "></h:outputText>
+				<h:selectOneMenu value="byeByeBean.destnationOwnerName"
+					valueChangeListener="#{byeByeBean.updateListOwner}" onchange="submit()">
+					<f:selectItems value="#{byeByeBean.usernames}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+			<h:commandButton value="Acheter" action="#{byeByeBean.sellBike}"></h:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
