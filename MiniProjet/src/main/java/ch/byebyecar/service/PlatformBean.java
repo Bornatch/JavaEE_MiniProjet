@@ -59,7 +59,12 @@ public class PlatformBean implements Platform {
 	}
 
 	public String deleteUser(Long userId) {
-		int result = em.createQuery("DELETE FROM User u WHERE u.id = :id").setParameter("id", userId).executeUpdate();
+		int car = em.createQuery("DELETE FROM Car c WHERE c.owner.id = :id")
+				.setParameter("id", userId).executeUpdate();
+		int bike = em.createQuery("DELETE FROM Bike b WHERE b.owner.id = :id")
+				.setParameter("id", userId).executeUpdate();		
+		int result = em.createQuery("DELETE FROM User u WHERE u.id = :id")
+				.setParameter("id", userId).executeUpdate();
 		String suppression = "Cet utilisateur a bien été supprimé !";
 
 		if (!ctx.isCallerInRole("admin")) {
