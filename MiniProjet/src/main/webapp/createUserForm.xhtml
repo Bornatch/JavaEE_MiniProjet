@@ -12,27 +12,41 @@
         	<h:outputLabel value="Créer un compte :"></h:outputLabel>
         	<br></br>
         	
-        	<h:panelGrid columns="2">
-        		<h:outputText value="Pseudo : "></h:outputText>
-        		<h:inputText value="#{userBean.username}" maxlength="20" style="width: 100px;"></h:inputText>
+        	<h:panelGrid columns="3">
+        		<h:outputText value="*" style="color: red;"></h:outputText>
+        		<h:outputText value="Pseudo : "></h:outputText>     		
+        		<h:inputText value="#{userBean.username}" 
+        		maxlength="20" style="width: 100px;" required="true"></h:inputText>
         		
-        		<h:outputText value="Password : "></h:outputText>
-        		<h:inputSecret value="#{userBean.password}" maxlength="20" style="width: 100px;"></h:inputSecret>
+        		<h:outputText value="*" style="color: red;"></h:outputText>
+        		<h:outputText value="Password : "></h:outputText>       		
+        		<h:inputSecret value="#{userBean.password}" 
+        		maxlength="20" style="width: 100px;" required="true"></h:inputSecret>
         		
+        		<h:outputText value="*" style="color: red;"></h:outputText>
         		<h:outputText value="Prénom : "></h:outputText>
-        		<h:inputText value="#{userBean.firstname}" maxlength="20" style="width: 100px;"></h:inputText>
+        		<h:inputText value="#{userBean.firstname}" 
+        		maxlength="20" style="width: 100px;" required="true"></h:inputText>
         		
+        		<h:outputText value="*" style="color: red;"></h:outputText>
         		<h:outputText value="Nom : "></h:outputText>
-        		<h:inputText value="#{userBean.lastname}" maxlength="20" style="width: 100px;"></h:inputText>
+        		<h:inputText value="#{userBean.lastname}" 
+        		maxlength="20" style="width: 100px;" required="true"></h:inputText>
 
+				<h:outputText value="*" style="color: red;"></h:outputText>
         		<h:outputText value="Rue : "></h:outputText>
-        		<h:inputText value="#{userBean.street}" maxlength="50" style="width: 100px;"></h:inputText>
+        		<h:inputText value="#{userBean.street}" 
+        		maxlength="50" style="width: 100px;" required="true"></h:inputText>
         		
+        		<h:outputText value="*" style="color: red;"></h:outputText>
         		<h:outputText value="Code postal : "></h:outputText>
-        		<h:inputText value="#{userBean.code}" maxlength="10" style="width: 100px;"></h:inputText>
+        		<h:inputText value="#{userBean.code}" 
+        		maxlength="10" style="width: 100px;" required="true"></h:inputText>
         		
+        		<h:outputText value="*" style="color: red;"></h:outputText>
         		<h:outputText value="Ville : "></h:outputText>
-        		<h:inputText value="#{userBean.city}" maxlength="40" style="width: 100px;"></h:inputText>
+        		<h:inputText value="#{userBean.city}" 
+        		maxlength="40" style="width: 100px;" required="true"></h:inputText>
         		
 	        	<h:commandButton value="Créer" action="#{userBean.createUser}"></h:commandButton>
         	</h:panelGrid>  

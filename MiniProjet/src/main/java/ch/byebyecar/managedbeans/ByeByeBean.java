@@ -167,6 +167,11 @@ public class ByeByeBean {
 		return "bikeList";
 	}
 	
+	public String userDetails() {
+		updateUsers();
+		return "userDetails";
+	}
+	
 	public String userList() {
 		updateUsers();
 		return "userList";

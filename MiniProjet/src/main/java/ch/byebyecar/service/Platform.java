@@ -14,8 +14,6 @@ import ch.byebyecar.businessobject.User;
 @Local
 public interface Platform {
 	
-	//TODO: check if all methods are used!
-	
 	// related to the users
 	void createUser(User u);
 	void createUser(String username, String password, String firstname, String lastname,
