@@ -31,7 +31,11 @@
 					#{bike.owner.firstname} #{bike.owner.lastname}
 				</h:column>
 				<h:column style="width:50px;text-align:center;">
-					<f:facet name="header">Prix</f:facet>
+					<f:facet name="header">
+						<h:commandLink action="#{byeByeBean.sortBikeByPrice}">
+				    	   Prix
+				    	</h:commandLink>
+					</f:facet>
 					#{bike.price}
 				</h:column>
 				<h:column>

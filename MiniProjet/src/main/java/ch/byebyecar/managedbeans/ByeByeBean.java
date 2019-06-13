@@ -1,6 +1,8 @@
 package ch.byebyecar.managedbeans;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -28,6 +30,7 @@ public class ByeByeBean {
 	private String destinationOwnerName;
 	private String suppression;
 	private double amount;
+	private boolean ascending;
 
 	private Platform platform;
 
@@ -77,7 +80,8 @@ public class ByeByeBean {
 		try {
 			this.result = platform.updateOwner(this.owner, owner.getPassword(), amount);
 		} catch (Exception e) {
-			e.printStackTrace();		}
+			e.printStackTrace();
+		}
 
 		return "showOwnerResult";
 	}
@@ -149,6 +153,32 @@ public class ByeByeBean {
 		return "carList";
 	}
 
+	// sort by price
+	public String sortCarByPrice() {
+		
+		if(ascending == false){
+			Collections.sort(cars, new Comparator<Car>() {
+
+				@Override
+				public int compare(Car o1, Car o2) {
+					return Double.compare(o1.getPrice(), o2.getPrice());
+				}
+			});
+			ascending = true;
+		}else{
+			Collections.sort(cars, new Comparator<Car>() {
+
+				@Override
+				public int compare(Car o1, Car o2) {
+					return Double.compare(o2.getPrice(), o1.getPrice());
+				}
+			});
+			ascending=false;
+		}
+		
+		return null;
+	}
+
 	public String bikeList() {
 		updateUsers();
 
@@ -160,6 +190,32 @@ public class ByeByeBean {
 
 		return "bikeList";
 	}
+	
+	// sort by price
+		public String sortBikeByPrice() {
+			if(ascending == false){
+				Collections.sort(bikes, new Comparator<Bike>() {
+
+					@Override
+					public int compare(Bike o1, Bike o2) {
+						return Double.compare(o1.getPrice(), o2.getPrice());
+					}
+				});
+				ascending = true;
+			}else{
+				Collections.sort(bikes, new Comparator<Bike>() {
+
+					@Override
+					public int compare(Bike o1, Bike o2) {
+						return Double.compare(o2.getPrice(), o1.getPrice());
+					}
+				});
+				ascending=false;
+			}
+
+			
+			return null;
+		}
 
 	public String userList() {
 		updateUsers();
@@ -295,5 +351,13 @@ public class ByeByeBean {
 
 	public void setBike(Bike bike) {
 		this.bike = bike;
+	}
+
+	public boolean isAscending() {
+		return ascending;
+	}
+
+	public void setAscending(boolean ascending) {
+		this.ascending = ascending;
 	}
 }
