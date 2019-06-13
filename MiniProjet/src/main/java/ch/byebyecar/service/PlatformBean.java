@@ -1,5 +1,4 @@
 package ch.byebyecar.service;
-
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
@@ -21,6 +20,7 @@ import ch.byebyecar.businessobject.User;
  * Project : June 2019
  */
 
+
 @Stateful
 @RolesAllowed(value = { "user", "admin" })
 public class PlatformBean implements Platform {
@@ -31,6 +31,7 @@ public class PlatformBean implements Platform {
 	@Resource
 	private SessionContext ctx;
 
+	
 	// related to the users
 	public void createUser(User u) {
 		em.persist(u);
@@ -85,22 +86,25 @@ public class PlatformBean implements Platform {
 
 	public String updateOwner(User owner, String password, double amount) {
 		User ow = owner;
+		
 		try {		
 			if (ow.getAccount() + amount < 0) {
-				return "Retrait trop élever.";
+				return "Retrait trop élevé.";
 			}
+			
 			em.persist(ow);
 			ow.setPassword(password);
 			ow.setAccount(ow.getAccount() + amount);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(ow.getAccount()>100000)
-			return "Plein de sousous!!!! Profitez en!";
-		return "Un bon début pour vos achats!";
+		
+		if (ow.getAccount() > 100000)
+			return "Plein de sousous ! Profitez-en !";
+		return "Un bon début pour vos achats !";
 	}
 
+	
 	// related to the cars
 	public void createCar(Car c) {
 		em.persist(c);
@@ -151,12 +155,10 @@ public class PlatformBean implements Platform {
 		User dst = getUserByUsername(destUsername);
 
 		if (dst.getAccount() - car.getPrice() < 0) {
-			return "Trop cher pour toi... Désolé!";
+			return "Trop cher pour toi... Désolé !";
 		} else {
 			// add money to the vendor
 			src.setAccount(src.getAccount() + car.getPrice());
-			// take money from the buyer
-
 			// take money from the buyer
 			dst.setAccount(dst.getAccount() - car.getPrice());
 			// change owner
@@ -166,11 +168,11 @@ public class PlatformBean implements Platform {
 			em.persist(src);
 			em.persist(dst);
 
-			return "L'achat de la voiture " + car.getBrand() + " a été réalisé avec succès! Bonne route!";
+			return "L'achat de la voiture " + car.getBrand() + " a été réalisé avec succès ! Bonne route !";
 		}
-
 	}
 
+	
 	// related to the bikes
 	public void createBike(Bike b) {
 		em.persist(b);
@@ -221,15 +223,12 @@ public class PlatformBean implements Platform {
 		User dst = getUserByUsername(destUsername);
 
 		if (dst.getAccount() - bike.getPrice() < 0) {
-			return "Si t'as pas les sous, t'as pas le deux roues!";
+			return "Si t'as pas les sous, t'as pas le deux roues !";
 		} else {
 			// add money to the vendor
 			src.setAccount(src.getAccount() + bike.getPrice());
-
 			// take money from the buyer
-
 			dst.setAccount(dst.getAccount() - bike.getPrice());
-
 			// change owner
 			bike.setOwner(dst);
 
@@ -237,8 +236,7 @@ public class PlatformBean implements Platform {
 			em.persist(src);
 			em.persist(dst);
 
-			return "L'achat de la moto " + bike.getBrand() + " a été réalisé avec succès! Bonne route!";
+			return "L'achat de la moto " + bike.getBrand() + " a été réalisé avec succès ! Bonne route !";
 		}
-
 	}
 }

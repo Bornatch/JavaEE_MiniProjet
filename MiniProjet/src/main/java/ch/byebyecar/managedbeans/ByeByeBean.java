@@ -1,5 +1,4 @@
 package ch.byebyecar.managedbeans;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -18,6 +17,7 @@ import ch.byebyecar.service.Platform;
  * Project : June 2019
  */
 
+
 @RequestScoped
 public class ByeByeBean {
 
@@ -31,14 +31,13 @@ public class ByeByeBean {
 	private String suppression;
 	private double amount;
 	private boolean ascending;
-
 	private Platform platform;
-
 	private List<Car> cars;
 	private Car car;
 	private List<Bike> bikes;
 	private Bike bike;
 
+	
 	@PostConstruct
 	public void initialize() throws Exception {
 
@@ -65,6 +64,7 @@ public class ByeByeBean {
 		}
 	}
 
+	
 	// update users list
 	public void updateUsers() {
 		List<User> userList = platform.getUsers();
@@ -92,6 +92,7 @@ public class ByeByeBean {
 		return "showSuppressionResult";
 	}
 
+	
 	// selling methods
 	public String sellCar() {
 		try {
@@ -125,6 +126,7 @@ public class ByeByeBean {
 		return "showSellResult";
 	}
 
+	
 	// get data
 	public String getCarFromList(Long id) {
 		setCar((Car) platform.getCarById(id));
@@ -152,33 +154,7 @@ public class ByeByeBean {
 
 		return "carList";
 	}
-
-	// sort by price
-	public String sortCarByPrice() {
-		
-		if(ascending == false){
-			Collections.sort(cars, new Comparator<Car>() {
-
-				@Override
-				public int compare(Car o1, Car o2) {
-					return Double.compare(o1.getPrice(), o2.getPrice());
-				}
-			});
-			ascending = true;
-		}else{
-			Collections.sort(cars, new Comparator<Car>() {
-
-				@Override
-				public int compare(Car o1, Car o2) {
-					return Double.compare(o2.getPrice(), o1.getPrice());
-				}
-			});
-			ascending=false;
-		}
-		
-		return null;
-	}
-
+	
 	public String bikeList() {
 		updateUsers();
 
@@ -191,32 +167,6 @@ public class ByeByeBean {
 		return "bikeList";
 	}
 	
-	// sort by price
-		public String sortBikeByPrice() {
-			if(ascending == false){
-				Collections.sort(bikes, new Comparator<Bike>() {
-
-					@Override
-					public int compare(Bike o1, Bike o2) {
-						return Double.compare(o1.getPrice(), o2.getPrice());
-					}
-				});
-				ascending = true;
-			}else{
-				Collections.sort(bikes, new Comparator<Bike>() {
-
-					@Override
-					public int compare(Bike o1, Bike o2) {
-						return Double.compare(o2.getPrice(), o1.getPrice());
-					}
-				});
-				ascending=false;
-			}
-
-			
-			return null;
-		}
-
 	public String userList() {
 		updateUsers();
 		return "userList";
@@ -227,6 +177,54 @@ public class ByeByeBean {
 		this.setOwner(platform.getUserByUsername(this.destinationOwnerName));
 	}
 
+	
+	// sorting methods (by price)
+	public String sortCarByPrice() {
+			
+		if(ascending == false) {
+			Collections.sort(cars, new Comparator<Car>() {
+				public int compare(Car o1, Car o2) {
+					return Double.compare(o1.getPrice(), o2.getPrice());
+				}
+			});
+			
+			ascending = true;
+		} else {
+			Collections.sort(cars, new Comparator<Car>() {
+				public int compare(Car o1, Car o2) {
+					return Double.compare(o2.getPrice(), o1.getPrice());
+				}
+			});
+			
+			ascending=false;
+		}
+		
+		return null;
+	}
+	
+	public String sortBikeByPrice() {
+		if(ascending == false) {
+			Collections.sort(bikes, new Comparator<Bike>() {
+				public int compare(Bike o1, Bike o2) {
+					return Double.compare(o1.getPrice(), o2.getPrice());
+				}
+			});
+			
+			ascending = true;
+		} else {
+			Collections.sort(bikes, new Comparator<Bike>() {
+				public int compare(Bike o1, Bike o2) {
+					return Double.compare(o2.getPrice(), o1.getPrice());
+				}
+			});
+			
+			ascending=false;
+		}
+		
+		return null;
+	}
+
+
 	// initialization
 	public String getCarList() {
 		return "carList";
@@ -236,128 +234,50 @@ public class ByeByeBean {
 		return "bikeList";
 	}
 
+	
 	// getters and setters
-	public List<User> getUsers() {
-		return users;
-	}
+	public List<User> getUsers() { return users; }
+	public void setUsers(List<User> users) { this.users = users; }
 
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
+	public String getSourceOwnerName() { return sourceOwnerName; }
+	public void setSourceOwnerName(String sourceOwnerName) { this.sourceOwnerName = sourceOwnerName; }
 
-	public String getSourceOwnerName() {
-		return sourceOwnerName;
-	}
+	public String getDestinationOwnerName() { return destinationOwnerName; }
+	public void setDestinationOwnerName(String destinationOwnerName) { this.destinationOwnerName = destinationOwnerName; }
 
-	public void setSourceOwnerName(String sourceOwnerName) {
-		this.sourceOwnerName = sourceOwnerName;
-	}
+	public List<String> getUsernames() { return usernames; }
+	public void setUsernames(List<String> usernames) { this.usernames = usernames; }
 
-	public void getDestinationOwnerName(String destinationOwnerName) {
-		this.destinationOwnerName = destinationOwnerName;
-	}
+	public User getOwner() { return owner; }
+	public void setOwner(User owner) { this.owner = owner; }
 
-	public List<String> getUsernames() {
-		return usernames;
-	}
+	public User getUser() { return user; }
+	public void setUser(User user) { this.user = user; }  
 
-	public void setUsernames(List<String> usernames) {
-		this.usernames = usernames;
-	}
+	public String getResult() { return result; }
+	public void setResult(String result) { this.result = result; }
 
-	public User getOwner() {
-		return owner;
-	}
+	public Platform getPlatform() { return platform; }
+	public void setPlatform(Platform platform) { this.platform = platform; }
 
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
+	public List<Car> getCars() { return cars; }
+	public void setCars(List<Car> cars) { this.cars = cars; }
 
-	public User getUser() {
-		return user;
-	}
+	public String getSuppression() { return suppression; }
+	public void setSuppression(String suppression) { this.suppression = suppression; }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+	public double getAmount() { return amount; }
+	public void setAmount(double amount) { this.amount = amount; }
 
-	public String getResult() {
-		return result;
-	}
+	public Car getCar() { return car; }
+	public void setCar(Car car) { this.car = car; }
 
-	public void setResult(String result) {
-		this.result = result;
-	}
+	public List<Bike> getBikes() { return bikes; }
+	public void setBikes(List<Bike> bikes) { this.bikes = bikes; }
 
-	public Platform getPlatform() {
-		return platform;
-	}
+	public Bike getBike() { return bike; }
+	public void setBike(Bike bike) { this.bike = bike; }
 
-	public void setPlatform(Platform platform) {
-		this.platform = platform;
-	}
-
-	public List<Car> getCars() {
-		return cars;
-	}
-
-	public String getDestinationOwnerName() {
-		return destinationOwnerName;
-	}
-
-	public void setDestinationOwnerName(String destinationOwnerName) {
-		this.destinationOwnerName = destinationOwnerName;
-	}
-
-	public String getSuppression() {
-		return suppression;
-	}
-
-	public void setSuppression(String suppression) {
-		this.suppression = suppression;
-	}
-
-	public double getAmount() {
-		return amount;
-	}
-
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-
-	public void setCars(List<Car> cars) {
-		this.cars = cars;
-	}
-
-	public Car getCar() {
-		return car;
-	}
-
-	public void setCar(Car car) {
-		this.car = car;
-	}
-
-	public List<Bike> getBikes() {
-		return bikes;
-	}
-
-	public void setBikes(List<Bike> bikes) {
-		this.bikes = bikes;
-	}
-
-	public Bike getBike() {
-		return bike;
-	}
-
-	public void setBike(Bike bike) {
-		this.bike = bike;
-	}
-
-	public boolean isAscending() {
-		return ascending;
-	}
-
-	public void setAscending(boolean ascending) {
-		this.ascending = ascending;
-	}
+	public boolean isAscending() { return ascending; }
+	public void setAscending(boolean ascending) { this.ascending = ascending; }
 }
