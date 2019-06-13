@@ -27,7 +27,8 @@ public class ByeByeBean {
 	private String sourceOwnerName;
 	private String destinationOwnerName;
 	private String suppression;
-	private double price;
+	private double amount;
+
 	private Platform platform;
 
 	private List<Car> cars;
@@ -70,13 +71,23 @@ public class ByeByeBean {
 			this.usernames.add(user.getUsername());
 		}
 	}
-	
+
+	// update user
+	public String updateUser() {
+		try {
+			this.result = platform.updateOwner(this.owner, owner.getPassword(), amount);
+		} catch (Exception e) {
+			e.printStackTrace();		}
+
+		return "showOwnerResult";
+	}
+
 	// delete user
 	public String deleteUser(Long id) {
 		suppression = platform.deleteUser(id);
 		return "showSuppressionResult";
 	}
-	
+
 	// selling methods
 	public String sellCar() {
 		try {
@@ -121,10 +132,9 @@ public class ByeByeBean {
 		return "bikeInfo";
 	}
 
-	
 	public String getUserFromList(Long id) {
-		setUser((User) platform.getUser(id));
-		return "userDetails";
+		setOwner((User) platform.getUser(id));
+		return "userInfo";
 	}
 
 	public String carList() {
@@ -152,10 +162,10 @@ public class ByeByeBean {
 	}
 
 	public String userList() {
-		updateUsers();		
+		updateUsers();
 		return "userList";
 	}
-	
+
 	public void updateListOwner(ValueChangeEvent event) throws Exception {
 		this.destinationOwnerName = (String) event.getNewValue();
 		this.setOwner(platform.getUserByUsername(this.destinationOwnerName));
@@ -179,8 +189,6 @@ public class ByeByeBean {
 		this.users = users;
 	}
 
-	
-
 	public String getSourceOwnerName() {
 		return sourceOwnerName;
 	}
@@ -193,23 +201,41 @@ public class ByeByeBean {
 		this.destinationOwnerName = destinationOwnerName;
 	}
 
+	public List<String> getUsernames() {
+		return usernames;
+	}
 
-	public List<String> getUsernames() { return usernames; }
-	public void setUsernames(List<String> usernames) { this.usernames = usernames; }
-	
-	public User getOwner() { return owner; }
-	public void setOwner(User owner) { this.owner = owner; } 
-	
-	public User getUser() { return user; }
-	public void setUser(User user) { this.user = user; } 
-	
-	public String getResult() { return result; }
-	public void setResult(String result) { this.result = result; }
+	public void setUsernames(List<String> usernames) {
+		this.usernames = usernames;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
 
 	public Platform getPlatform() {
 		return platform;
 	}
-
 
 	public void setPlatform(Platform platform) {
 		this.platform = platform;
@@ -219,14 +245,29 @@ public class ByeByeBean {
 		return cars;
 	}
 
-	public String getDestinationOwnerName() { return destinationOwnerName; }
-	public void setDestinationOwnerName(String destinationOwnerName) { this.destinationOwnerName = destinationOwnerName; }
+	public String getDestinationOwnerName() {
+		return destinationOwnerName;
+	}
 
-	public String getSuppression() { return suppression; }
-	public void setSuppression(String suppression) { this.suppression = suppression; }
-	
-	public double getPrice() { return price; }
-	public void setPrice(double price) { this.price = price; }
+	public void setDestinationOwnerName(String destinationOwnerName) {
+		this.destinationOwnerName = destinationOwnerName;
+	}
+
+	public String getSuppression() {
+		return suppression;
+	}
+
+	public void setSuppression(String suppression) {
+		this.suppression = suppression;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
 
 	public void setCars(List<Car> cars) {
 		this.cars = cars;

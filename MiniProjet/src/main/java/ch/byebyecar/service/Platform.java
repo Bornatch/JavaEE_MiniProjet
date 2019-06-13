@@ -24,7 +24,7 @@ public interface Platform {
 	List<User> getUsers();
 	User getUser(Long id);
 	User getUserByUsername(String username);
-	void updateOwner(User owner, String password, double account);
+	String updateOwner(User owner, String password, double account);
 	
 	
 	// related to the cars

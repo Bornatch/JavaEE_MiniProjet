@@ -15,40 +15,40 @@
 				
 				<h:panelGrid columns="3">			
 					<h:outputText value="S&eacute;lectionner un membre : "></h:outputText>
-					<h:selectOneMenu value="userBean.ownerUsername"
-						valueEventListener="#{userBean.updateUser}"
+					<h:selectOneMenu value="byeByeBean.ownerUsername"
+						valueEventListener="#{byeByeBean.updateUser}"
 						onchange="submit()">
-						<f:selectItems value="#{userBean.usernames}" />
+						<f:selectItems value="#{byeByeBean.usernames}" />
 					</h:selectOneMenu>
 					<br></br>
 
 
 					<h:outputText value="Pr&eacute;nom : "></h:outputText>
-					<h:inputText value="#{userBean.firstname}" maxlength="20"
+					<h:inputText value="#{byeByeBean.owner.firstname}" maxlength="20"
 						style="width: 100px;"></h:inputText>
 					<br> </br>
 
 					<h:outputText value="Nom : "></h:outputText>
-					<h:inputText value="#{userBean.lastname}" maxlength="20"
+					<h:inputText value="#{byeByeBean.owner.lastname}" maxlength="20"
 						style="width: 100px;"></h:inputText>
 					<br> </br>
 
 					<h:outputText value="Nom utilisateur : "></h:outputText>
-					<h:inputText value="#{userBean.username}" maxlength="20"
+					<h:inputText value="#{byeByeBean.owner.username}" maxlength="20"
 						style="width: 100px;"></h:inputText>
 					<br> </br>
 
 					<h:outputText value="Password : "></h:outputText>
-					<h:inputSecret value="#{userBean.password}" maxlength="20"
+					<h:inputSecret value="#{byeByeBean.owner.password}" maxlength="20"
 						style="width: 100px;"></h:inputSecret>
 					<h:commandButton value="Sauvegarder"
-						action="#{userBean.updateUser}"></h:commandButton>
+						action="#{byeByeBean.updateUser}"></h:commandButton>
 
 					<h:outputText value="Solde : "></h:outputText>
-					<h:inputText value="#{userBean.account}" maxlength="20"
+					<h:inputText value="#{byeByeBean.owner.account}" maxlength="20"
 						style="width: 100px;" converterId="javax.faces.Double"></h:inputText>
 					<h:commandButton value="Sauvegarder"
-						action="#{userBean.updateUser}"></h:commandButton>
+						action="#{byeByeBean.updateUser}"></h:commandButton>
 				</h:panelGrid>
 			</h:form>
 		</f:view>

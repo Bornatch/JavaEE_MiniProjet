@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+    <ui:define name="content">
+    	<h:form>
+        	<h:outputLabel value="Votre compte :"></h:outputLabel>
+        	<br></br>
+        	
+        	<h:panelGrid columns="2">
+        		<h:outputText value="Pseudo : "></h:outputText>
+        		<h:outputText value="#{byeByeBean.owner.username}"></h:outputText>
+        		      		        		
+        		<h:outputText value="Prénom : "></h:outputText>
+        		<h:outputText value="#{byeByeBean.owner.firstname}"></h:outputText>
+        		
+        		<h:outputText value="Nom : "></h:outputText>
+        		<h:outputText value="#{byeByeBean.owner.lastname}"></h:outputText>
+
+        		<h:outputText value="Rue : "></h:outputText>
+        		<h:outputText value="#{byeByeBean.owner.address.street}"></h:outputText>
+        		
+        		<h:outputText value="Code postal : "></h:outputText>
+        		<h:outputText value="#{byeByeBean.owner.address.code}"></h:outputText>
+        		
+        		<h:outputText value="Ville : "></h:outputText>
+        		<h:outputText value="#{byeByeBean.owner.address.city}" ></h:outputText>
+        		
+        		<h:outputText value="Password : "></h:outputText>
+        		<h:inputSecret value="#{byeByeBean.owner.password}" maxlength="40" style="width: 100px;"></h:inputSecret>
+        		
+        		<h:outputText value="Solde actuel : "></h:outputText>
+        		<h:outputText value="#{byeByeBean.owner.account}"></h:outputText>
+        		
+        		<h:outputText value="Montant : "></h:outputText>
+        		<h:inputText value="#{byeByeBean.amount}" maxlength="40" style="width: 100px;"></h:inputText>
+        		
+	        	<h:commandButton value="Sauvegarder" action="#{byeByeBean.updateUser}"></h:commandButton>
+        	</h:panelGrid>  
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

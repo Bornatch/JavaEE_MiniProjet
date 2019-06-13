@@ -170,7 +170,7 @@
 		<from-view-id>/userList.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>#{byeByeBean.getUserFromList}</from-outcome>
-			<to-view-id>/userDetails.xhtml</to-view-id>
+			<to-view-id>/userInfo.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	
@@ -257,6 +257,15 @@
 		<navigation-case>
 			<from-outcome>welcome</from-outcome>
 			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>userInfo.xhtml</display-name>
+		<from-view-id>/userInfo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{byeByeBean.updateUser}</from-outcome>
+			<to-view-id>/showOwnerResult.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	

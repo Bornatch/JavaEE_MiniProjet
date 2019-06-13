@@ -60,15 +60,15 @@ public class PlatformBean implements Platform {
 	public String deleteUser(Long userId) {
 		int result = em.createQuery("DELETE FROM User u WHERE u.id = :id").setParameter("id", userId).executeUpdate();
 		String suppression = "Cet utilisateur a bien été supprimé !";
-		
+
 		if (!ctx.isCallerInRole("admin")) {
 			suppression = "Vous n'avez pas les droits requis pour effectuer cette action.";
 			ctx.setRollbackOnly();
 		}
-		
+
 		return suppression;
 	}
-	
+
 	public List<User> getUsers() {
 		return em.createQuery("FROM User").getResultList();
 	}
@@ -83,16 +83,22 @@ public class PlatformBean implements Platform {
 		return (User) query.getSingleResult();
 	}
 
-	public void updateOwner(User owner, String password, double account) {
-		try {
-			User ow = getUser(new Long(9));
+	public String updateOwner(User owner, String password, double amount) {
+		User ow = owner;
+		try {		
+			if (ow.getAccount() + amount < 0) {
+				return "Retrait trop élever.";
+			}
 			em.persist(ow);
 			ow.setPassword(password);
-			ow.setAccount(account);
+			ow.setAccount(ow.getAccount() + amount);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(ow.getAccount()>100000)
+			return "Plein de sousous!!!! Profitez en!";
+		return "Un bon début pour vos achats!";
 	}
 
 	// related to the cars
